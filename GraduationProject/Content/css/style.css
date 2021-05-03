@@ -1,0 +1,236 @@
+/* @extend display-flex; */
+display-flex {
+  display: flex;
+  display: -webkit-flex; 
+align-content: center;}
+
+
+input, select, textarea {
+  outline: none;
+  appearance: unset !important;
+  -moz-appearance: unset !important;
+  -webkit-appearance: unset !important;
+  -o-appearance: unset !important;
+  -ms-appearance: unset !important; }
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  -webkit-appearance: none !important;
+  -o-appearance: none !important;
+  -ms-appearance: none !important;
+  margin: 0; }
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  -ms-box-shadow: none !important; }
+
+  input[type=checkbox]:checked {
+    background-color: #f68b1e;
+}
+
+    .checkbox-wrap {
+        display: block;
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Hide the browser's default checkbox */
+    .checkbox-wrap input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+        content: "\f0c8";
+        font-family: "FontAwesome";
+        position: absolute;
+        color: rgba(0,0,0,.1);
+        font-size: 20px;
+        margin-top: -4px;
+    }
+
+/* Show the checkmark when checked */
+.checkbox-wrap input:checked ~ .checkmark:after {
+   
+    display: block;
+    content: "\f14a";
+    font-family: "FontAwesome";
+    color: rgba(0,0,0,.2);
+}
+.checkbox-primary input:checked ~ .checkmark:after {
+    color: #f68b1e;
+}
+
+
+
+
+h4 {
+  margin: 0;
+  font-weight: 700;
+  color: #f68b1e;
+  font-size: 1.25rem;
+  text-align: left;
+  margin-bottom: 10px; }
+
+.clear {
+  clear: both; }
+
+body {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #fff;
+  font-weight: 400;
+  margin: 0px;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased; }
+
+.main {
+  padding: 115px 0;
+  position: relative;
+align-items: center; }
+
+.container {
+  width: 1150px;
+  background: #fff;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px; }
+
+
+
+.active {
+  position: relative;
+  background: #edb77d;
+  padding: 14px 1px;
+  margin-right: 7px;
+  margin-left: 3px;
+  border-radius: 24px;
+  -moz-border-radius: 24px;
+  -webkit-border-radius: 24px;
+  -o-border-radius: 24px;
+  -ms-border-radius: 24px; }
+  .active:after {
+    position: absolute;
+    content: 'Person';
+    right: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    font-size: 11px;
+    color: #222;
+    font-weight: bold; }
+  .active input + label {
+    margin-right: 59px; }
+
+form {
+  padding: 72px 70px 70px 70px; }
+
+.form-group {
+  margin-bottom: 10px;
+  position: relative; }
+
+.form-input {
+  padding-top: 21px; }
+
+.form-label {
+  position: absolute;
+  transition: 0.25s ease;
+  -moz-transition: 0.25s ease;
+  -webkit-transition: 0.25s ease;
+  -o-transition: 0.25s ease;
+  -ms-transition: 0.25s ease;
+  color: #bebebe;
+  
+  top: 23px; }
+
+input {
+  transition: 0.3s ease;
+  -moz-transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+  -o-transition: 0.3s ease;
+  -ms-transition: 0.3s ease;
+  padding-top: 10px;
+  width: 40%;
+  -webkit-appearance: none; }
+  input:focus + .form-label, input:valid + .form-label {
+    top: 1px;
+    font-size: 11px;
+    color: #f68b1e; }
+
+input, select {
+  box-sizing: border-box;
+
+width: 90%;
+  display: block;
+  border: none;
+  color: rgb(0, 0, 0);
+  background: transparent;
+  border-bottom: 1px solid #999;
+  padding: 4px 0; }
+  input:focus, select:focus {
+    border-bottom: 1px solid#f68b1e; }
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px transparent inset; }
+
+input::-webkit-input-placeholder {
+  color: #bebebe; }
+input::-moz-placeholder {
+  color: #bebebe; }
+input:-ms-input-placeholder {
+  color: #bebebe; }
+input:-moz-placeholder {
+  color: #bebebe; }
+.jbt{
+      height: 40px;
+      box-shadow: 10px 5px 5px#bebebe;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+
+    }
+    .jbt-reg:hover {
+      background-color: #e4811c;
+  }
+  .jbt-gb:hover {
+    background-color: #40588a;
+}
+.anchlogin{
+font-size: .875rem;
+font-weight: 500;
+padding: 0;
+cursor: pointer;
+color: #f68b1e;
+text-decoration: none; }
+

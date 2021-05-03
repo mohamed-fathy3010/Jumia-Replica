@@ -1,0 +1,222 @@
+﻿
+    body {
+        font-family: Roboto,-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+    }
+
+    h1 {
+        margin-top: 20px;
+        color: #f68b1e;
+        text-align: center;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 32px;
+    }
+
+    .inp {
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid #c7c7cd;
+    }
+
+        .inp:focus {
+            box-shadow: none;
+            border: none;
+            border-bottom: 2px solid #f68b1e;
+        }
+
+    .btn:focus {
+        box-shadow: none;
+    }
+
+    input[type=password] {
+        position: relative;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+        margin-top: 25px;
+    }
+
+        .form-group i {
+            position: absolute;
+            top: 200px;
+            left: 70%;
+            font-size: x-large;
+            cursor: pointer;
+        }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: none;
+            color: white;
+        }
+
+    #a {
+        color: #f68b1e;
+        font-weight: 500;
+    }
+
+        #a:hover {
+            color: #f68b1e;
+        }
+
+    .form-group label {
+        color: #75757a;
+        font-size: 1rem;
+    }
+    /*input[type=checkbox] {
+    left: 0;
+    position: absolute;
+    top: 6px;
+}*/
+    .lbl, input[type=checkbox] {
+        cursor: pointer;
+    }
+
+        input[type=checkbox]:checked {
+            background-color: #f68b1e;
+        }
+
+    .checkbox-wrap {
+        display: block;
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+        /* Hide the browser's default checkbox */
+        .checkbox-wrap input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+    /* Create a custom checkbox */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "\f0c8";
+            font-family: "FontAwesome";
+            position: absolute;
+            color: rgba(0,0,0,.1);
+            font-size: 20px;
+            margin-top: -4px;
+        }
+
+    /* Show the checkmark when checked */
+    .checkbox-wrap input:checked ~ .checkmark:after {
+        display: block;
+        content: "\f14a";
+        font-family: "FontAwesome";
+        color: rgba(0,0,0,.2);
+    }
+
+    .checkbox-primary input:checked ~ .checkmark:after {
+        color: #f68b1e;
+    }
+
+    .loginbtn {
+        background-color: #f68b1e;
+        color: white;
+    }
+
+        .loginbtn:hover {
+            background-color: #e4811c
+        }
+
+    .loginwithface {
+        background-color: #40588a;
+        color: white;
+    }
+
+        .loginwithface:hover {
+            background-color: #344f88;
+        }
+
+    input[type=button], .loginbtn, .loginwithface {
+        text-transform: uppercase;
+        font-weight: 500;
+        border: none;
+        font-size: .875rem;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-top: 8px;
+        margin-bottom: 25px;
+    }
+
+    .right {
+        padding-left: 25%;
+    }
+
+        .right .fa-envelope {
+            position: absolute;
+            left: 30%;
+            font-size: large;
+            cursor: pointer;
+        }
+
+    .left .fa-envelope {
+        position: absolute;
+        left: 35px;
+        font-size: large;
+        cursor: pointer;
+    }
+
+    .left .fa-facebook-square {
+        position: absolute;
+        left: 35px;
+        font-size: x-large;
+        cursor: pointer;
+    }
+
+    .right .fa-facebook-square {
+        position: absolute;
+        left: 30%;
+        font-size: x-large;
+        cursor: pointer;
+    }
+
+    .left:after {
+        content: '';
+        background-color: #ededed;
+        height: 500px;
+        width: 1px;
+        position: absolute;
+        right: 0;
+        top: 10px;
+        margin: auto;
+    }
+
+    .Pcountainer {
+        max-height: 230px;
+        height: 230px;
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.5;
+        padding-top: 16px;
+        flex-grow: 1;
+        margin: 0;
+        color: #282828;
+        box-sizing: border-box;
+    }
+

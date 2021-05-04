@@ -6,13 +6,11 @@ using System.Web.Mvc;
 
 namespace GraduationProject.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
-        [Authorize]
         public ActionResult Index()
         {
-            return View("Home");
+            return View("Index");
         }
 
         public ActionResult About()

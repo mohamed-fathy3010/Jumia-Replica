@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "Account Summary";
+}
+@section styles{
+    <link href="~/Content/css/Seller/Financials/AccountSummary.css" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+          crossorigin="anonymous" />
+}
+<div id="main">
+    <nav class="navbar navbar-expand-md navbar-light">
+        <div class="col pagetitle">
+            <h4 class="navbar-brand blocktitle">
+                <span>Account Summary</span>
+            </h4>
+        </div>
+        <div class="btn-group">
+            <button id="left-caret" type="button" class="dropdown-toggle d-lg-none" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item active" href="#">Available</a>
+                <a class="dropdown-item" href="#">Pending</a>
+                <a class="dropdown-item" href="#">Additional fees</a>
+            </div>
+        </div>
+        <button id="search-icon"
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="fa fa-search"></span>
+        </button>
+        <div class="collapse navbar-collapse flex-md-row-reverse"
+             id="navbarSupportedContent">
+            <form class="form-inline mt-3 mt-md-0" action="#">
+                <div class="d-flex">
+                    <label id="tab">Available</label>
+                    <input id="search-input"
+                           class="form-control-lg"
+                           type="search"
+                           placeholder="Description or Order ID"
+                           aria-label="Search"
+                           aria-invalid="false"
+                           style="font-size: .85714rem;
+                                     height: 2.78571rem;
+                                     width: 300px;
+                                     margin:0;
+                                     " />
+                    <div class="btn-group d-none d-md-block">
+                        <button id="filter-menu-caret"
+                                type="button"
+                                class="btn btn-link dropdown-toggle"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                        </button>
+                        <div id="filter" class="dropdown-menu">
+                            <div class="menu-container">
+                                <form action="#">
+                                    <h5>Advanced Search</h5>
+                                    <div class="input-group">
+                                        <label class="col-4" for="">Keyword</label>
+                                        <input type="text" name="" id="" class="form-control" />
+                                    </div>
+                                    <div class="input-group align-items-center">
+                                        <label class="col-4" for="">Date</label>
+                                        <input type="date" name="" id="" class="form-control" />
+                                        <span class="hyphen">-</span>
+                                        <input type="date" name="" id="" class="form-control" />
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="col-4" for="">Order ID</label>
+                                        <input type="text" name="" id="" class="form-control" />
+                                    </div>
+                                    <div class="input-group">
+                                        <label class="col-4" for="">Amount</label>
+                                        <input type="text" name="" id="" class="form-control" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <button id="search" class="btn btn-info" type="submit">Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="tab-wrapper d-none d-lg-block">
+            <ul class="nav nav-tabs border-bottom-0 tab-list">
+                <li class="nav-item active">
+                    <a data-toggle="tab" class="contenttab nav-link active" href="#available">
+                        Available
+                        <span id="available" class="currency">(0.00 EGP)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="tab" class="contenttab nav-link" href="#pending">
+                        Pending
+                        <span id="pending" class="currency">(0.00 EGP)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="tab" class="contenttab nav-link" href="#addtional-fees">
+                        Additional fees
+                        <span id="additional-fees" class="currency">(0.00 EGP)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="transactions tab-content d-block">
+            <div id="available" class="tab-pane fade show active ">
+                <h5 class="text-center block-mrgb ng-binding">
+                    You don't have any transactions yet. You will start to see them here once you get new orders
+                </h5>
+            </div>
+            <div id="pending" class="tab-pane fade ">
+                <h5 class="text-center block-mrgb ng-binding">
+                    You don't have any transactions yet. You will start to see them here once you get new orders
+                </h5>
+            </div>
+            <div id="addtional-fees" class="tab-pane fade">
+                <h5 class="text-center block-mrgb ng-binding">
+                    You don't have any transactions yet. You will start to see them here once you get new orders
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>

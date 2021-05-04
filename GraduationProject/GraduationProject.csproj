@@ -186,8 +186,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SellerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -278,9 +281,13 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cardCSS\bootstrap.css" />
     <Content Include="Content\cardCSS\font-awesome.css" />
-    <Content Include="Content\css\home.css" />
+    <Content Include="Content\css\Customer\Account\Account.css" />
+    <Content Include="Content\css\Customer\Account\AccountEdit.css" />
+    <Content Include="Content\css\index.css" />
     <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\Product\productDetails.css" />
     <Content Include="Content\css\sellerRegister.css" />
+    <Content Include="Content\css\Seller\Financials\AccountSummary.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\fonts\material-icon\css\material-design-iconic-font.css" />
     <Content Include="Content\fonts\material-icon\css\material-design-iconic-font.min.css" />
@@ -508,6 +515,8 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Account\Customer\Account.cshtml" />
+    <Content Include="Views\Account\Customer\AccountEdit.cshtml" />
     <None Include="Views\Partial\ProductDetails.cshtml" />
     <None Include="Views\Partial\Products For Annonuymous.cshtml" />
     <None Include="Views\Home\home.cshtml" />
@@ -548,6 +557,8 @@
     <Content Include="Views\Account\customerRegister.cshtml" />
     <Content Include="Views\Account\CustomerLogin.cshtml" />
     <Content Include="Views\Partial\ListOfProducts.cshtml" />
+    <Content Include="Views\Seller\Financials\AccountSummary.cshtml" />
+    <Content Include="Views\Product\ProductDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

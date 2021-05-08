@@ -528,7 +528,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
@@ -560,6 +559,8 @@
     <Content Include="Views\Seller\Financials\AccountSummary.cshtml" />
     <Content Include="Views\Product\ProductDetails.cshtml" />
     <Content Include="Views\test\mohamedFathy.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\test\this_is_from_a_second_account.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

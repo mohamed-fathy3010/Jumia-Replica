@@ -530,6 +530,7 @@
     <None Include="Views\Partial\ProductDetails.cshtml" />
     <None Include="Views\Partial\Products For Annonuymous.cshtml" />
     <None Include="Views\Home\home.cshtml" />
+    <Content Include="Views\tests\HtmlPage1.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -538,7 +539,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
@@ -569,6 +569,11 @@
     <Content Include="Views\Partial\ListOfProducts.cshtml" />
     <Content Include="Views\Seller\Financials\AccountSummary.cshtml" />
     <Content Include="Views\Product\ProductDetails.cshtml" />
+    <Content Include="Views\test\mohamedFathy.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\test\this_is_from_a_second_account.cshtml" />
+    <Content Include="Views\Shared\Navbar.cshtml" />
+    <Content Include="Views\Shared\cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

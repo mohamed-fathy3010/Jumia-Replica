@@ -562,6 +562,8 @@
     <Content Include="Views\test\mohamedFathy.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\test\this_is_from_a_second_account.cshtml" />
+    <Content Include="Views\Shared\Navbar.cshtml" />
+    <Content Include="Views\Shared\cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

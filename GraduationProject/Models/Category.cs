@@ -19,7 +19,7 @@ namespace graduation_project
         public string Name { get; set; }
         //foreign key
         //[ForeignKey("SuperCategory")]
-        public int SuperCatgeoryID { get; set; }
+        public int? SuperCatgeoryID { get; set; }
         //Navigation
         public List<Product> Products { get; set; } = new List<Product>();
         public virtual Category SuperCategory { get; set; }

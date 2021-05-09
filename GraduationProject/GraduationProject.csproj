@@ -186,6 +186,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -245,6 +246,14 @@
     <Compile Include="Migrations\202105030431029_date3.cs" />
     <Compile Include="Migrations\202105030431029_date3.Designer.cs">
       <DependentUpon>202105030431029_date3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105070949010_nullable-super-category.cs" />
+    <Compile Include="Migrations\202105070949010_nullable-super-category.designer.cs">
+      <DependentUpon>202105070949010_nullable-super-category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105070952149_nullable-product-promotionID.cs" />
+    <Compile Include="Migrations\202105070952149_nullable-product-promotionID.designer.cs">
+      <DependentUpon>202105070952149_nullable-product-promotionID.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -517,6 +526,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Account\Customer\Account.cshtml" />
     <Content Include="Views\Account\Customer\AccountEdit.cshtml" />
+    <Content Include="Views\Cart\cart.cshtml" />
     <None Include="Views\Partial\ProductDetails.cshtml" />
     <None Include="Views\Partial\Products For Annonuymous.cshtml" />
     <None Include="Views\Home\home.cshtml" />
@@ -606,6 +616,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105030431029_date3.resx">
       <DependentUpon>202105030431029_date3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105070949010_nullable-super-category.resx">
+      <DependentUpon>202105070949010_nullable-super-category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105070952149_nullable-product-promotionID.resx">
+      <DependentUpon>202105070952149_nullable-product-promotionID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

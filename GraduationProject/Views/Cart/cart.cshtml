@@ -1,0 +1,13 @@
+﻿@using graduation_project;
+@{
+    ViewBag.Title = "cart";
+}
+@if (Context.Session["order"] != null)
+{
+    foreach (var product in Context.Session["order"] as List<Product>)
+    {
+        <h1>@product.Name</h1>
+    }
+}
+
+

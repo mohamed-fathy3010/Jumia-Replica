@@ -36,7 +36,7 @@ namespace graduation_project
         public int CategoryID { get; set; }
 
         [ForeignKey("Promotion")]
-        public int PromotionsID { get; set; }
+        public int? PromotionsID { get; set; }
 
         //Navigation
         public Category Category { get; set; }

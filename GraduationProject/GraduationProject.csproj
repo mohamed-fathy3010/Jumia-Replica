@@ -308,6 +308,7 @@
     <Content Include="Content\fonts\poppins\roboto-condensed-v16-latin-700italic.svg" />
     <Content Include="Content\fonts\poppins\roboto-condensed-v16-latin-italic.svg" />
     <Content Include="Content\fonts\poppins\roboto-condensed-v16-latin-regular.svg" />
+    <Content Include="Content\Cart.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

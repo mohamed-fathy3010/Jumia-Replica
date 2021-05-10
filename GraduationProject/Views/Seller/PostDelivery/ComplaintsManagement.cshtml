@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "ComplaintsManagement";
+}
+
+@section styles{
+    <link href="~/Content/css/Seller/PostDelivery/ComplaintsManagement.css" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+          crossorigin="anonymous" />
+}
+
+<div id="main">
+    <nav class="navbar navbar-expand-md navbar-light">
+        <div class="col pagetitle">
+            <h4 class="navbar-brand blocktitle">
+                <span>Complaints Management</span>
+                <br />
+                <span class="taketour">
+                    Take a tour
+                </span>
+            </h4>
+        </div>
+        <button id="search-icon"
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="fa fa-search"></span>
+        </button>
+        <div class="collapse navbar-collapse flex-md-row-reverse"
+             id="navbarSupportedContent">
+            <form class="form-inline mt-3 mt-md-0" action="#">
+                <div class="d-flex">
+                    <input id="search-input"
+                           class="form-control-lg"
+                           type="search"
+                           placeholder="Search for EAN/Offer ID or Item Title"
+                           aria-label="Search"
+                           aria-invalid="false"
+                           style="font-size: .85714rem;
+                                     height: 2.78571rem;
+                                     width: 300px;
+                                     margin:0;
+                                     " />
+                    <div class="btn-group d-none d-md-block">
+
+                    </div>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="tab-wrapper d-none d-lg-block">
+            <ul class="nav nav-tabs border-bottom-0 tab-list">
+                <li class="nav-item active">
+                    <a data-toggle="tab" class="contenttab nav-link active" href="#open">
+                        Open
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="tab" class="contenttab nav-link" href="#closed">
+                        Closed
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="transactions tab-content d-block">
+            <div id="open" class="tab-pane fade show active ">
+                <h5 class="text-center block-mrgb ng-binding">
+                    You don't have any buyers complaint at this tab currently
+                </h5>
+            </div>
+            <div id="closed" class="tab-pane fade ">
+                <h5 class="text-center block-mrgb ng-binding">
+                    You don't have any buyers complaint at this tab currently
+                </h5>
+            </div>
+        </div>
+    </div>
+
+</div>
+

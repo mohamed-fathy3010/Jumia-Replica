@@ -255,6 +255,18 @@
     <Compile Include="Migrations\202105070952149_nullable-product-promotionID.designer.cs">
       <DependentUpon>202105070952149_nullable-product-promotionID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105091306294_lower-order-and-orderDetails-validations.cs" />
+    <Compile Include="Migrations\202105091306294_lower-order-and-orderDetails-validations.designer.cs">
+      <DependentUpon>202105091306294_lower-order-and-orderDetails-validations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105091327224_drop-discount-validation.cs" />
+    <Compile Include="Migrations\202105091327224_drop-discount-validation.designer.cs">
+      <DependentUpon>202105091327224_drop-discount-validation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105091348157_datetime2.cs" />
+    <Compile Include="Migrations\202105091348157_datetime2.designer.cs">
+      <DependentUpon>202105091348157_datetime2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BankAccount.cs" />
@@ -275,6 +287,7 @@
     <Compile Include="Models\OrderDetailsStatus.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductWithQuantityViewModel.cs" />
     <Compile Include="Models\Promotion.cs" />
     <Compile Include="Models\SellerInfo.cs" />
     <Compile Include="Models\Status.cs" />
@@ -627,6 +640,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105070952149_nullable-product-promotionID.resx">
       <DependentUpon>202105070952149_nullable-product-promotionID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105091306294_lower-order-and-orderDetails-validations.resx">
+      <DependentUpon>202105091306294_lower-order-and-orderDetails-validations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105091327224_drop-discount-validation.resx">
+      <DependentUpon>202105091327224_drop-discount-validation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105091348157_datetime2.resx">
+      <DependentUpon>202105091348157_datetime2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

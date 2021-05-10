@@ -10,7 +10,6 @@ namespace GraduationProject.Controllers
     {
         public ActionResult Index()
         {
-            Session["hmada"] = "hmada from home";
             return View("Index");
         }
 

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace graduation_project
-{
+namespace GraduationProject.Models
+{ 
     public enum OrderStatus
     {
         Awaiting,

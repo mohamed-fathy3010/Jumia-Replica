@@ -1,13 +1,110 @@
-﻿@using graduation_project;
+﻿
 @{
     ViewBag.Title = "cart";
 }
-@if (Context.Session["order"] != null)
-{
-    foreach (var product in Context.Session["order"] as List<Product>)
-    {
-        <h1>@product.Name</h1>
-    }
+
+@section styles{
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 }
 
+<!-- cart is full -->
+<div class="container">
+    <div class="row d-inline">
+        <h1>
+            cart @if (Context.Session["order"] != null)
+            {
+                <span id="cart-size">(@((Context.Session["order"] as List<Product>).Count)</span>
+            }
+        </h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim excepturi tempore similique qui vitae
+            reiciendis.
+        </p>
+    </div>
+</div>
+@if (Context.Session["order"] != null)
+{
 
+
+    using (Html.BeginForm("Buy", "cart"))
+    {
+    <div class="container">
+        <div class="row">
+            <table class="table w-100">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>quantity</th>
+                        <th>unit price</th>
+                        <th>subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{List<Product> order = (List<Product>)Context.Session["order"]; }
+                    @for (int i = 0;i < order.Count; i++)
+                    {
+
+                        <input type="hidden" name="cart[@i].Id" value="@order[i].ID">
+                    <tr>
+                        <td class="border-right " style="width: 50%;">
+                            <div class="image mr-1">
+                                <img src="https://i.stack.imgur.com/ZGgx0.png" width="50px"
+                                     height="auto">
+                            </div>
+                            <div class="image-body">
+                                <h6>Seller:jumai</h6>
+                                <h5>@order[0].Name</h5>
+                                <p>
+                                    @order[0].Description
+                                </p>
+                                <div class="acts d-flex">
+                                    @Html.ActionLink("move to saved item", "test", null, new { @class = "btn one" })
+                                    @Html.ActionLink("remove", "test", null, new { @class = "btn two" })
+
+
+                                </div>
+                            </div>
+                        </td>
+                        <td class="border-right" style="width: 10%;">
+                            <div class="form-group">
+
+                                @*@Html.DropDownList("StudentGender",
+                                    new SelectList(Enum.GetValues(typeof(test))),
+                                    "Select Gender",
+                                    new { @class = "form-control" })*@
+
+                                <select class="form-control" style="cursor: pointer;" name="cart[@i].Quantity">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td class="border-right" style="width: 20%;">EGP 10,866</td>
+                        <td style="width: 20%; color: #f68b1e; font-weight: 600;">EGP 10,866</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="row d-flex justify-content-end">
+            <div class="row">
+                <span class="d-flex">
+                    <p>Total:</p>
+                    <h5 style="color:#f68b1e; margin-left: 1em;">EGP 10,866</h5>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mr-2 d-flex justify-content-end checkout align-content-center">
+        <span>
+            @Html.ActionLink("continue shopping", "test", null, new { @class = "btn-orange btn shop" })
+        </span>
+        <span>
+          <input type="submit" value="continue to checkout" class="btn-orange btn con">
+        </span>
+    </div>
+    }
+}

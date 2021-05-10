@@ -314,9 +314,11 @@
     <Content Include="Content\fonts\poppins\roboto-condensed-v16-latin-700italic.svg" />
     <Content Include="Content\fonts\poppins\roboto-condensed-v16-latin-italic.svg" />
     <Content Include="Content\fonts\poppins\roboto-condensed-v16-latin-regular.svg" />
+    <Content Include="Content\Cart.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
     <Content Include="images\portfolio-4.jpg" />
     <Content Include="images\portfolio-5.jpg" />
     <Content Include="images\portfolio-7.jpg" />
@@ -571,11 +573,13 @@
     <Content Include="Views\test\this_is_from_a_second_account.cshtml" />
     <Content Include="Views\Shared\Navbar.cshtml" />
     <Content Include="Views\Shared\cart.cshtml" />
+
     <Content Include="Views\Seller\Inventory\InventoryManagement.cshtml" />
     <Content Include="Views\Seller\Orders\OrderManagement.cshtml" />
     <Content Include="Views\Seller\Orders\ReturnManagement.cshtml" />
     <Content Include="Views\Seller\Orders\CanceledOrders.cshtml" />
     <Content Include="Views\Seller\PostDelivery\ComplaintsManagement.cshtml" />
+    <Content Include="Views\Shared\Navbar2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

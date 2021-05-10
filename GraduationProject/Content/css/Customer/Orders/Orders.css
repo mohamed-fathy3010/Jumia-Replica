@@ -1,0 +1,144 @@
+﻿html {
+    font-size: 16px;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+row {
+    max-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    flex: 0 1 auto;
+}
+
+#container-row {
+    padding: 8px;
+}
+
+hr {
+    color: #f5f5f5;
+    width: 100%;
+    margin: 0;
+    height: 1px;
+}
+
+.texttab {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 8px 8px;
+}
+
+.card-header {
+    background-color: white;
+}
+
+.content {
+    padding: 0px 8px;
+    position: relative;
+}
+
+.contenttab1 {
+    padding: 12px 16px;
+    color: #75757a;
+    z-index: 10;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+    .contenttab1:hover {
+        color: #f68b1e;
+        background-color: #fff;
+    }
+
+.tab-pane {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.imagecontent {
+    margin: 0 auto;
+    flex-basis: 50%;
+    max-width: 50%;
+    min-width: 50%;
+    width: 50%;
+    text-align: center;
+}
+
+.image {
+    border-style: none;
+    margin: 0px 8px;
+    height: 100px;
+    width: 100px;
+}
+
+.fontimg {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0px 75px;
+}
+
+h2 {
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.parimg {
+    line-height: 1.5;
+    white-space: pre-line;
+    padding: 0px 8px;
+    margin: 0;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.imgbtn {
+    margin-top: 24px;
+    transform: translate3d(0, 0, 0);
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background-color: #f68b1e;
+}
+
+.btn {
+    cursor: pointer;
+    font-size: .875rem;
+    line-height: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: Roboto,-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+    padding: 16px;
+    outline: 0;
+    border: 0;
+    border-radius: 4px;
+}
+
+.nav-tabs .nav-link.active {
+    color: #f68b1e;
+    background-color: #fff;
+    border-bottom: 3px solid #f68b1e;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+}
+
+a:hover {
+    color: #fff;
+    background-color: #e4811c;
+}

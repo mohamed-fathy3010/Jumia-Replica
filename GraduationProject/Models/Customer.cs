@@ -7,8 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using GraduationProject.Models;
 
-namespace graduation_project
-{
+namespace GraduationProject.Models { 
     public class Customer
     {
 

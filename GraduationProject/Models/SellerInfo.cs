@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace graduation_project
+namespace GraduationProject.Models
 {
     public class SellerInfo
     {

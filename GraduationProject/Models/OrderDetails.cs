@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace graduation_project
+namespace GraduationProject.Models
 {
    public class OrderDetails
     {
@@ -17,11 +17,12 @@ namespace graduation_project
         [Required]
         public float? UnitPrice { get; set; }
         
-        [Required]
         public float? Discount { get; set; }
-       [Required]
-        public DateTime OrderDate { get; set; }
         [Required]
+        [Column(TypeName = "datetime2")]
+
+        public DateTime OrderDate { get; set; }
+        [Column(TypeName = "datetime2")]
         public DateTime shippedDate { get; set; }
         [Required]
         public OrderDetailsStatus Status { get; set; }

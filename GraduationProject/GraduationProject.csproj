@@ -186,6 +186,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -246,6 +247,26 @@
     <Compile Include="Migrations\202105030431029_date3.Designer.cs">
       <DependentUpon>202105030431029_date3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105070949010_nullable-super-category.cs" />
+    <Compile Include="Migrations\202105070949010_nullable-super-category.designer.cs">
+      <DependentUpon>202105070949010_nullable-super-category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105070952149_nullable-product-promotionID.cs" />
+    <Compile Include="Migrations\202105070952149_nullable-product-promotionID.designer.cs">
+      <DependentUpon>202105070952149_nullable-product-promotionID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105091306294_lower-order-and-orderDetails-validations.cs" />
+    <Compile Include="Migrations\202105091306294_lower-order-and-orderDetails-validations.designer.cs">
+      <DependentUpon>202105091306294_lower-order-and-orderDetails-validations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105091327224_drop-discount-validation.cs" />
+    <Compile Include="Migrations\202105091327224_drop-discount-validation.designer.cs">
+      <DependentUpon>202105091327224_drop-discount-validation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105091348157_datetime2.cs" />
+    <Compile Include="Migrations\202105091348157_datetime2.designer.cs">
+      <DependentUpon>202105091348157_datetime2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BankAccount.cs" />
@@ -266,6 +287,7 @@
     <Compile Include="Models\OrderDetailsStatus.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductWithQuantityViewModel.cs" />
     <Compile Include="Models\Promotion.cs" />
     <Compile Include="Models\SellerInfo.cs" />
     <Compile Include="Models\Status.cs" />
@@ -525,6 +547,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Account\Customer\Account.cshtml" />
     <Content Include="Views\Account\Customer\AccountEdit.cshtml" />
+    <Content Include="Views\Cart\cart.cshtml" />
     <Content Include="Views\Orders\Orders.cshtml" />
     <None Include="Views\Partial\ProductDetails.cshtml" />
     <None Include="Views\Partial\Products For Annonuymous.cshtml" />
@@ -627,6 +650,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105030431029_date3.resx">
       <DependentUpon>202105030431029_date3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105070949010_nullable-super-category.resx">
+      <DependentUpon>202105070949010_nullable-super-category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105070952149_nullable-product-promotionID.resx">
+      <DependentUpon>202105070952149_nullable-product-promotionID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105091306294_lower-order-and-orderDetails-validations.resx">
+      <DependentUpon>202105091306294_lower-order-and-orderDetails-validations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105091327224_drop-discount-validation.resx">
+      <DependentUpon>202105091327224_drop-discount-validation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105091348157_datetime2.resx">
+      <DependentUpon>202105091348157_datetime2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

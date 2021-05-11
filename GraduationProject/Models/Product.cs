@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace graduation_project
+namespace GraduationProject.Models
 {
     public class Product
     {
@@ -21,7 +21,7 @@ namespace graduation_project
         [Required]
         [DisplayName("Price")]
         [Column("money")]
-        public decimal Cost { get; set; }
+        public float Cost { get; set; }
 
         [Required]
 
@@ -36,7 +36,7 @@ namespace graduation_project
         public int CategoryID { get; set; }
 
         [ForeignKey("Promotion")]
-        public int PromotionsID { get; set; }
+        public int? PromotionsID { get; set; }
 
         //Navigation
         public Category Category { get; set; }

@@ -7,6 +7,7 @@
     <link href="~/Content/css/Product/productDetails.css" rel="stylesheet" />
 }
 <div class="container">
+
     <div id="container-row">
         <div class="col-12 col-lg-9 cards-container">
             <div class="card" style="flex-direction: row">
@@ -100,10 +101,10 @@
                             <hr />
                             <div class="product-price">
                                 <p>EGP <span>257,00</span></p>
-                                <a href="/" class="btn imgbtn">
+                                <button onclick="add()" class="btn imgbtn">
                                     <i class="fas fa-cart-plus float-left"></i>
                                     Add to cart
-                                </a>
+                                </button>
                             </div>
                             <hr />
                             <div class="product-detail">
@@ -395,5 +396,14 @@
                 $textNode.toggleClass("fas far");
             });
         });
+        function add() {
+            $.ajax({
+                method:"POST",
+                url: "/products/5",
+                success: function (data) {
+                    console.log(data);
+        },
+    })
+}
     </script>
 }

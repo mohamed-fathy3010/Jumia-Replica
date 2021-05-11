@@ -18,5 +18,12 @@ namespace GraduationProject.Controllers
         {
             return View("~/Views/Seller/Financials/AccountSummary.cshtml");
         }
+
+        //[Route("FeeDiscounts/FeeDiscounts")]
+        //public ActionResult FeeDiscounts()
+        //{
+        //    return View("~/Views/Seller/FeeDiscounts/FeeDiscounts.cshtml");
+        //}
     }
+
 }

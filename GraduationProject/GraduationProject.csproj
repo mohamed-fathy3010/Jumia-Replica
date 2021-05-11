@@ -87,12 +87,6 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
-    </Reference>
-    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -197,9 +191,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\SearchProductController.cs" />
     <Compile Include="Controllers\SellerController.cs" />
-    <Compile Include="Controllers\WishListProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -255,10 +247,6 @@
     <Compile Include="Migrations\202105030431029_date3.Designer.cs">
       <DependentUpon>202105030431029_date3.cs</DependentUpon>
     </Compile>
-
-    <Compile Include="Migrations\202105110740574_CustomerProduct.cs" />
-    <Compile Include="Migrations\202105110740574_CustomerProduct.designer.cs">
-      <DependentUpon>202105110740574_CustomerProduct.cs</DependentUpon>
     <Compile Include="Migrations\202105070949010_nullable-super-category.cs" />
     <Compile Include="Migrations\202105070949010_nullable-super-category.designer.cs">
       <DependentUpon>202105070949010_nullable-super-category.cs</DependentUpon>
@@ -287,7 +275,6 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Complaint.cs" />
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\CustomerProduct.cs" />
     <Compile Include="Models\FeedBack.cs" />
     <Compile Include="Models\FinancialAccount.cs" />
     <Compile Include="Models\GenderType.cs" />
@@ -349,12 +336,8 @@
     <Content Include="Content\fonts\poppins\roboto-condensed-v16-latin-700italic.svg" />
     <Content Include="Content\fonts\poppins\roboto-condensed-v16-latin-italic.svg" />
     <Content Include="Content\fonts\poppins\roboto-condensed-v16-latin-regular.svg" />
-
-    <Content Include="Content\PagedList.css" />
-
     <Content Include="Content\Cart.css" />
     <Content Include="Content\Site.css" />
-
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\style.css" />
@@ -564,7 +547,6 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Account\Customer\Account.cshtml" />
     <Content Include="Views\Account\Customer\AccountEdit.cshtml" />
-    <Content Include="Views\Partial\faicowish.cshtml" />
     <Content Include="Views\Cart\cart.cshtml" />
     <Content Include="Views\Orders\Orders.cshtml" />
     <None Include="Views\Partial\ProductDetails.cshtml" />
@@ -614,7 +596,7 @@
     <Content Include="Views\test\this_is_from_a_second_account.cshtml" />
     <Content Include="Views\Shared\Navbar.cshtml" />
     <Content Include="Views\Shared\cart.cshtml" />
-    <Content Include="Views\SearchProduct\Index.cshtml" />
+
     <Content Include="Views\Seller\Inventory\InventoryManagement.cshtml" />
     <Content Include="Views\Seller\Orders\OrderManagement.cshtml" />
     <Content Include="Views\Seller\Orders\ReturnManagement.cshtml" />
@@ -669,9 +651,6 @@
     <EmbeddedResource Include="Migrations\202105030431029_date3.resx">
       <DependentUpon>202105030431029_date3.cs</DependentUpon>
     </EmbeddedResource>
-
-    <EmbeddedResource Include="Migrations\202105110740574_CustomerProduct.resx">
-      <DependentUpon>202105110740574_CustomerProduct.cs</DependentUpon>
     <EmbeddedResource Include="Migrations\202105070949010_nullable-super-category.resx">
       <DependentUpon>202105070949010_nullable-super-category.cs</DependentUpon>
     </EmbeddedResource>

@@ -10,7 +10,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GraduationProject.Models;
-using graduation_project;
 
 
 namespace GraduationProject.Controllers

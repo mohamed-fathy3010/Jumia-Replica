@@ -192,6 +192,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -254,9 +255,29 @@
     <Compile Include="Migrations\202105030431029_date3.Designer.cs">
       <DependentUpon>202105030431029_date3.cs</DependentUpon>
     </Compile>
+
     <Compile Include="Migrations\202105110740574_CustomerProduct.cs" />
     <Compile Include="Migrations\202105110740574_CustomerProduct.designer.cs">
       <DependentUpon>202105110740574_CustomerProduct.cs</DependentUpon>
+    <Compile Include="Migrations\202105070949010_nullable-super-category.cs" />
+    <Compile Include="Migrations\202105070949010_nullable-super-category.designer.cs">
+      <DependentUpon>202105070949010_nullable-super-category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105070952149_nullable-product-promotionID.cs" />
+    <Compile Include="Migrations\202105070952149_nullable-product-promotionID.designer.cs">
+      <DependentUpon>202105070952149_nullable-product-promotionID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105091306294_lower-order-and-orderDetails-validations.cs" />
+    <Compile Include="Migrations\202105091306294_lower-order-and-orderDetails-validations.designer.cs">
+      <DependentUpon>202105091306294_lower-order-and-orderDetails-validations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105091327224_drop-discount-validation.cs" />
+    <Compile Include="Migrations\202105091327224_drop-discount-validation.designer.cs">
+      <DependentUpon>202105091327224_drop-discount-validation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105091348157_datetime2.cs" />
+    <Compile Include="Migrations\202105091348157_datetime2.designer.cs">
+      <DependentUpon>202105091348157_datetime2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -279,6 +300,7 @@
     <Compile Include="Models\OrderDetailsStatus.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductWithQuantityViewModel.cs" />
     <Compile Include="Models\Promotion.cs" />
     <Compile Include="Models\SellerInfo.cs" />
     <Compile Include="Models\Status.cs" />
@@ -296,11 +318,17 @@
     <Content Include="Content\cardCSS\font-awesome.css" />
     <Content Include="Content\css\Customer\Account\Account.css" />
     <Content Include="Content\css\Customer\Account\AccountEdit.css" />
+    <Content Include="Content\css\Customer\Orders\Orders.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\Product\productDetails.css" />
     <Content Include="Content\css\sellerRegister.css" />
     <Content Include="Content\css\Seller\Financials\AccountSummary.css" />
+    <Content Include="Content\css\Seller\Inventory\InventoryManagement.css" />
+    <Content Include="Content\css\Seller\Orders\CanceledOrders.css" />
+    <Content Include="Content\css\Seller\Orders\OrderManagement.css" />
+    <Content Include="Content\css\Seller\Orders\ReturnManagement.css" />
+    <Content Include="Content\css\Seller\PostDelivery\ComplaintsManagement.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\fonts\material-icon\css\material-design-iconic-font.css" />
     <Content Include="Content\fonts\material-icon\css\material-design-iconic-font.min.css" />
@@ -321,10 +349,15 @@
     <Content Include="Content\fonts\poppins\roboto-condensed-v16-latin-700italic.svg" />
     <Content Include="Content\fonts\poppins\roboto-condensed-v16-latin-italic.svg" />
     <Content Include="Content\fonts\poppins\roboto-condensed-v16-latin-regular.svg" />
+
     <Content Include="Content\PagedList.css" />
+
+    <Content Include="Content\Cart.css" />
+    <Content Include="Content\Site.css" />
+
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
     <Content Include="images\portfolio-4.jpg" />
     <Content Include="images\portfolio-5.jpg" />
     <Content Include="images\portfolio-7.jpg" />
@@ -532,6 +565,8 @@
     <Content Include="Views\Account\Customer\Account.cshtml" />
     <Content Include="Views\Account\Customer\AccountEdit.cshtml" />
     <Content Include="Views\Partial\faicowish.cshtml" />
+    <Content Include="Views\Cart\cart.cshtml" />
+    <Content Include="Views\Orders\Orders.cshtml" />
     <None Include="Views\Partial\ProductDetails.cshtml" />
     <None Include="Views\Partial\Products For Annonuymous.cshtml" />
     <None Include="Views\Home\home.cshtml" />
@@ -580,6 +615,12 @@
     <Content Include="Views\Shared\Navbar.cshtml" />
     <Content Include="Views\Shared\cart.cshtml" />
     <Content Include="Views\SearchProduct\Index.cshtml" />
+    <Content Include="Views\Seller\Inventory\InventoryManagement.cshtml" />
+    <Content Include="Views\Seller\Orders\OrderManagement.cshtml" />
+    <Content Include="Views\Seller\Orders\ReturnManagement.cshtml" />
+    <Content Include="Views\Seller\Orders\CanceledOrders.cshtml" />
+    <Content Include="Views\Seller\PostDelivery\ComplaintsManagement.cshtml" />
+    <Content Include="Views\Shared\Navbar2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -628,8 +669,23 @@
     <EmbeddedResource Include="Migrations\202105030431029_date3.resx">
       <DependentUpon>202105030431029_date3.cs</DependentUpon>
     </EmbeddedResource>
+
     <EmbeddedResource Include="Migrations\202105110740574_CustomerProduct.resx">
       <DependentUpon>202105110740574_CustomerProduct.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105070949010_nullable-super-category.resx">
+      <DependentUpon>202105070949010_nullable-super-category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105070952149_nullable-product-promotionID.resx">
+      <DependentUpon>202105070952149_nullable-product-promotionID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105091306294_lower-order-and-orderDetails-validations.resx">
+      <DependentUpon>202105091306294_lower-order-and-orderDetails-validations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105091327224_drop-discount-validation.resx">
+      <DependentUpon>202105091327224_drop-discount-validation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105091348157_datetime2.resx">
+      <DependentUpon>202105091348157_datetime2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

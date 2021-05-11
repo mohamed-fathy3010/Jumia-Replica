@@ -8,6 +8,7 @@
     <link href="~/Content/css/Product/productDetails.css" rel="stylesheet" />
 }
 <div class="container">
+
     <div id="container-row">
         <div class="col-12 col-lg-9 cards-container">
             <div class="card" style="flex-direction: row">
@@ -111,6 +112,10 @@
                                     <i class="fa fa-heart float-left mr-2"></i>
                                     Add to wishlist
                                 </button>*@
+                                <button onclick="add()" class="btn imgbtn">
+                                    <i class="fas fa-cart-plus float-left"></i>
+                                    Add to cart
+                                </button>
                             </div>
                             <hr />
                             <div class="product-detail">
@@ -402,5 +407,14 @@
                 $textNode.toggleClass("fas far");
             });
         });
+        function add() {
+            $.ajax({
+                method:"POST",
+                url: "/products/5",
+                success: function (data) {
+                    console.log(data);
+        },
+    })
+}
     </script>
 }

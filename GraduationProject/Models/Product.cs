@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace graduation_project
+namespace GraduationProject.Models
 {
     public class Product
     {
@@ -22,7 +22,7 @@ namespace graduation_project
         [Required]
         [DisplayName("Price")]
         [Column("money")]
-        public decimal Cost { get; set; }
+        public float Cost { get; set; }
 
         [Required]
 

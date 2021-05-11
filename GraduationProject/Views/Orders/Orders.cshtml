@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Orders";
+}
+
+@section styles{
+    <link href="~/Content/css/Customer/Orders/Orders.css" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+          crossorigin="anonymous" />
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <div id="container-row" class="row">
+        <div class="col-12 offset-3 col-md-8 cards-container">
+            <div class="card border-0" style="height: 100%;">
+                <h5 class="card-header">Orders</h5>
+                <div class="topnav">
+                    <ul class="nav nav-tabs texttab">
+                        <li>
+                            <a id="open" class="contenttab1 nav-item  nav-link border-0 active" href="#open0" data-toggle="tab">Open Order(0)</a>
+                        </li>
+                        <li>
+                            <a class="contenttab1 nav-item  nav-link border-0" href="#closed0" data-toggle="tab">Closed Order(0)</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content imagecontent d-block">
+                    <div id="open0" class="tab-pane fade show active">
+                        <img class="image " src="https://www.jumia.com.eg/assets_he/images/orders.abbfb10f.svg" height="100" width="100" alt="">
+                        <h2 class="fontimg d-flex">You have placed no orders yet!</h2>
+                        <p class="tab-content parimg">All your orders will be saved here for you to access their state anytime.</p>
+                        <a href="/" class="btn imgbtn">Continue Shopping</a>
+                    </div>
+                    <div id="closed0" class="tab-pane fade">
+                        <img class="image" src="https://www.jumia.com.eg/assets_he/images/orders.abbfb10f.svg" height="100" width="100" alt="">
+                        <h2 class="fontimg d-flex" style="padding:0px 85px;">No Closed Orders to Display</h2>
+                        <p class="parimg">All your Closed Orders will be saved here.</p>
+                        <a href="/" class="btn imgbtn">Start Shopping</a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <pre>
+
+
+
+                </pre>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+    </div>
+
+</div>
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+}

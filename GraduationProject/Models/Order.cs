@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace graduation_project
-{
+namespace GraduationProject.Models
+{ 
    public class Order
     {   
         [Key]
@@ -17,8 +17,12 @@ namespace graduation_project
         [MaxLength(500)]
         public string Address { get; set; }
 
-        public float Longtitude { get; set; }
-        public float Attitude { get; set; }
+        [Column(TypeName = "datetime2")]
+
+        public DateTime Date { get; set; }
+
+        public float? Longtitude { get; set; }
+        public float? Lattitude { get; set; }
         [NotMapped]
         public OrderStatus Status { get; set; }
         [ForeignKey("Customer")]

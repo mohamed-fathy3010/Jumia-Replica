@@ -28,5 +28,7 @@ namespace GraduationProject.Models {
         [StringLength(20)]
         public virtual ApplicationUser ApplicationUser { get; set; }
         public List<Order> Orders { get; set; } = new List<Order>();
+        public List<CustomerProduct> CustomerProducts { get; set; } = new List<CustomerProduct>();
+
     }
 }

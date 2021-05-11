@@ -27,7 +27,10 @@ namespace GraduationProject.Controllers
         public AccountController()
         {
         }
-
+        public ActionResult faicon()
+        {
+            return View("~/Views/Partial/ProductDetails");
+        }
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;

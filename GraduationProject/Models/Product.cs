@@ -1,5 +1,4 @@
-﻿using GraduationProject.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -44,8 +43,6 @@ namespace GraduationProject.Models
         public List<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
         public List<InventoryProducts> InventoryProducts { get; set; } = new List<InventoryProducts>();
         public Promotion Promotion { get; set; }
-        public List<CustomerProduct> CustomerProducts { get; set; } = new List<CustomerProduct>();
-
 
 
 

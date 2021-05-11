@@ -1,5 +1,4 @@
-﻿@model
-@{
+﻿@{
     ViewBag.Title = "Product details";
 }
 @section styles{
@@ -102,16 +101,6 @@
                             <hr />
                             <div class="product-price">
                                 <p>EGP <span>257,00</span></p>
-                                <a href="/" class="btn imgbtn">
-                                    <i class="fa fa-cart-plus float-left mr-2"></i>
-                                    Add to cart
-                                </a>
-                                <br />
-                                @Html.Partial("faiconwish");
-                                @*<button href="/" class="btn imgbtn">
-                                    <i class="fa fa-heart float-left mr-2"></i>
-                                    Add to wishlist
-                                </button>*@
                                 <button onclick="add()" class="btn imgbtn">
                                     <i class="fas fa-cart-plus float-left"></i>
                                     Add to cart

@@ -310,6 +310,7 @@
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\Product\productDetails.css" />
     <Content Include="Content\css\sellerRegister.css" />
+    <Content Include="Content\css\Seller\FeeDiscounts\FeeDiscounts.css" />
     <Content Include="Content\css\Seller\Financials\AccountSummary.css" />
     <Content Include="Content\css\Seller\Inventory\InventoryManagement.css" />
     <Content Include="Content\css\Seller\Orders\CanceledOrders.css" />
@@ -596,13 +597,13 @@
     <Content Include="Views\test\this_is_from_a_second_account.cshtml" />
     <Content Include="Views\Shared\Navbar.cshtml" />
     <Content Include="Views\Shared\cart.cshtml" />
-
     <Content Include="Views\Seller\Inventory\InventoryManagement.cshtml" />
     <Content Include="Views\Seller\Orders\OrderManagement.cshtml" />
     <Content Include="Views\Seller\Orders\ReturnManagement.cshtml" />
     <Content Include="Views\Seller\Orders\CanceledOrders.cshtml" />
     <Content Include="Views\Seller\PostDelivery\ComplaintsManagement.cshtml" />
     <Content Include="Views\Shared\Navbar2.cshtml" />
+    <Content Include="Views\Seller\FeeDiscounts\FeeDiscounts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

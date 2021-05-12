@@ -1,0 +1,67 @@
+﻿@foreach (var I in Model)
+{
+    <tr>
+        <td class="v-align-top" id="itemcard">
+            <h4 class="card-title">
+                @I._title
+                <small><cite>@I._tp_created.ToString("dd MMM yyyy")</cite> </small>
+            </h4>
+            <div class="pull-right" id="options">
+                <ul class="list-inline text-right">
+                    @if (I._tp_favourite == 0)
+                    {
+                        <li><button class="btn-link glyphicon glyphicon-heart-empty" onclick="Fav(@I._id)"></button></li>
+                    }
+                    else
+                    {
+                        <li><button class="btn-link glyphicon glyphicon-heart-empty" onclick="UnFav(@I._id)"></button></li>
+                    }
+                </ul>
+            </div>
+        </td>
+    </tr>
+}
+
+<script type="text/javascript">
+
+    function Fav(id) {
+        var url = '@Url.Action("_Fav", "Home")';
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                id: id
+            },
+            success: function (data) {
+                if(data.length == 0) // No errors
+                    alert("Fave success!");
+            },
+            error: function (jqXHR) { // Http Status is not 200
+            },
+            complete: function (jqXHR, status) { // Whether success or error it enters here
+            }
+        });
+    };
+
+    function UnFav(id) {
+        var url = '@Url.Action("_UnFav", "Home")';
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                id: id
+            },
+            success: function (data) {
+                if(data.length == 0) // No errors
+                    alert("Unfave success!");
+            },
+            error: function (jqXHR) { // Http Status is not 200
+            },
+            complete: function (jqXHR, status) { // Whether success or error it enters here
+            }
+        });
+    };
+
+</script>

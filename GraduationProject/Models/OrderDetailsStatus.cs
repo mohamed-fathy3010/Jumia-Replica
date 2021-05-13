@@ -11,6 +11,7 @@ namespace GraduationProject.Models
         awaiting,
         confirmed,
         returned,
+        completed,
         canceled
     }
 }

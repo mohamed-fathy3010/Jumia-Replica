@@ -1,0 +1,75 @@
+﻿@model IEnumerable<OrderDetails>
+<div class="row m-4" style="justify-content: space-between;">
+    <div class="col-12 col-md-8 ">
+        <span>Orders placed in</span>
+        <select ng-model="options.size" ng-change="updatePagination(options.size)" ng-options="dLimit as dLimit for dLimit in paginationLimits" class="ng-pristine ng-untouched ng-valid">
+            <option label="Last 30 days" value="number:10">Last 30 days</option>
+            <option label="Last 30 days" value="number:20" selected="selected">Last 30 days</option>
+            <option label="Last 30 days" value="number:30">Last 30 days</option>
+            <option label="Last 30 days" value="number:40">Last 30 days</option>
+            <option label="Last 30 days" value="number:50">Last 30 days</option>
+        </select>
+    </div>
+    <div class="d-none d-md-block col-md-4 tab-content" id="pills-tabContent">
+        <div class="right" style="margin-right: 1rem;">
+            <span>Results per page &nbsp;</span>
+            <select ng-model="options.size" ng-change="updatePagination(options.size)" ng-options="dLimit as dLimit for dLimit in paginationLimits" class="ng-pristine ng-untouched ng-valid">
+                <option label="10" value="number:10">10</option>
+                <option label="20" value="number:20" selected="selected">20</option>
+                <option label="30" value="number:30">30</option>
+                <option label="40" value="number:40">40</option>
+                <option label="50" value="number:50">50</option>
+            </select>
+
+            <a href="#"><i class="fa fa-angle-left"></i></a>
+            <a href="#"><i class="fa fa-angle-left fa-rotate-180"></i></a>
+        </div>
+    </div>
+
+</div>
+
+<table class="table table-hover mt-3 table-responsive-md">
+    <thead>
+        <tr>
+            <th><input type="checkbox"></th>
+            <th>Order ID</th>
+            <th>Items Info</th>
+            <th>Delivery Date</th>
+            <th>Delivery Age</th>
+            <th>Net Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderDetail in Model)
+        {
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>@orderDetail.OrderID</td>
+                <td>
+                    <div class="d-flex flex-column flex-lg-row" style="justify-content: space-between;">
+                        <div class="col-12 col-md-3">
+                            <img src="1.jpg" style="width: 100px; height: 100px;">
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <h5>@orderDetail.Product.Name</h5>
+                            <p>Categories : @orderDetail.Product.Category.Name</p>
+                            @if (orderDetail.Product.PromotionsID != null)
+                            {
+                                <p>Promotions : @orderDetail.Product.Promotion.DiscountValue</p>
+                            }
+                        </div>
+                    </div>
+                </td>
+                <td>@orderDetail.DeliveredDate</td>
+                @{
+                    DateTime end = (DateTime)orderDetail.DeliveredDate;
+                    DateTime now = DateTime.Now;
+                    TimeSpan diff = end.Subtract(now);
+                }
+
+                <td>@diff.ToString(@"dd\:hh\:mm\:ss")</td>
+                <td>@orderDetail.UnitPrice</td>
+            </tr>
+        }
+    </tbody>
+</table>

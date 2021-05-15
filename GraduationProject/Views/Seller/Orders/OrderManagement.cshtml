@@ -1,16 +1,17 @@
-﻿
+﻿@model IEnumerable<OrderDetails>
 @{
     ViewBag.Title = "OrderManagement";
 }
 
 @section styles{
     <link href="~/Content/css/Seller/Orders/OrderManagement.css" rel="stylesheet" />
+    <link href="~/Content/css/Seller/Orders/ReturnManagement.css" rel="stylesheet" />
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
           integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
           crossorigin="anonymous" />
 }
-
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <div id="main">
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="col pagetitle">
@@ -113,50 +114,126 @@
         <div class="tab-wrapper d-none d-lg-block">
             <ul class="nav nav-tabs border-bottom-0 tab-list">
                 <li class="nav-item active">
-                    <a data-toggle="tab" class="contenttab nav-link active" href="#allorder">
+                    <a id="all-tab" data-toggle="tab" class="contenttab nav-link active" href="#allorder">
                         All Orders
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a data-toggle="tab" class="contenttab nav-link" href="#awaiting-action">
+                    <a id="awaiting-tab" data-toggle="tab" class="contenttab nav-link" href="#awaiting-action">
                         Awaiting Action
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a data-toggle="tab" class="contenttab nav-link" href="#awaitinga-awb">
-                        Awaiting Awb
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a data-toggle="tab" class="contenttab nav-link" href="#confirmed">
+                    <a id="confirmed-tab" data-toggle="tab" class="contenttab nav-link" href="#confirmed">
                         Confirmed
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a data-toggle="tab" class="contenttab nav-link" href="#shipped">
+                    <a id="shipped-tab" data-toggle="tab" class="contenttab nav-link" href="#shipped">
                         Shipped
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a data-toggle="tab" class="contenttab nav-link" href="#delivered">
+                    <a id="delivered-tab" data-toggle="tab" class="contenttab nav-link" href="#delivered">
                         Delivered
                     </a>
                 </li>
             </ul>
         </div>
         <div class="transactions tab-content d-block">
-            <div id="allorder" class="tab-pane fade show active ">
-                <h5 class="text-center block-mrgb ng-binding">
-                    You don't have any orders in this period
-                </h5>
-                <br />
-                <p>
-                    We encourage you to list new items if you have any!
-                </p>
-                <br />
-                <a class="btn tiny" href="#">
-                    <i class="btnbox"><img src="boxbtn.png" /></i>Start Listing Items
-                </a>
+            <div id="allorder" class="tab-pane fade show active" role="tabpanel" aria-labelledby="allOrder-tab">
+                @if (Model == null)
+                {
+                    <h5 class="text-center block-mrgb ng-binding">
+                        You don't have any orders in this period
+                    </h5>
+                    <br />
+                    <p>
+                        We encourage you to list new items if you have any!
+                    </p>
+                    <br />
+                    <a class="btn tiny" href="#">
+                        <i class="btnbox"><img src="boxbtn.png" /></i>Start Listing Items
+                    </a>
+                }
+                else
+                {
+                        <div class="row m-4" style="justify-content: space-between;">
+                            <div class="col-12 col-md-8 ">
+                                <span>Orders placed in</span>
+                                <select ng-model="options.size" ng-change="updatePagination(options.size)" ng-options="dLimit as dLimit for dLimit in paginationLimits" class="ng-pristine ng-untouched ng-valid">
+                                    <option label="Last 30 days" value="number:10">Last 30 days</option>
+                                    <option label="Last 30 days" value="number:20" selected="selected">Last 30 days</option>
+                                    <option label="Last 30 days" value="number:30">Last 30 days</option>
+                                    <option label="Last 30 days" value="number:40">Last 30 days</option>
+                                    <option label="Last 30 days" value="number:50">Last 30 days</option>
+                                </select>
+                            </div>
+                            <div class="d-none d-md-block col-md-4 tab-content" id="pills-tabContent">
+                                <div class="right" style="margin-right: 1rem;">
+                                    <span>Results per page </span>
+                                    <select ng-model="options.size" ng-change="updatePagination(options.size)" ng-options="dLimit as dLimit for dLimit in paginationLimits" class="ng-pristine ng-untouched ng-valid">
+                                        <option label="10" value="number:10">10</option>
+                                        <option label="20" value="number:20" selected="selected">20</option>
+                                        <option label="30" value="number:30">30</option>
+                                        <option label="40" value="number:40">40</option>
+                                        <option label="50" value="number:50">50</option>
+                                    </select>
+
+                                    <a href="#"><i class="fa fa-angle-left"></i></a>
+                                    <a href="#"><i class="fa fa-angle-left fa-rotate-180"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <table class="table table-hover mt-3 table-responsive-md">
+                            <thead>
+                                <tr>
+                                    <th>status</th>
+                                    <th>Order ID</th>
+                                    <th>Items Info</th>
+                                    <th>Order Date</th>
+                                    <th>Order Age</th>
+                                    <th>Net Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var orderDetail in Model)
+                                {
+                                <tr>
+                                    <td>@orderDetail.Status</td>
+                                    <td>@orderDetail.OrderID</td>
+                                    <td>
+                                        <div class="d-flex flex-column flex-lg-row" style="justify-content: space-between;">
+                                            <div class="col-12 col-md-3">
+                                                <img src="1.jpg" style="width: 100px; height: 100px;">
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <h5>@orderDetail.Product.Name</h5>
+                                                <p>Categories : @orderDetail.Product.Category.Name</p>
+                                                @if (orderDetail.Product.PromotionsID != null)
+                                                {
+                                                    <p>Promotions : @orderDetail.Product.Promotion.DiscountValue</p>
+                                                }
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>@orderDetail.OrderDate</td>
+                                    @{
+                                        DateTime end = (DateTime)orderDetail.OrderDate;
+                                        DateTime now = DateTime.Now;
+                                        TimeSpan diff = end.Subtract(now);
+                                    }
+
+                                <td>@diff.ToString(@"dd\:hh\:mm\:ss")</td>
+                                    <td>@orderDetail.UnitPrice</td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                }
             </div>
             <div id="awaiting-action" class="tab-pane fade ">
                 <h5 class="text-center block-mrgb ng-binding">
@@ -170,15 +247,6 @@
                 <a class="btn tiny" href="#">
                     <i class="btnbox"><img src="boxbtn.png" /></i>Start Listing Items
                 </a>
-            </div>
-            <div id="awaitinga-awb" class="tab-pane fade">
-                <h5 class="text-center block-mrgb ng-binding">
-                    You don't have any orders in this tab currently
-                </h5>
-                <br />
-                <p>
-                    Read these tips of <a href="#" class="hreflink">how to generate more sales</a>  and grow your business on Souq.com!
-                </p>
             </div>
             <div id="confirmed" class="tab-pane fade">
                 <h5 class="text-center block-mrgb ng-binding">
@@ -228,5 +296,57 @@
         </div>
     </div>
 </div>
-
-
+@section scripts{
+<script>
+    $(function () {
+        $("#awaiting-tab").on("click", function () {
+            $.ajax({
+                url: "/seller/awaiting",
+                method: "GET",
+                success: function (data) {
+                    $("#awaiting-action").html(data);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        });
+        $("#confirmed-tab").on("click", function () {
+            $.ajax({
+                url: "/seller/confirmed",
+                method: "GET",
+                success: function (data) {
+                    $("#confirmed").html(data);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        });
+        $("#shipped-tab").on("click", function () {
+            $.ajax({
+                url: "/seller/shipped",
+                method: "GET",
+                success: function (data) {
+                    $("#shipped").html(data);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        });
+        $("#delivered-tab").on("click", function () {
+            $.ajax({
+                url: "/seller/delivered",
+                method: "GET",
+                success: function (data) {
+                    $("#delivered").html(data);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        });
+    })
+</script>
+}

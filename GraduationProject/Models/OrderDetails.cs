@@ -20,10 +20,15 @@ namespace GraduationProject.Models
         public float? Discount { get; set; }
         [Required]
         [Column(TypeName = "datetime2")]
-
         public DateTime OrderDate { get; set; }
         [Column(TypeName = "datetime2")]
-        public DateTime shippedDate { get; set; }
+        public DateTime? ShippedDate { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime? ConfirmedDate { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime? DeliveredDate { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime? CanceledDate { get; set; }
         [Required]
         public OrderDetailsStatus Status { get; set; }
         [ForeignKey("FinancialAccount")]

@@ -37,6 +37,8 @@ namespace GraduationProject.Models
 
         [ForeignKey("Promotion")]
         public int? PromotionsID { get; set; }
+        [NotMapped]
+        public float OrderDetailsCost { get; set; }
 
         //Navigation
         public Category Category { get; set; }

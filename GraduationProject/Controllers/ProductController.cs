@@ -21,19 +21,28 @@ namespace GraduationProject.Controllers
         [HttpPost,Route("products/{id}")]
         public void AddToCart(int id)
         {
-            List<Product> order;
+            CartViewModel order;
             Product product = db.Products.FirstOrDefault(p => p.ID == id);
+            product.OrderDetailsCost = product.Cost;
             if(Session["order"] != null)
             {
-               order = Session["order"] as List<Product> ;
-               order.Add(product);
+               order = Session["order"] as CartViewModel;
+               order.ProductsWithQuantity.Add(new ProductWithQuantityViewModel() {Product = product, Quantity=1});
+                if(order.Coupon !=null)
+                product.OrderDetailsCost = (float)Math.Round(product.Cost * order.Coupon.Discount,2);
+                order.TotalPrice += product.OrderDetailsCost;
+                order.totalQuantity++;
             }
             else
             {
-                order = new List<Product>();
-                order.Add(product);
+                order = new CartViewModel();
+                order.totalQuantity = 1;
+                order.TotalPrice = product.OrderDetailsCost;
+                order.ProductsWithQuantity = new List<ProductWithQuantityViewModel>();
+                order.ProductsWithQuantity.Add(new ProductWithQuantityViewModel() { Product = product, Quantity = 1 });
             }
-            Session["order"] =order;
+            order.TotalPrice = (float)Math.Round(order.TotalPrice, 2);
+            Session["order"] = order;
         }
     }
 }

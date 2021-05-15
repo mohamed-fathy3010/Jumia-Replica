@@ -267,13 +267,27 @@
     <Compile Include="Migrations\202105091348157_datetime2.designer.cs">
       <DependentUpon>202105091348157_datetime2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105131728016_add-conirmed-and-dlivered-date.cs" />
+    <Compile Include="Migrations\202105131728016_add-conirmed-and-dlivered-date.designer.cs">
+      <DependentUpon>202105131728016_add-conirmed-and-dlivered-date.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105131741218_add-canceled-date.cs" />
+    <Compile Include="Migrations\202105131741218_add-canceled-date.designer.cs">
+      <DependentUpon>202105131741218_add-canceled-date.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105140303461_add-coupons.cs" />
+    <Compile Include="Migrations\202105140303461_add-coupons.designer.cs">
+      <DependentUpon>202105140303461_add-coupons.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\BrandCategories.cs" />
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Complaint.cs" />
+    <Compile Include="Models\Coupon.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\FeedBack.cs" />
     <Compile Include="Models\FinancialAccount.cs" />
@@ -314,6 +328,7 @@
     <Content Include="Content\css\Seller\Inventory\InventoryManagement.css" />
     <Content Include="Content\css\Seller\Orders\CanceledOrders.css" />
     <Content Include="Content\css\Seller\Orders\OrderManagement.css" />
+    <Content Include="Content\css\Seller\Orders\OrderManagementCard.css" />
     <Content Include="Content\css\Seller\Orders\ReturnManagement.css" />
     <Content Include="Content\css\Seller\PostDelivery\ComplaintsManagement.css" />
     <Content Include="Content\css\style.css" />
@@ -596,13 +611,16 @@
     <Content Include="Views\test\this_is_from_a_second_account.cshtml" />
     <Content Include="Views\Shared\Navbar.cshtml" />
     <Content Include="Views\Shared\cart.cshtml" />
-
     <Content Include="Views\Seller\Inventory\InventoryManagement.cshtml" />
     <Content Include="Views\Seller\Orders\OrderManagement.cshtml" />
     <Content Include="Views\Seller\Orders\ReturnManagement.cshtml" />
     <Content Include="Views\Seller\Orders\CanceledOrders.cshtml" />
     <Content Include="Views\Seller\PostDelivery\ComplaintsManagement.cshtml" />
     <Content Include="Views\Shared\Navbar2.cshtml" />
+    <Content Include="Views\Seller\Orders\AwaitingTabPartialView.cshtml" />
+    <Content Include="Views\Seller\Orders\ConfirmedTabPartialView.cshtml" />
+    <Content Include="Views\Seller\Orders\ShippedTabPartialView.cshtml" />
+    <Content Include="Views\Seller\Orders\DeliveredTabPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -665,6 +683,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105091348157_datetime2.resx">
       <DependentUpon>202105091348157_datetime2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105131728016_add-conirmed-and-dlivered-date.resx">
+      <DependentUpon>202105131728016_add-conirmed-and-dlivered-date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105131741218_add-canceled-date.resx">
+      <DependentUpon>202105131741218_add-canceled-date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105140303461_add-coupons.resx">
+      <DependentUpon>202105140303461_add-coupons.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

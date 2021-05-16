@@ -39,7 +39,8 @@ namespace GraduationProject.Models
         public int? PromotionsID { get; set; }
         [NotMapped]
         public float OrderDetailsCost { get; set; }
-
+        [NotMapped]
+        public decimal Rate { get; set; }
         //Navigation
         public Category Category { get; set; }
         public List<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();

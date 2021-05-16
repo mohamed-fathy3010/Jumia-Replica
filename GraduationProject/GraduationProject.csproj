@@ -621,6 +621,7 @@
     <Content Include="Views\Seller\Orders\ConfirmedTabPartialView.cshtml" />
     <Content Include="Views\Seller\Orders\ShippedTabPartialView.cshtml" />
     <Content Include="Views\Seller\Orders\DeliveredTabPartialView.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

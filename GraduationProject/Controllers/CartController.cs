@@ -72,7 +72,7 @@ namespace GraduationProject.Controllers
                 order.Coupon = coupon;
                 foreach (var item in order.ProductsWithQuantity)
                 {
-                    item.Product.OrderDetailsCost = (float)Math.Round(item.Product.Cost * coupon.Discount, 2);
+                    item.Product.OrderDetailsCost = (float)Math.Round(item.Product.Cost * (1 - coupon.Discount), 2);
                     totalPrice += item.Product.OrderDetailsCost * item.Quantity;
                 }
                 order.TotalPrice = (float)Math.Round(totalPrice,2);

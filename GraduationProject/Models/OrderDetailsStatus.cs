@@ -10,6 +10,8 @@ namespace GraduationProject.Models
     {
         awaiting,
         confirmed,
+        shipped,
+        delivered,
         returned,
         canceled
     }

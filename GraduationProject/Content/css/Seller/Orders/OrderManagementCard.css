@@ -1,0 +1,85 @@
+body {
+  color: #222;
+  cursor: auto;
+  font-style: normal;
+  line-height: 1.5;
+  position: relative;
+  margin: 0;
+  background-color: #ededed;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Helvetica, Arial,
+    sans-serif;
+}
+.main {
+  /* overflow: hidden; */
+  width: 95%;
+  max-width: 95%;
+  margin: auto;
+  background-color: #fff;
+}
+.right select,
+.tab-pane select {
+  padding: 10px;
+  margin-right: 1rem;
+}
+
+.right > a {
+  border: 1px solid #d1d1d1;
+  display: inline-block;
+  text-align: center;
+  padding: 0.1rem 0.71429rem;
+  border-right: 1px solid #ccc;
+  border-bottom: 0 none;
+  background-color: #fafafa !important;
+}
+.right a :active {
+  color: #007bff !important;
+}
+.right a > i {
+  font-size: 2.28571rem;
+  color: #ccc !important;
+  font-weight: 800;
+  padding-bottom: 3px;
+  min-width: 1.42857rem;
+  display: inline-block;
+  line-height: 2.14286rem;
+  vertical-align: middle;
+}
+h5 {
+  color: rgb(248, 134, 52);
+}
+table td i.fa.fa-check,
+table td .fa.fa-shopping-basket {
+  color: rgb(8, 173, 8);
+  font-size: large !important;
+}
+table {
+  margin-bottom: 5rem !important;
+}
+.page-title {
+  padding-bottom: 0.5rem;
+  background-color: #ededed;
+}
+.page-title h4 {
+  margin: 0;
+  color: #222;
+  position: relative;
+  font-size: 1.28571rem;
+}
+.page-title h4 p span {
+  font-size: 11px;
+  cursor: pointer;
+  display: inline !important;
+  color: #f68b1e !important;
+}
+.main a {
+  color: #7d858c;
+}
+.main .nav-tabs .nav-link.active {
+  color: #000 !important;
+}
+.main .nav-link {
+  display: block;
+  padding: 0.7rem 2rem;
+}

@@ -21,6 +21,7 @@ namespace GraduationProject.Controllers
         {
             return View("~/Views/Seller/Financials/AccountSummary.cshtml");
         }
+
         public ActionResult OrderManagement(string tab)
         {
             var allOrderDetails = db.OrderDetails.OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).ToList();
@@ -100,4 +101,11 @@ namespace GraduationProject.Controllers
             return RedirectToAction("OrderManagement");
         }
     }   
+        //[Route("FeeDiscounts/FeeDiscounts")]
+        //public ActionResult FeeDiscounts()
+        //{
+        //    return View("~/Views/Seller/FeeDiscounts/FeeDiscounts.cshtml");
+        //}
+    }
+
 }

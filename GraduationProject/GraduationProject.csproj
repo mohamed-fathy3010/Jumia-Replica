@@ -279,8 +279,21 @@
     <Compile Include="Migrations\202105140303461_add-coupons.designer.cs">
       <DependentUpon>202105140303461_add-coupons.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105172012200_add-inventory-and-album.cs" />
+    <Compile Include="Migrations\202105172012200_add-inventory-and-album.designer.cs">
+      <DependentUpon>202105172012200_add-inventory-and-album.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105172220156_add-wishlist.cs" />
+    <Compile Include="Migrations\202105172220156_add-wishlist.designer.cs">
+      <DependentUpon>202105172220156_add-wishlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105182137591_one-to-many-Album.cs" />
+    <Compile Include="Migrations\202105182137591_one-to-many-Album.designer.cs">
+      <DependentUpon>202105182137591_one-to-many-Album.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Album.cs" />
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\BrandCategories.cs" />
@@ -301,10 +314,13 @@
     <Compile Include="Models\OrderDetailsStatus.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\ProductWishlist.cs" />
     <Compile Include="Models\ProductWithQuantityViewModel.cs" />
     <Compile Include="Models\Promotion.cs" />
     <Compile Include="Models\SellerInfo.cs" />
     <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\Wishlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -695,6 +711,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105140303461_add-coupons.resx">
       <DependentUpon>202105140303461_add-coupons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105172012200_add-inventory-and-album.resx">
+      <DependentUpon>202105172012200_add-inventory-and-album.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105172220156_add-wishlist.resx">
+      <DependentUpon>202105172220156_add-wishlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105182137591_one-to-many-Album.resx">
+      <DependentUpon>202105182137591_one-to-many-Album.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

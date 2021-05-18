@@ -106,6 +106,5 @@ namespace GraduationProject.Controllers
         //{
         //    return View("~/Views/Seller/FeeDiscounts/FeeDiscounts.cshtml");
         //}
-    }
-
 }
+

@@ -29,8 +29,9 @@ namespace GraduationProject.Models
         [MaxLength(256)]
         public string BusinessName { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual Inventory Inventory { get; set; }
 
-       
+
 
     }
 }

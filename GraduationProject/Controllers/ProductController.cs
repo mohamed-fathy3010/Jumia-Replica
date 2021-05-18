@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 namespace GraduationProject.Controllers
 {
 
@@ -12,10 +13,52 @@ namespace GraduationProject.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: Product
-        [Route("products/{id}")]
         public ActionResult Index(int id)
         {
-            return View("~/Views/Product/ProductDetails.cshtml");
+            Product product = db.Products
+                .Include(p => p.Albums)
+                .Include("OrderDetails.FeedBack")
+                .Include(p => p.Inventory.SellerInfo)
+                .Include("Category.BrandCategories.Brand")
+                .FirstOrDefault(p => p.ID == id);
+            if (product == null)
+            {
+                return new HttpNotFoundResult("no product with that id");
+            }
+            ProductViewModel productViewModel = new ProductViewModel();
+            List<Product> products = db.Products
+                .Where((p, i) => p.InventoryId == product.Inventory.ID && i != product.ID)
+                .ToList();
+            bool isWished = false;
+            bool isAddedToCart = false;
+            if (User.Identity.IsAuthenticated)
+            {
+                isWished = db.ProductWishlists.Any(p => p.ProductId == product.ID && p.wishListId == User.Identity.GetUserId());
+                if (Session["order"] != null)
+                {
+                    CartViewModel cart = Session["order"] as CartViewModel;
+                    foreach (var item in cart.ProductsWithQuantity)
+                    {
+                        if (item.Product.ID == product.ID)
+                        {
+                            isAddedToCart = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            productViewModel.Product = product;
+            productViewModel.Albums = product.Albums;
+            productViewModel.BrandName = product.Category.BrandCategories[0].Brand.Name;
+            productViewModel.SellerName = product.Inventory.SellerInfo.BusinessName;
+            productViewModel.OtherProducts = products;
+            List<FeedBack> feedBacks = new List<FeedBack>();
+            foreach (var item in product.OrderDetails)
+            {
+                feedBacks.Add(item.FeedBack);
+            }
+            productViewModel.FeedBacks = feedBacks;
+            return View("~/Views/Product/ProductDetails.cshtml", productViewModel);
         }
 
         [HttpPost,Route("products/{id}")]

@@ -37,6 +37,8 @@ namespace GraduationProject.Models
 
         [ForeignKey("Promotion")]
         public int? PromotionsID { get; set; }
+        [ForeignKey("Inventory")]
+        public string InventoryId { get; set; }
         [NotMapped]
         public float OrderDetailsCost { get; set; }
         [NotMapped]
@@ -44,8 +46,10 @@ namespace GraduationProject.Models
         //Navigation
         public Category Category { get; set; }
         public List<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
-        public List<InventoryProducts> InventoryProducts { get; set; } = new List<InventoryProducts>();
+        public virtual Inventory Inventory { get; set; } 
         public Promotion Promotion { get; set; }
+        public virtual List<Album> Albums { get; set; } = new List<Album>();
+        public virtual List<ProductWishlist> ProductWishlists { get; set; } = new List<ProductWishlist>();
 
 
 

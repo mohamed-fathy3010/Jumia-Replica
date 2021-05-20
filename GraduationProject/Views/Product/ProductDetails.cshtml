@@ -7,15 +7,16 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href="~/Content/css/Product/productDetails.css" rel="stylesheet" />
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
 }
 <div class="container">
 
     <div id="container-row">
-        <div class="col-12 cards-container">
+        <div class="col-12 col-lg-9 cards-container">
             <div class="card" style="flex-direction: row">
-                <div class="card-body">
+                <div class="card-body col-12 col-lg-6">
                     <!--Images in left-->
-                    <div class="card-body left col-12 col-md-5">
+                    <div class="card-body left col-12 col-md-6">
                         <div class="card-body row">
                             <div>
                                 <div>
@@ -37,7 +38,7 @@
                                         </ul>
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
-                                                <img src="~/images/@Model.Product.Image" />
+                                                <img src="~/images/shoe_1.jpg" />
                                             </div>
                                             <div class="carousel-item">
                                                 <img src="~/images/shoe_1.jpg" />
@@ -79,12 +80,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body col-12 col-lg-6">
                     <div class="card-body right col-12 col-md-7">
                         <!--right-->
                         <div class="product-content">
-                            <button id="swapHeart" class="btn-default">
-                                <span><i class="fa-heart far"></i></span>
+                            <button onclick="@(Model.isWished? "unwish(this)":"wish(this)") " id="swapHeart" class="btn-default">
+                                <span><i class="fa-heart @(Model.isWished? "fas":"far")"></i></span>
                             </button>
                             <h1 class="product-title">@Model.Product.Name</h1>
                             <span>
@@ -97,20 +98,35 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i>
-                                <span>@(Model.Product.Rate)(@Model.FeedBacks.Count)</span>
+                                <span>@Model.Product.Rate (@Model.FeedBacks.Count)</span>
                             </div>
                             <br />
                             <hr />
                             <div class="product-price">
                                 <p>EGP <span>@Model.Product.Cost</span></p>
-                                <button onclick="add()" class="btn imgbtn">
-                                    <i class="fas fa-cart-plus float-left"></i>
-                                    Add to cart
-                                </button>
+                                <div id="template">
+                                    @if (Model.isAddedToCart)
+                                    {
+                                        <p>
+                                            <i class="far fa-check-circle"></i>
+                                            added to cart.
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <button onclick="add()" class="btn imgbtn">
+                                            <i class="fas fa-cart-plus float-left"></i>
+                                            Add to cart
+                                        </button>
+                                    }
+                                </div>
                             </div>
                             <hr />
                             <div class="product-detail">
-                                <h5 class="text-left">@Model.Product.Promotion.ReasonforDiscounts</h5>
+                                @if (Model.Product.Promotion != null)
+                                {
+                                    <h5 class="text-left">@Model.Product.Promotion.ReasonforDiscounts</h5>
+                                }
                                 <a href="#" style="color: #264996">
                                     <i class="fas fa-shield-alt"
                                        style="width: 24px; height: 24px"></i>
@@ -137,7 +153,9 @@
         <div class="col-12 col-lg-9 cards-container">
             <div class="card">
                 <h5 class="card-header">Product details</h5>
-                @Model.Product.Description
+                <div class="card-body">
+                    @Model.Product.Description
+                </div>
             </div>
         </div>
         <br />
@@ -335,20 +353,50 @@
     </div>
 </div>
 @section scripts{
+    <script src="~/Scripts/toastr.min.js"></script>
     <script>
-        jQuery(function ($) {
-            $("#swapHeart").on("click", function () {
-                var $el = $(this),
-                    $textNode = $el.find("span i");
-                $textNode.toggleClass("fas far");
-            });
-        });
+        function wish(e) {
+
+                $.ajax({
+                    method: "POST",
+                    url: "/product/@Model.Product.ID/wish",
+                    success: function () {
+                        toastr.success('item added to wish list');
+                        const $el = $(e);
+                        $el.attr("onclick", "unwish(this)");
+                        const $textNode = $el.find("span i");
+                        $textNode.toggleClass("fas far");
+                    }
+                })
+
+        }
+        function unwish(e) {
+
+                $.ajax({
+                    method: "POST",
+                    url: "/product/@Model.Product.ID/unwish",
+                    success: function () {
+                        toastr.success('item removed from wish list');
+                        const $el = $(e);
+                        $el.attr("onclick", "wish(this)");
+                        const $textNode = $el.find("span i");
+                        $textNode.toggleClass("fas far");
+                    }
+                })
+        }
+
         function add() {
             $.ajax({
                 method: "POST",
-                url: "/products/1",
+                url: "/products/@Model.Product.ID",
                 success: function (data) {
-                    console.log(data);
+                    $("#template").fadeOut(500, function () {
+                        $(this).html(`
+                    <p>
+                        <i class="far fa-check-circle"></i>
+                        added to cart.
+                    </p>`).fadeIn(500);
+                    })
                 },
             })
         }

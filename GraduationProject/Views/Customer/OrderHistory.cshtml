@@ -1,8 +1,19 @@
-﻿@{
+﻿@model IEnumerable< GraduationProject.Models.OrderDetails>
+@{
     Layout = null;
 }
 
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Order History</title>
+</head>
+<body>
+    @{
+        Layout = null;
+    }
     <!DOCTYPE html>
     <html lang="en">
 
@@ -19,37 +30,16 @@
               integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
         <link href="~/Content/cart.css" rel="stylesheet" />
-        <title>Cart</title>
+        <title>Order History</title>
     </head>
 
     <body>
 
-        <!-- cart is empty -->
-        <!-- <div class="container">
-            <div class="row d-inline">
-                <h2>cart </h2>
 
-            </div>
-        </div>
-        <div class="container">
-            <div class="row d-flex justify-content-center py-2">
-                <div class="d-inline text-center">
-                    <span><img src="https://media.istockphoto.com/vectors/shopping-cart-icon-design-cart-icon-symbol-design-vector-id1138644570?k=6&m=1138644570&s=612x612&w=0&h=YDQ1_rwiomJT9R6aGSX3mus0lXcRxGfrlbzLM6vV9eU="
-                            alt="" width="300px" height="300px" style="border-radius: 50%;"></span>
-                    <h3 class="mt-2">Your Cart is empty !</h3>
-                    <p>Already have an account? @Html.ActionLink("Login", "test", null,new { @class = "login" }) to see the items in your cart.</p>
-                    @Html.ActionLink("start shopping", "test", null,new { @class = "btn btn-orange" })
-
-
-
-
-                </div>
-            </div>
-        </div> -->
         <!-- cart is full -->
         <div class="container">
             <div class="row d-inline">
-                <h1>cart (1 item)</h1>
+                <h1>cart (@Model.@*count*@ item)</h1>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim excepturi tempore similique qui vitae
                     reiciendis.
@@ -68,7 +58,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr @foreach (var item in Model.Product.ToString())
+                            {
+
+                            }>
                             <td class="border-right " style="width: 50%;">
                                 <div class="image mr-1">
                                     <img src="https://i.stack.imgur.com/ZGgx0.png" width="50px"
@@ -81,17 +74,12 @@
                                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi architecto inventore,
                                         doloribus sit sunt rerum!
                                     </p>
-                                    <div class="acts d-flex">
-                                        @Html.ActionLink("move to saved item", "test", null, new { @class = "btn one" })
-                                        @Html.ActionLink("remove", "test", null, new { @class = "btn two" })
-
-
-                                    </div>
+                                   
                                 </div>
                             </td>
                             <td class="border-right" style="width: 10%;">
                                 <div class="form-group">
-                                    
+
                                     @*@Html.DropDownList("StudentGender",
                                         new SelectList(Enum.GetValues(typeof(test))),
                                         "Select Gender",
@@ -110,22 +98,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="row d-flex justify-content-end">
-                <div class="row">
-                    <span class="d-flex">
-                        <p>Total:</p>
-                        <h5 style="color:#f68b1e; margin-left: 1em;">EGP 10,866</h5>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="row mr-2 d-flex justify-content-end checkout align-content-center">
-            <span>
-                @Html.ActionLink("continue shopping", "test", null, new { @class = "btn-orange btn shop" })
-            </span>
-            <span>
-                @Html.ActionLink("continue to checkout", "test", null, new { @class = "btn-orange btn con" })
-            </span>
         </div>
 
 

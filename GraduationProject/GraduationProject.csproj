@@ -267,6 +267,10 @@
     <Compile Include="Migrations\202105091348157_datetime2.designer.cs">
       <DependentUpon>202105091348157_datetime2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105130400135_status.cs" />
+    <Compile Include="Migrations\202105130400135_status.designer.cs">
+      <DependentUpon>202105130400135_status.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BankAccount.cs" />
@@ -549,6 +553,7 @@
     <Content Include="Views\Account\Customer\AccountEdit.cshtml" />
     <Content Include="Views\Cart\cart.cshtml" />
     <Content Include="Views\Orders\Orders.cshtml" />
+    <Content Include="Views\Customer\OrderHistory.cshtml" />
     <None Include="Views\Partial\ProductDetails.cshtml" />
     <None Include="Views\Partial\Products For Annonuymous.cshtml" />
     <None Include="Views\Home\home.cshtml" />
@@ -665,6 +670,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105091348157_datetime2.resx">
       <DependentUpon>202105091348157_datetime2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105130400135_status.resx">
+      <DependentUpon>202105130400135_status.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

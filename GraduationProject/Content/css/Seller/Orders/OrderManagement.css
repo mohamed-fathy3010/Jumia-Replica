@@ -110,7 +110,6 @@ a.nav-link {
     flex-direction: column;
     margin: 0 auto;
     flex-basis: 50%;
-    text-align: center;
 }
 
 .currency {
@@ -313,8 +312,7 @@ content {
     }
 
 .tab-pane {
-    margin-top: 190px;
-    text-align: center;
+    
 }
 
 img {

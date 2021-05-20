@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ProductViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Product details";
 }
 @section styles{
@@ -9,7 +11,7 @@
 <div class="container">
 
     <div id="container-row">
-        <div class="col-12 col-lg-9 cards-container">
+        <div class="col-12 cards-container">
             <div class="card" style="flex-direction: row">
                 <div class="card-body">
                     <!--Images in left-->
@@ -35,7 +37,7 @@
                                         </ul>
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
-                                                <img src="~/images/shoe_1.jpg" />
+                                                <img src="~/images/@Model.Product.Image" />
                                             </div>
                                             <div class="carousel-item">
                                                 <img src="~/images/shoe_1.jpg" />
@@ -84,10 +86,10 @@
                             <button id="swapHeart" class="btn-default">
                                 <span><i class="fa-heart far"></i></span>
                             </button>
-                            <h1 class="product-title">nike shoes</h1>
+                            <h1 class="product-title">@Model.Product.Name</h1>
                             <span>
-                                Brand: <a href="#" style="color: #264996">Nike</a> |
-                                <a href="#" style="color: #264996">Similar products from Nike</a>
+                                Brand: <a href="#" style="color: #264996">@Model.BrandName</a> |
+                                <a href="#" style="color: #264996">Similar products from @Model.BrandName</a>
                             </span>
                             <div class="product-rating">
                                 <i class="fas fa-star"></i>
@@ -95,12 +97,12 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i>
-                                <span>4.7(21)</span>
+                                <span>@(Model.Product.Rate)(@Model.FeedBacks.Count)</span>
                             </div>
                             <br />
                             <hr />
                             <div class="product-price">
-                                <p>EGP <span>257,00</span></p>
+                                <p>EGP <span>@Model.Product.Cost</span></p>
                                 <button onclick="add()" class="btn imgbtn">
                                     <i class="fas fa-cart-plus float-left"></i>
                                     Add to cart
@@ -108,7 +110,7 @@
                             </div>
                             <hr />
                             <div class="product-detail">
-                                <h5 class="text-left">Promotions</h5>
+                                <h5 class="text-left">@Model.Product.Promotion.ReasonforDiscounts</h5>
                                 <a href="#" style="color: #264996">
                                     <i class="fas fa-shield-alt"
                                        style="width: 24px; height: 24px"></i>
@@ -135,62 +137,7 @@
         <div class="col-12 col-lg-9 cards-container">
             <div class="card">
                 <h5 class="card-header">Product details</h5>
-                <b class="card-body">Shoe</b>
-                <ul>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                </ul>
-                <b class="card-body">Shoe</b>
-                <ul>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                </ul>
-                <b class="card-body">Shoe</b>
-                <ul>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                </ul>
-                <b class="card-body">Shoe</b>
-                <ul>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                </ul>
-                <b class="card-body">Shoe</b>
-                <ul>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                </ul>
-                <b class="card-body">Shoe</b>
-                <ul>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                </ul>
-                <b class="card-body">Shoe</b>
-                <ul>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                </ul>
-                <b class="card-body">Shoe</b>
-                <ul>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                    <li><b>Advantage: </b>like shoes</li>
-                </ul>
+                @Model.Product.Description
             </div>
         </div>
         <br />
@@ -398,12 +345,12 @@
         });
         function add() {
             $.ajax({
-                method:"POST",
-                url: "/products/5",
+                method: "POST",
+                url: "/products/1",
                 success: function (data) {
                     console.log(data);
-        },
-    })
-}
+                },
+            })
+        }
     </script>
 }

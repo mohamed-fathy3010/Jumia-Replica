@@ -10,7 +10,9 @@ namespace GraduationProject.Models
 {
     public class Inventory
     {
-        public int ID { get; set; }
+        [Key]
+        [ForeignKey("SellerInfo")]
+        public String ID { get; set; }
         [Required]
         [MaxLength(50)]
         public string City { get; set; }
@@ -19,11 +21,11 @@ namespace GraduationProject.Models
         [DataType(DataType.Text)]
         public string Street { get; set; }
         public string BuildingNum { get; set; }
-        [ForeignKey("SellerInfo")]
-        public string SellerID { get; set; }
+        
         [DataType(DataType.PhoneNumber)]
         [Phone]
         public string LandLineNum { get; set; }
         public virtual SellerInfo SellerInfo { get; set; }
+        public virtual List<Product> Products { get; set; } = new List<Product>();
     }
 }

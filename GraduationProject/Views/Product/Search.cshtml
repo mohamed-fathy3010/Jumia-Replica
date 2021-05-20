@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewBag.Title = "SearchProduct";
+}
+
+@using (Html.BeginForm("Search", "Product", FormMethod.Get))
+{
+    @Html.TextBox("Searching")
+    <input type="submit" value="Search" />
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Cost</th>
+            <th>Image</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="5" style="color:red">No match Product</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Name</td>
+                    <td>@item.Cost</td>
+                    <td>@item.Image</td>
+                    <td>@item.Category</td>
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>

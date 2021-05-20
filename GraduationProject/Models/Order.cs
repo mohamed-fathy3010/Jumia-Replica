@@ -27,7 +27,11 @@ namespace GraduationProject.Models
         public OrderStatus Status { get; set; }
         [ForeignKey("Customer")]
         public string CustomerID { get; set; }
+        [ForeignKey("Coupon")]
+        public string CouponCode { get; set; }
+
         public virtual Customer Customer { get; set; }
+        public virtual Coupon Coupon { get; set; }
         //[ForeignKey("Employee")]
         //public int EmployeeID { get; set; }
         //crete employee

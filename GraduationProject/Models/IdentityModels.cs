@@ -44,7 +44,12 @@ namespace GraduationProject.Models
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Promotion> Promotions { get; set; }
-        public virtual DbSet<InventoryProducts> InventoryProducts { get; set; }
+        public virtual DbSet<Coupon> Coupons { get; set; }
+        public virtual DbSet<Album> Albums { get; set; }
+        public virtual DbSet<Inventory> Inventories { get; set; }
+        public virtual DbSet<Wishlist> Wishlists { get; set; }
+        public virtual DbSet<ProductWishlist> ProductWishlists { get; set; }
+
 
     }
 }

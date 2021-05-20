@@ -1,20 +1,21 @@
 ﻿
 @{
     ViewBag.Title = "cart";
+    CartViewModel cart = Session["order"] as CartViewModel;
 }
 
 @section styles{
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="~/Content/Cart.css" rel="stylesheet" />
 }
-
 <!-- cart is full -->
 <div class="container">
     <div class="row d-inline">
         <h1>
-            cart @if (Context.Session["order"] != null)
+            cart @if(cart != null)
             {
-                <span id="cart-size">(@((Context.Session["order"] as List<Product>).Count)</span>
+                <span id="cart-size">(@(cart.totalQuantity)) items</span>
             }
         </h1>
         <p>
@@ -23,40 +24,39 @@
         </p>
     </div>
 </div>
-@if (Context.Session["order"] != null)
+@if (cart != null)
 {
 
 
-    using (Html.BeginForm("Buy", "cart"))
+    using (Html.BeginForm("Buy", "cart",FormMethod.Post,new {id="cart-form"}))
     {
-    <div class="container">
-        <div class="row">
-            <table class="table w-100">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>quantity</th>
-                        <th>unit price</th>
-                        <th>subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{List<Product> order = (List<Product>)Context.Session["order"]; }
-                    @for (int i = 0;i < order.Count; i++)
-                    {
+<div class="container">
+    <div class="row">
+        <table class="table w-100">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>quantity</th>
+                    <th>unit price</th>
+                    <th>subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{List<ProductWithQuantityViewModel> order = (List<ProductWithQuantityViewModel>)cart.ProductsWithQuantity; }
+                @for (int i = 0; i < order.Count; i++)
+                {
 
-                        <input type="hidden" name="cart[@i].Id" value="@order[i].ID">
                     <tr>
                         <td class="border-right " style="width: 50%;">
                             <div class="image mr-1">
-                                <img src="https://i.stack.imgur.com/ZGgx0.png" width="50px"
-                                     height="auto">
+                                <img src="https://i.stack.imgur.com/ZGgx0.png" width="50"
+                                     height="50">
                             </div>
                             <div class="image-body">
                                 <h6>Seller:jumai</h6>
-                                <h5>@order[0].Name</h5>
+                                <h5>@order[i].Product.Name</h5>
                                 <p>
-                                    @order[0].Description
+                                    @order[i].Product.Description
                                 </p>
                                 <div class="acts d-flex">
                                     @Html.ActionLink("move to saved item", "test", null, new { @class = "btn one" })
@@ -74,37 +74,65 @@
                                     "Select Gender",
                                     new { @class = "form-control" })*@
 
-                                <select class="form-control" style="cursor: pointer;" name="cart[@i].Quantity">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                <select class="form-control" style="cursor: pointer;" name="quantity-@i" id="@i">
+                                    @for(int option=1;option<= 5; option++)
+                                    {
+                                        <option @if (option == order[i].Quantity){
+                                            @:selected 
+                                                }>@option</option>
+                                    }
                                 </select>
                             </div>
                         </td>
-                        <td class="border-right" style="width: 20%;">EGP 10,866</td>
-                        <td style="width: 20%; color: #f68b1e; font-weight: 600;">EGP 10,866</td>
+                        <td class="border-right" style="width: 20%;">EGP @order[i].Product.OrderDetailsCost</td>
+                        <td style="width: 20%; color: #f68b1e; font-weight: 600;">EGP @((float)Math.Round(order[i].Product.OrderDetailsCost * order[i].Quantity,2))</td>
                     </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <div class="row d-flex justify-content-end">
-            <div class="row">
-                <span class="d-flex">
-                    <p>Total:</p>
-                    <h5 style="color:#f68b1e; margin-left: 1em;">EGP 10,866</h5>
-                </span>
-            </div>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="row d-flex justify-content-end">
+        <div class="row">
+            <span class="d-flex">
+                <p>Total:</p>
+                <h5 style="color:#f68b1e; margin-left: 1em;">EGP @cart.TotalPrice</h5>
+            </span>
         </div>
     </div>
+    <div class="row justify-content-end align-items-center">
+        <input placeholder="enter coupon code" type="text" class="form-control col-6 col-md-3" name="code" id="coupon">
+        <button class="btn-orange btn con" id="apply"> Apply coupon</button>
+    </div>
+</div>
 
-    <div class="row mr-2 d-flex justify-content-end checkout align-content-center">
-        <span>
-            @Html.ActionLink("continue shopping", "test", null, new { @class = "btn-orange btn shop" })
-        </span>
-        <span>
-          <input type="submit" value="continue to checkout" class="btn-orange btn con">
-        </span>
-    </div>
+        <div class="row mr-2 d-flex justify-content-end checkout align-content-center">
+            
+            <span>
+                @Html.ActionLink("continue shopping", "test", null, new { @class = "btn-orange btn shop" })
+            </span>
+            <span>
+                <input type="submit" value="continue to checkout" class="btn-orange btn con">
+            </span>
+        </div>
     }
 }
+@section scripts{
+    <script>
+        $(function () {
+            $("#apply").on("click", function () {
+                let $form = $("#cart-form")
+                $form.prop("action", "/cart/apply");
+            });
+            $("select").on("change", function () {
+                $(this).prop("name", "changedQuantity");
+                $('<input />').prop('type', 'hidden')
+                    .prop('name', "changedId")
+                    .prop('value', $(this).prop("id"))
+                    .appendTo('#cart-form');
+                let $form = $("#cart-form")
+                $form.prop("action", "/cart/ChangeQuantity");
+                $form.submit();
+            });
+        })
+    </script>
+    }

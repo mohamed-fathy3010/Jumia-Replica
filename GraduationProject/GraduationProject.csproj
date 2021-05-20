@@ -302,6 +302,7 @@
     <Compile Include="Models\Complaint.cs" />
     <Compile Include="Models\Coupon.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\FeedBack.cs" />
     <Compile Include="Models\FinancialAccount.cs" />
     <Compile Include="Models\GenderType.cs" />

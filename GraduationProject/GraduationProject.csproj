@@ -581,6 +581,7 @@
     <Content Include="Views\Account\Customer\AccountEdit.cshtml" />
     <Content Include="Views\Cart\cart.cshtml" />
     <Content Include="Views\Orders\Orders.cshtml" />
+    <Content Include="Views\Customer\OrderHistory.cshtml" />
     <Content Include="Views\Account\SellerEdit.cshtml" />
     <None Include="Views\Partial\ProductDetails.cshtml" />
     <None Include="Views\Partial\Products For Annonuymous.cshtml" />

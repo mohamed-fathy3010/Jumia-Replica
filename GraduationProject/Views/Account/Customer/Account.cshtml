@@ -1,3 +1,4 @@
+﻿@model CustomerViewModel
 ﻿@{ 
     Layout = "~/Views/Shared/Customer_Layout.cshtml";
 }
@@ -82,8 +83,8 @@
 
                             <div class="card-body">
                                 <div class="text-container">
-                                    <p class="card-text first">Mohamed Fathy</p>
-                                    <p class="card-text second">mohamed.fathy301011@gmail.com</p>
+                                    <p class="card-text first">@(Model.Fname)  (@Model.Lname)</p>
+                                    <p class="card-text second">@Model.Email</p>
                                 </div>
                                 <a class="btn btn-link" href="#">Change Password</a>
                             </div>
@@ -99,8 +100,8 @@
 
                             <div class="card-body">
                                 <div class="text-container">
-                                    <p class="card-text first">Your default shipping address</p>
-                                    <p class="card-text second">No default shipping address available</p>
+                                    <p class="card-text first">Your default shipping @Model.Customer.Address</p>
+                                    <p class="card-text second">No default shipping @Model.Customer.Address available</p>
                                 </div>
                                 <a class="btn btn-link" href="#">ADD DEFAULT ADDRESS</a>
                             </div>

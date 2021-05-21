@@ -37,6 +37,8 @@ namespace GraduationProject.Models
 
         [ForeignKey("Promotion")]
         public int? PromotionsID { get; set; }
+        [ForeignKey("Brand")]
+        public int BrandId { get; set; }
         [ForeignKey("Inventory")]
         public string InventoryId { get; set; }
         [NotMapped]
@@ -50,6 +52,7 @@ namespace GraduationProject.Models
         public Promotion Promotion { get; set; }
         public virtual List<Album> Albums { get; set; } = new List<Album>();
         public virtual List<ProductWishlist> ProductWishlists { get; set; } = new List<ProductWishlist>();
+        public virtual Brand Brand { get; set; }
 
 
 

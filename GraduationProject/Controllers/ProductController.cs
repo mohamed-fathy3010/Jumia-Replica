@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity;
+using System.Net;
+
 namespace GraduationProject.Controllers
 {
 
@@ -18,22 +20,26 @@ namespace GraduationProject.Controllers
             Product product = db.Products
                 .Include(p => p.Albums)
                 .Include("OrderDetails.FeedBack")
+                .Include(p => p.Brand)
+                .Include(p => p.Promotion)
                 .Include(p => p.Inventory.SellerInfo)
-                .Include("Category.BrandCategories.Brand")
+                .Include(p=>p.Category)
                 .FirstOrDefault(p => p.ID == id);
             if (product == null)
             {
                 return new HttpNotFoundResult("no product with that id");
             }
+            product.Rate = calculateRate(product.ID);
             ProductViewModel productViewModel = new ProductViewModel();
             List<Product> products = db.Products
-                .Where((p, i) => p.InventoryId == product.Inventory.ID && i != product.ID)
+                .Where((p) => p.InventoryId == product.Inventory.ID && p.ID != product.ID)
                 .ToList();
             bool isWished = false;
             bool isAddedToCart = false;
             if (User.Identity.IsAuthenticated)
             {
-                isWished = db.ProductWishlists.Any(p => p.ProductId == product.ID && p.wishListId == User.Identity.GetUserId());
+                string userId = User.Identity.GetUserId();
+                isWished = db.ProductWishlists.Any(p => p.ProductId == product.ID && p.wishListId == userId );
                 if (Session["order"] != null)
                 {
                     CartViewModel cart = Session["order"] as CartViewModel;
@@ -49,7 +55,7 @@ namespace GraduationProject.Controllers
             }
             productViewModel.Product = product;
             productViewModel.Albums = product.Albums;
-            productViewModel.BrandName = product.Category.BrandCategories[0].Brand.Name;
+            productViewModel.BrandName = product.Brand.Name;
             productViewModel.SellerName = product.Inventory.SellerInfo.BusinessName;
             productViewModel.OtherProducts = products;
             List<FeedBack> feedBacks = new List<FeedBack>();
@@ -58,12 +64,15 @@ namespace GraduationProject.Controllers
                 feedBacks.Add(item.FeedBack);
             }
             productViewModel.FeedBacks = feedBacks;
+            productViewModel.isAddedToCart = isAddedToCart;
+            productViewModel.isWished = isWished;
             return View("~/Views/Product/ProductDetails.cshtml", productViewModel);
         }
-
         [HttpPost,Route("products/{id}")]
-        public void AddToCart(int id)
+        public ActionResult AddToCart(int id)
         {
+            if (!User.Identity.IsAuthenticated || !User.IsInRole("customer"))
+                return Content(Url.Action("Login","Account"));
             CartViewModel order;
             Product product = db.Products.FirstOrDefault(p => p.ID == id);
             product.OrderDetailsCost = product.Cost;
@@ -86,6 +95,7 @@ namespace GraduationProject.Controllers
             }
             order.TotalPrice = (float)Math.Round(order.TotalPrice, 2);
             Session["order"] = order;
+            return Content("");
         }
 
 
@@ -97,15 +107,7 @@ namespace GraduationProject.Controllers
             var SearchProduct = db.Products.Where(p => p.Name.Contains(Searching)).ToList();
             foreach (var product in SearchProduct)
             {
-                var orderDetails = db.OrderDetails.Where(o => o.ProductID == product.ID);
-                var averageRating = orderDetails.Include(o => o.FeedBack).Where(o => o.FeedBack != null).ToList();
-                Decimal average = 0;
-                foreach (var details in averageRating)
-                {
-                    average += details.FeedBack.Rate;
-                }
-                average /= averageRating.Count;
-                product.Rate = average;
+                product.Rate = calculateRate(product.ID);
             }
            
            
@@ -133,6 +135,41 @@ namespace GraduationProject.Controllers
                 }
             }
             return View(SearchProduct);
+        }
+        [HttpPost]
+        [Route("product/{id}/wish")]
+        public ActionResult wish(int id)
+        {
+            if (!User.Identity.IsAuthenticated || !User.IsInRole("customer"))
+                return Content(Url.Action("Login", "Account"));
+            string userId = User.Identity.GetUserId();
+            db.ProductWishlists.Add(new ProductWishlist() { wishListId = userId, ProductId = id });
+            db.SaveChanges();
+            return Content(""); 
+        }
+        [Authorize(Roles = "customer")]
+        [HttpPost]
+        [Route("product/{id}/unwish")]
+        public ActionResult Unwish(int id)
+        {
+            string userId = User.Identity.GetUserId();
+            ProductWishlist wish = db.ProductWishlists.FirstOrDefault(w => w.ProductId == id && w.wishListId == userId);
+            db.ProductWishlists.Remove(wish);
+            db.SaveChanges();
+            return new HttpStatusCodeResult(HttpStatusCode.OK); 
+        }
+        private decimal calculateRate(int id)
+        {
+            var orderDetails = db.OrderDetails.Where(o => o.ProductID == id);
+            var averageRating = orderDetails.Include(o => o.FeedBack).Where(o => o.FeedBack != null).ToList();
+            Decimal average = 0;
+            foreach (var details in averageRating)
+            {
+                average += details.FeedBack.Rate;
+            }
+            average /= averageRating.Count;
+            average = Math.Round(average, 2);
+            return average;
         }
     }
 }

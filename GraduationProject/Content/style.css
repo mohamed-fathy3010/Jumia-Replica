@@ -72,7 +72,33 @@ input[type=text] {
     flex-direction: row;
     color: #888888;
 }
-
+.btn-login{
+    color:#f68b1e;
+    font-weight:700;
+    padding-top:.8em;
+    padding-bottom:.8em;
+}
+.sign-up {
+    cursor: pointer;
+    color: #f68b1e;
+    font-weight: 700;
+    padding-top: .8em;
+    padding-bottom: .8em;
+}
+.logout-form{
+    display:block;
+    width:100%;
+    text-align:center;
+    padding-top: 16px;
+}
+    .logout-form button {
+        color: #f68b1e;
+        font-weight:700;
+    }
+.logout-form button:hover {
+    background-color: #f68b1e;
+    color:white;
+}
 p::after, p::before {
     content: "";
     flex: 1 1;

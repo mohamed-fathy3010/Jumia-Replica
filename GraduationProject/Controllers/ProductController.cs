@@ -68,10 +68,11 @@ namespace GraduationProject.Controllers
             productViewModel.isWished = isWished;
             return View("~/Views/Product/ProductDetails.cshtml", productViewModel);
         }
-
         [HttpPost,Route("products/{id}")]
-        public void AddToCart(int id)
+        public ActionResult AddToCart(int id)
         {
+            if (!User.Identity.IsAuthenticated || !User.IsInRole("customer"))
+                return Content(Url.Action("Login","Account"));
             CartViewModel order;
             Product product = db.Products.FirstOrDefault(p => p.ID == id);
             product.OrderDetailsCost = product.Cost;
@@ -94,6 +95,7 @@ namespace GraduationProject.Controllers
             }
             order.TotalPrice = (float)Math.Round(order.TotalPrice, 2);
             Session["order"] = order;
+            return Content("");
         }
 
 
@@ -134,15 +136,16 @@ namespace GraduationProject.Controllers
             }
             return View(SearchProduct);
         }
-        [Authorize(Roles ="customer")]
         [HttpPost]
         [Route("product/{id}/wish")]
         public ActionResult wish(int id)
         {
+            if (!User.Identity.IsAuthenticated || !User.IsInRole("customer"))
+                return Content(Url.Action("Login", "Account"));
             string userId = User.Identity.GetUserId();
             db.ProductWishlists.Add(new ProductWishlist() { wishListId = userId, ProductId = id });
             db.SaveChanges();
-            return new HttpStatusCodeResult(HttpStatusCode.OK); 
+            return Content(""); 
         }
         [Authorize(Roles = "customer")]
         [HttpPost]

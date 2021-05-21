@@ -654,6 +654,7 @@
     <Content Include="Views\Seller\Orders\DeliveredTabPartialView.cshtml" />
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Seller\FeeDiscounts\FeeDiscounts.cshtml" />
+    <Content Include="Views\Shared\Customer_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -84,8 +84,8 @@
                     <div class="card-body right col-12 col-md-7">
                         <!--right-->
                         <div class="product-content">
-                            <button onclick="@(Model.isWished? "unwish(this)":"wish(this)") " id="swapHeart" class="btn-default">
-                                <span><i class="fa-heart @(Model.isWished? "fas":"far")"></i></span>
+                            <button onclick="@(Model.isWished ? "unwish(this)" : "wish(this)") " id="swapHeart" class="btn-default">
+                                <span><i class="fa-heart @(Model.isWished ? "fas" : "far")"></i></span>
                             </button>
                             <h1 class="product-title">@Model.Product.Name</h1>
                             <span>
@@ -352,6 +352,10 @@
         </div>
     </div>
 </div>
+
+@{
+    Layout = "~/Views/Shared/Customer_Layout.cshtml";
+}
 @section scripts{
     <script src="~/Scripts/toastr.min.js"></script>
     <script>
@@ -360,12 +364,17 @@
                 $.ajax({
                     method: "POST",
                     url: "/product/@Model.Product.ID/wish",
-                    success: function () {
-                        toastr.success('item added to wish list');
-                        const $el = $(e);
-                        $el.attr("onclick", "unwish(this)");
-                        const $textNode = $el.find("span i");
-                        $textNode.toggleClass("fas far");
+                    success: function (data) {
+                        if (data == "") {
+                            toastr.success('item added to wish list');
+                            const $el = $(e);
+                            $el.attr("onclick", "unwish(this)");
+                            const $textNode = $el.find("span i");
+                            $textNode.toggleClass("fas far");
+                        }
+                        else {
+                            window.location.href = data;
+                        }
                     }
                 })
 
@@ -390,13 +399,18 @@
                 method: "POST",
                 url: "/products/@Model.Product.ID",
                 success: function (data) {
-                    $("#template").fadeOut(500, function () {
-                        $(this).html(`
-                    <p>
-                        <i class="far fa-check-circle"></i>
-                        added to cart.
-                    </p>`).fadeIn(500);
-                    })
+                    if (data == "") {
+                        $("#template").fadeOut(500, function () {
+                            $(this).html(`
+                            <p>
+                                <i class="far fa-check-circle"></i>
+                                added to cart.
+                            </p>`).fadeIn(500);
+                        })
+                    }
+                    else {
+                        window.location.href = data;
+                    }
                 },
             })
         }

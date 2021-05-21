@@ -13,6 +13,7 @@ namespace GraduationProject.Models
         shipped,
         delivered,
         returned,
+        completed,
         canceled
     }
 }

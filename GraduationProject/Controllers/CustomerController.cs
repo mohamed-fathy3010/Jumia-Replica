@@ -87,20 +87,21 @@ namespace GraduationProject.Controllers
         [AllowAnonymous]
         public ActionResult OrderHistory()
         {
-            string ID = User.Identity.GetUserId();
+            string userId = User.Identity.GetUserId();
 
-            var user = db.Users.FirstOrDefault(l=>l.Id== ID);
+            var user = db.Users.FirstOrDefault(l => l.Id == userId);
 
-            var order = db.Customers.Where(h => h.ID == ID).Select(c => c.Orders.Any(o => o.OrderDetails.Any(k => k.Status == OrderDetailsStatus.completed))).ToList();
+            //get all orders for current authenticated customer that has delivered order details
+            var order = db.Orders.Include(o => o.OrderDetails)
+                .Where(d => d.OrderDetails.Any(s => s.Status == OrderDetailsStatus.completed) && d.CustomerID == userId)
+                .ToList();
+
+            //var order = db.Customers.Where(h => h.ID == ID).Select(c => c.Orders.Any(o => o.OrderDetails.Any(k => k.Status == OrderDetailsStatus.completed))).ToList();
 
             if (order == null)
             {
                 return View("~/views/customer/orderhistoryempty.cshtml");
             }
-
-            var otherorder = db.Orders.Include(o => o.OrderDetails).Where(l => l.CustomerID == ID);
-           
-
             return View(order);
         }
     }

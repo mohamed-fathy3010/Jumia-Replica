@@ -15,7 +15,6 @@ namespace GraduationProject.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: Customer
-        ApplicationDbContext db = new ApplicationDbContext();
 
         public ActionResult Account()
         {
@@ -84,16 +83,20 @@ namespace GraduationProject.Controllers
                 item.OrderDetails = item.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).ToList();
             }
             return View();
+        }
+        [AllowAnonymous]
         public ActionResult OrderHistory()
         {
             string ID = User.Identity.GetUserId();
 
             var user = db.Users.FirstOrDefault(l=>l.Id== ID);
 
-            var order = db.Customers.Where(c => c.Orders.Any(o => o.OrderDetails.Any(k => k.Status == OrderDetailsStatus.completed))).ToList().SingleOrDefault(h => h.ID == ID);
-            //var otherorder = db.Customers.Where(q => q.ID == ID)
-            //                                   .Include(q => q.Orders).Include(p=>p.ord).Select(t => t.OrderDetails))
-            //                                   .ToList();
+            var order = db.Customers.Where(h => h.ID == ID).Select(c => c.Orders.Any(o => o.OrderDetails.Any(k => k.Status == OrderDetailsStatus.completed))).ToList();
+
+            if (order == null)
+            {
+                return View("~/views/customer/orderhistoryempty.cshtml");
+            }
 
             var otherorder = db.Orders.Include(o => o.OrderDetails).Where(l => l.CustomerID == ID);
             //var OrderDetails = otherorder.Where(u=>u.OrderDetails.Where(t=>t.Status==OrderDetailsStatus.completed))

@@ -71,8 +71,9 @@ namespace GraduationProject.Controllers
             foreach (var item in order)
             {
                 item.OrderDetails = item.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).ToList();
-        }
-        public ActionResult OrderHistory()  
+            }
+            return View();
+        public ActionResult OrderHistory()
         {
             string ID = User.Identity.GetUserId();
 
@@ -117,8 +118,6 @@ namespace GraduationProject.Controllers
             // var orders = db.Customers.Include(d => d.Orders).Select(m => m.Orders.OrderDetails.Where(n => n.Status == OrderDetailsStatus.completed)).ToList();
 
             // var order= db.OrderDetails.Where(m => m.Status == OrderDetailsStatus.completed).ToList();
-
-            return View(order);
 
             return View(order);
         }

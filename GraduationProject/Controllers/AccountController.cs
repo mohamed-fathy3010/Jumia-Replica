@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GraduationProject.Models;
-
+using System.Data.Entity;
 
 namespace GraduationProject.Controllers
 {
@@ -198,6 +198,27 @@ namespace GraduationProject.Controllers
             // If we got this far, something failed, redisplay form
             return View("sellerRegister", model);
         }
+
+        [AllowAnonymous]
+        public async Task<ActionResult> SellerEdit(int? id)
+        {
+            SellerInfo seller = db.SellerInfo.Find(id);
+
+            return View("SellerEdit");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SellerEdit([Bind(Include = "ID,CompanyRegistration,FrontImage,BackImage,BusinessName")] SellerInfo sellerInfo)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(sellerInfo).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(sellerInfo);
+        }
+
 
 
         //

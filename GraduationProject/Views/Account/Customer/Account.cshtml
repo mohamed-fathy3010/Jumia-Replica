@@ -76,14 +76,14 @@
                                     <h5 class="card-text">ACCOUNT DETAILS</h5>
                                 </div>
                                 <div class="">
-                                    <a id="edit" href=""><i id="pen" class="fa fa-pen"></i></a>
+                                    <a id="edit" href="@Url.Action("AccountEdit","Customer")"><i id="pen" class="fa fa-pen"></i></a>
                                 </div>
                             </div>
 
                             <div class="card-body">
                                 <div class="text-container">
-                                    <p class="card-text first">Mohamed Fathy</p>
-                                    <p class="card-text second">mohamed.fathy301011@gmail.com</p>
+                                    <p class="card-text first">@(Model.Fname)  @(Model.Lname)</p>
+                                    <p class="card-text second">@Model.Email</p>
                                 </div>
                                 <a class="btn btn-link" href="#">Change Password</a>
                             </div>
@@ -100,7 +100,14 @@
                             <div class="card-body">
                                 <div class="text-container">
                                     <p class="card-text first">Your default shipping address</p>
-                                    <p class="card-text second">No default shipping address available</p>
+                                    @if (Model.Customer.Address == null)
+                                    {
+                                        <p class="card-text second">No default shipping available</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="card-text second">@Model.Customer.Address</p>
+                                    }
                                 </div>
                                 <a class="btn btn-link" href="#">ADD DEFAULT ADDRESS</a>
                             </div>

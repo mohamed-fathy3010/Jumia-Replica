@@ -357,6 +357,7 @@
     <Content Include="Content\css\Seller\Orders\ReturnManagement.css" />
     <Content Include="Content\css\Seller\PostDelivery\ComplaintsManagement.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\customerRegister.css" />
     <Content Include="Content\fonts\material-icon\css\material-design-iconic-font.css" />
     <Content Include="Content\fonts\material-icon\css\material-design-iconic-font.min.css" />
     <Content Include="Content\fonts\material-icon\fonts\Material-Design-Iconic-Font.svg" />

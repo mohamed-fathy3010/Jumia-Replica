@@ -15,9 +15,6 @@ namespace GraduationProject.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: Customer
-       // ApplicationDbContext db2 = new ApplicationDbContext();
-
-        //ApplicationDbContext db = new ApplicationDbContext();
 
         public ActionResult Account()
         {
@@ -42,6 +39,7 @@ namespace GraduationProject.Controllers
 
             // Construct the viewmodel
             CustomerViewModel customerViewModel = new CustomerViewModel();
+            customerViewModel.Customer = customer;
             customerViewModel.Fname = customer.ApplicationUser.FirstName;
             customerViewModel.Lname = customer.ApplicationUser.LastName;
             customerViewModel.Email = customer.ApplicationUser.Email;
@@ -49,20 +47,20 @@ namespace GraduationProject.Controllers
             return View("~/Views/Account/Customer/AccountEdit.cshtml", customerViewModel);
         }
         [HttpPost]
+
+
         public ActionResult Edit(CustomerViewModel Customer)
+
         {
 
             if (ModelState.IsValid)
             {
                 string UserId = User.Identity.GetUserId();
                 Customer customer = db.Customers.FirstOrDefault(c => c.ID == UserId);
-
                 // Update fields
-                CustomerViewModel customerViewModel = new CustomerViewModel();
-                customer.ApplicationUser.FirstName = customerViewModel.Fname;
-                customer.ApplicationUser.LastName = customerViewModel.Lname;
-                customer.ApplicationUser.Email = customerViewModel.Email;
-                customer.ApplicationUser.PhoneNumber = customerViewModel.PhoneNumber;
+                customer.ApplicationUser.FirstName = Customer.Fname;
+                customer.ApplicationUser.LastName = Customer.Lname;
+                customer.ApplicationUser.PhoneNumber = Customer.PhoneNumber;
 
                 //db.Entry(customerViewModel).State = EntityState.Modified;
 
@@ -72,6 +70,7 @@ namespace GraduationProject.Controllers
             }
 
             return RedirectToAction("AccountEdit");
+
         }
 
         public ActionResult history()

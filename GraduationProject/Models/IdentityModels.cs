@@ -53,8 +53,5 @@ namespace GraduationProject.Models
 
 
 
-
-
-
     }
 }

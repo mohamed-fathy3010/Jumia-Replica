@@ -1,67 +1,66 @@
-﻿@model IEnumerable< GraduationProject.Models.OrderDetails>
+﻿@model IEnumerable<GraduationProject.Models.Order>
 @{
     Layout = null;
 }
 
-<!DOCTYPE html>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <link href="~/Content/cart.css" rel="stylesheet" />
     <title>Order History</title>
 </head>
+
 <body>
-    @{
-        Layout = null;
-    }
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-              integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-              integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
-        <link href="~/Content/cart.css" rel="stylesheet" />
-        <title>Order History</title>
-    </head>
-
-    <body>
-
-
-        <!-- cart is full -->
-        <div class="container">
-            <div class="row d-inline">
-                <h1>cart (@Model.@*count*@ item)</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim excepturi tempore similique qui vitae
-                    reiciendis.
-                </p>
-            </div>
+    <!-- cart is full -->
+    <div class="container">
+        <div class="row d-inline">
+            <h1>cart (@Model.Count() item)</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim excepturi tempore similique qui vitae
+                reiciendis.
+            </p>
         </div>
+    </div>
+    @if (Model == null)
+    {
+
         <div class="container">
             <div class="row">
-                <table class="table w-100">
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>quantity</th>
-                            <th>unit price</th>
-                            <th>subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr @foreach (var item in Model.Product.ToString())
-                            {
+                <h1> No order history</h1>
+            </div>
+        </div>
+    }
+    <div class="container">
+        <div class="row">
+            <table class="table w-100">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>quantity</th>
+                        <th>unit price</th>
+                        <th>subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
 
-                            }>
+                        <tr>
                             <td class="border-right " style="width: 50%;">
                                 <div class="image mr-1">
                                     <img src="https://i.stack.imgur.com/ZGgx0.png" width="50px"
@@ -74,7 +73,7 @@
                                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi architecto inventore,
                                         doloribus sit sunt rerum!
                                     </p>
-                                   
+
                                 </div>
                             </td>
                             <td class="border-right" style="width: 10%;">
@@ -95,21 +94,22 @@
                             <td class="border-right" style="width: 20%;">EGP 10,866</td>
                             <td style="width: 20%; color: #f68b1e; font-weight: 600;">EGP 10,866</td>
                         </tr>
-                    </tbody>
-                </table>
-            </div>
+                    }
+                </tbody>
+            </table>
         </div>
+    </div>
 
 
 
 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-                crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-                crossorigin="anonymous"></script>
-    </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+</body>
 
 </html>
 </body>

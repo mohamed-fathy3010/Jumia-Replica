@@ -1,0 +1,94 @@
+body {
+  color: #222;
+  cursor: auto;
+  font-style: normal;
+  line-height: 1.5;
+  position: relative;
+  margin: 0;
+  background-color: #ededed;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Helvetica, Arial,
+    sans-serif;
+}
+.productDatails p {
+  color: #f68b1e;
+  padding-right: 1rem;
+}
+.productDatails span {
+  color: #222;
+  margin-left: 0.7rem;
+}
+
+/* stars */
+div.stars {
+  display: inline-block;
+}
+
+input.star {
+  display: none;
+}
+
+label.star {
+  float: right;
+  padding: 7px;
+  font-size: 22px;
+  color: #444;
+}
+
+input.star:checked ~ label.star:before {
+  content: "\f005";
+  color: #fd4;
+}
+
+input.star-5:checked ~ label.star:before {
+  color: #fe7;
+}
+
+input.star-1:checked ~ label.star:before {
+  color: #f62;
+}
+
+label.star:before {
+  content: "\f006";
+  font-family: FontAwesome;
+}
+
+/* carousel */
+
+.card-img-actions {
+  position: relative;
+}
+
+.card-body {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+
+.card-img {
+  width: 350px;
+}
+
+a {
+  text-decoration: none !important;
+}
+.carousel-inner > .carousel-item > img {
+  width: 100%;
+  height: 30rem;
+}
+.carousel-indicators .active {
+  background-color: transparent;
+}
+.carousel-indicators > img {
+  border-radius: 10px;
+  padding-top: 4rem;
+  width: 25%;
+}
+#u2 {
+  height: 100px;
+}
+.carousel-indicators > img:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+}

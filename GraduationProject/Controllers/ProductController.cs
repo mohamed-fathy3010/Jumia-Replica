@@ -171,5 +171,47 @@ namespace GraduationProject.Controllers
             average = Math.Round(average, 2);
             return average;
         }
+
+
+        // get create
+        public ActionResult Create()
+        {
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "Name");
+            ViewBag.BrandId = new SelectList(db.Brands, "ID", "Name");
+
+            ViewBag.PromotionsID = new SelectList(db.Promotions, "ID", "ReasonforDiscounts");
+            return View();
+        }
+        // post create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Product product, HttpPostedFileBase pImage)
+        {
+            var user = User.Identity.GetUserId();
+            if (ModelState.IsValid)
+            {
+
+                string des1 = product.Description.Split('>')[1];
+                string des2 = des1.Split('<')[0];
+                product.Description = des2;
+                db.Products.Add(product);
+                db.SaveChanges();
+                string imgname = product.ID.ToString() + product.Name + "." + pImage.FileName.Split('.')[1];
+                pImage.SaveAs(Server.MapPath("~/images/ProductImageUploaded/") + imgname);
+                product.Image = imgname;
+
+                product.InventoryId = user;
+                
+
+                db.SaveChanges();
+                
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "Name", product.CategoryID);
+            ViewBag.PromotionsID = new SelectList(db.Promotions, "ID", "ReasonforDiscounts", product.PromotionsID);
+            return View(product);
+        }
     }
 }

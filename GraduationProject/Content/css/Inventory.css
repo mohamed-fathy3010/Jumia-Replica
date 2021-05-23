@@ -1,0 +1,308 @@
+body {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Helvetica, Arial,
+    sans-serif;
+  font-size: 0.85714rem;
+  color: #222;
+  cursor: auto;
+  font-style: normal;
+  line-height: 1.5;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+#main {
+  overflow: hidden;
+  position: relative;
+  display: block;
+}
+.search-item-body {
+  margin-top: -1.07143rem;
+  margin: 0 -1.42857rem;
+  width: auto;
+  max-width: none;
+  background-color: #f68b1e;
+  animation-name: fadeIn;
+  animation-fill-mode: both;
+  animation-duration: 1s;
+  text-align: center;
+}
+input :focus,
+button:focus {
+  box-shadow: none !important;
+}
+.search-title {
+  transition: margin-top 0.2s cubic-bezier(0.4, 0, 1, 1);
+  transition-delay: 0.1s;
+  color: #fff;
+  margin-top: 5.35714rem;
+  margin-bottom: 1.42857rem;
+  font-weight: 400;
+}
+.search {
+  transition: width 0.1s linear, margin 0.1s linear;
+  width: 80%;
+  margin: auto;
+}
+
+.fa-search {
+  transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  color: #b8c1ce;
+  font-size: 26px;
+  padding: 5px 12px;
+  line-height: 1.2;
+}
+.input-group-text {
+  background-color: white;
+  border: none;
+  border-radius: 0;
+  color: #a1a4a7;
+  padding: 0.5rem 0.5rem;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.input-group > .form-control:not(:first-child) {
+  border-left: none;
+}
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+#searchPhrase {
+  height: 3.85714rem;
+  margin-left: auto;
+  font-size: 1.28571rem;
+  color: #a1a4a7;
+  border: none;
+}
+#searchPhrase:focus {
+  box-shadow: none;
+}
+.search-button {
+  background-color: #e4811c;
+  height: 3.85714rem;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 1rem 2.5rem;
+  color: #fff !important;
+  text-decoration: none;
+  border: none;
+  text-align: center;
+}
+.search p {
+  text-align: left;
+  color: #fff;
+}
+.search a {
+  color: #fff;
+  text-decoration: underline;
+}
+.panel-body {
+  background: #ededed;
+  padding-top: 3.21429rem;
+  padding-bottom: 3.21429rem;
+  margin-top: 7.14286rem;
+  border: 0;
+  width: auto;
+  max-width: none;
+}
+.panel-body-p {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center !important;
+}
+.panel-body > .panel-body-p > p {
+  /* text-align: center !important; */
+  padding-bottom: 0.71429rem;
+  margin-bottom: 1.07143rem;
+  border-bottom: 1px solid #ccc;
+  font-size: 1.2em;
+  color: #404040;
+  font-weight: 700;
+}
+.panel-left-container {
+  padding: 0 3rem;
+}
+.panel-left {
+  /* margin-top: 1.07143rem; */
+  text-align: left;
+  position: relative;
+}
+.panel-body .panel-left > p,
+.panel-body .panel-right > p {
+  font-size: 1em;
+  padding: 0 2.2rem;
+  margin-bottom: 0.71429rem;
+  text-align: left;
+  font-weight: 700;
+}
+.dropdown-select {
+  width: 65%;
+  padding-right: 10px !important;
+  position: relative;
+  /* float: left; */
+}
+.dropdown-select > button {
+  margin-bottom: 1rem;
+  margin-top: 0;
+  border: 1px solid #ccc;
+  position: relative;
+  padding-right: 4.07143rem;
+  border-radius: 3px;
+  background-color: #f2f2f2;
+  color: #333;
+  padding: 14px;
+  font-size: 11px !important;
+  width: 100%;
+  text-align: left;
+  float: right;
+  cursor: pointer;
+  vertical-align: middle;
+  margin: 0 0 0.71429rem;
+}
+.panel-left-container .dropdown-select > button :focus {
+  box-shadow: 0 0 0 0.2rem rgb(251 253 255 / 25%);
+}
+.dropdown-toggle::after {
+  border-color: #333 transparent transparent;
+  border-style: solid;
+  position: absolute;
+  top: 50%;
+  border-width: 0.42857rem;
+  right: 1.60714rem;
+  margin-top: -0.17857rem;
+}
+.panel-left-download {
+  float: left;
+  width: 35%;
+  padding-right: 10px !important;
+  padding: 0 !important;
+}
+.panel-left-download .disabled {
+  background-color: #f68b1e;
+  color: white;
+}
+.panel-left-download > button {
+  position: relative;
+  float: right;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  font-size: 0.92857rem !important;
+  padding-right: 10px !important;
+  pointer-events: none;
+  font-weight: 700;
+  padding: 12px 10px;
+  cursor: not-allowed !important;
+  width: 100%;
+  box-shadow: none;
+  background-color: #f68b1e;
+  min-height: 46px;
+  opacity: 0.7;
+}
+.panel-left-download img,
+.panel-right img,
+.panel-right-right img {
+  width: 20px;
+  margin-right: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+}
+.panel-right {
+  padding-left: 5%;
+  float: right;
+  border-left: 1px solid #ccc;
+}
+
+.panel-right > button {
+  width: 75% !important;
+  float: left !important;
+}
+.panel-right-left {
+  width: 70%;
+  padding-right: 10px !important;
+  padding: 0 !important;
+}
+.panel-right .panel-right-left > button {
+  margin-bottom: 1rem;
+  margin-top: 0;
+  border: 1px solid #ededed;
+  font-weight: 700;
+  padding: 12px 10px;
+  width: 100%;
+  min-height: 46px;
+  border-radius: 3px;
+  font-size: 0.92857rem !important;
+  background-color: #e4811c;
+  color: white;
+  cursor: pointer;
+}
+.panel-right-left button :focus,
+.panel-right-left button :active {
+  box-shadow: none !important;
+}
+.panel-right-right {
+  float: left;
+  width: 15%;
+  padding-right: 10px !important;
+  padding: 0 !important;
+}
+.panel-right-right > button {
+  margin-bottom: 1rem;
+  margin-top: 0;
+  background-color: #f2f2f2 !important;
+  border: 1px solid #ccc !important;
+  padding: 11px 16px;
+  border-radius: 3px;
+  font-size: 0.92857rem !important;
+}
+
+/* footer */
+.footer {
+  margin: 0.1429rem 0 0.1429rem 0;
+  /* margin: 1.42857rem 0 0.71429rem; */
+  padding: 0.71429rem 1%;
+  border-top: 1px solid #ccc;
+  position: relative;
+  bottom: 0;
+  width: calc(100% - 40px);
+}
+.footer p {
+  margin-bottom: 0;
+  font-size: 0.85714rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+.footer p label {
+  cursor: default;
+  float: left;
+  font-size: 0.85714rem;
+  margin-right: 0.71429rem;
+  color: #4d4d4d;
+  display: block;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+.footer p a {
+  color: #f68b1e;
+  line-height: inherit;
+  text-decoration: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 0.78571rem;
+  padding: 0 0.35714rem;
+  border-left: 1px solid #ccc;
+}
+.footer .last-a {
+  font-size: 12px;
+  color: #212121;
+  line-height: inherit;
+  text-decoration: none;
+}
+.footer .last-a i {
+  color: #858585;
+}

@@ -15,7 +15,7 @@ namespace GraduationProject.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: Customer
-        ApplicationDbContext db = new ApplicationDbContext();
+       // ApplicationDbContext db2 = new ApplicationDbContext();
 
         public ActionResult Account()
         {
@@ -84,6 +84,7 @@ namespace GraduationProject.Controllers
                 item.OrderDetails = item.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).ToList();
             }
             return View();
+        }
         public ActionResult OrderHistory()
         {
             string ID = User.Identity.GetUserId();

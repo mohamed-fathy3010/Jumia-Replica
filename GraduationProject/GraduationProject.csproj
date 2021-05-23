@@ -57,32 +57,32 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Owin, Version=4.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.4.1.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    <Reference Include="Microsoft.Owin, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.2.0\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.1.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.2.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security, Version=4.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.4.1.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.2.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.1.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.2.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Facebook, Version=4.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.1.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.2.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Google, Version=4.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.1.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.2.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=4.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.1.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.2.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.1.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.2.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.1.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.2.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -299,6 +299,10 @@
     <Compile Include="Migrations\202105190026572_requiredBrandForProduct.designer.cs">
       <DependentUpon>202105190026572_requiredBrandForProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105220802597_createNewCategory.cs" />
+    <Compile Include="Migrations\202105220802597_createNewCategory.designer.cs">
+      <DependentUpon>202105220802597_createNewCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -342,12 +346,17 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cardCSS\bootstrap.css" />
     <Content Include="Content\cardCSS\font-awesome.css" />
+    <Content Include="Content\css\addProduct.css" />
     <Content Include="Content\css\Customer\Account\Account.css" />
     <Content Include="Content\css\Customer\Account\AccountEdit.css" />
     <Content Include="Content\css\Customer\Orders\Orders.css" />
+    <Content Include="Content\css\Feedback.css" />
     <Content Include="Content\css\index.css" />
+    <Content Include="Content\css\Inventory.css" />
     <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\ProductPage.css" />
     <Content Include="Content\css\Product\productDetails.css" />
+    <Content Include="Content\css\Product\SearchProduct.css" />
     <Content Include="Content\css\sellerRegister.css" />
     <Content Include="Content\css\Seller\FeeDiscounts\FeeDiscounts.css" />
     <Content Include="Content\css\Seller\Financials\AccountSummary.css" />
@@ -385,6 +394,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\style.css" />
+    <Content Include="images\boxbtn.png" />
+    <Content Include="images\checked.png" />
     <Content Include="images\portfolio-4.jpg" />
     <Content Include="images\portfolio-5.jpg" />
     <Content Include="images\portfolio-7.jpg" />
@@ -485,6 +496,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
@@ -599,6 +611,8 @@
     <Content Include="Views\Orders\Orders.cshtml" />
     <Content Include="Views\Customer\OrderHistory.cshtml" />
     <Content Include="Views\Account\SellerEdit.cshtml" />
+    <Content Include="Views\Customer\orderhistoryempty.cshtml" />
+    <Content Include="Views\Account\SellerLogin.cshtml" />
     <None Include="Views\Partial\ProductDetails.cshtml" />
     <None Include="Views\Partial\Products For Annonuymous.cshtml" />
     <None Include="Views\Home\home.cshtml" />
@@ -651,7 +665,7 @@
     <Content Include="Views\Seller\Orders\ReturnManagement.cshtml" />
     <Content Include="Views\Seller\Orders\CanceledOrders.cshtml" />
     <Content Include="Views\Seller\PostDelivery\ComplaintsManagement.cshtml" />
-    <Content Include="Views\Shared\Navbar2.cshtml" />
+    <Content Include="Views\Shared\Seller_layout.cshtml" />
     <Content Include="Views\Seller\Orders\AwaitingTabPartialView.cshtml" />
     <Content Include="Views\Seller\Orders\ConfirmedTabPartialView.cshtml" />
     <Content Include="Views\Seller\Orders\ShippedTabPartialView.cshtml" />
@@ -659,6 +673,12 @@
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Seller\FeeDiscounts\FeeDiscounts.cshtml" />
     <Content Include="Views\Shared\Customer_Layout.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Seller\Inventory\Inventory.cshtml" />
+    <Content Include="Views\Product\ProductPage.cshtml" />
+    <Content Include="Views\Seller\Feedback.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -745,6 +765,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105190026572_requiredBrandForProduct.resx">
       <DependentUpon>202105190026572_requiredBrandForProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105220802597_createNewCategory.resx">
+      <DependentUpon>202105220802597_createNewCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

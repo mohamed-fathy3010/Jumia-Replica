@@ -186,7 +186,7 @@
                                 <a href="@Url.Action("Register", "Account")" class="sign-up dropdown-item item">CREATE AN ACCOUNT</a>
                             }
                             <a class="dropdown-item item" href="@Url.Action("Account", "Customer")"><i class="far fa-user mr-3"></i>Account</a>
-                            <a class="dropdown-item item" href="@Url.Action("Order", "Customer")"><i class="fas fa-box mr-3"></i>Orders</a>
+                            <a class="dropdown-item item" href="@Url.Action("OrderHistory", "Customer")"><i class="fas fa-box mr-3"></i>Orders</a>
                             <a class="dropdown-item item" href="@Url.Action("Account", "Customer")"><i class="far fa-heart mr-3"></i>Saved Items</a>
                             @if (User.Identity.IsAuthenticated && User.IsInRole("customer"))
                             {

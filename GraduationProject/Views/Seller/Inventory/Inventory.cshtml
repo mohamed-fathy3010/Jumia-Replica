@@ -1,0 +1,117 @@
+@{ 
+    Layout = "~/Views/Shared/Seller_layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Inventory page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/css/Inventory.css" rel="stylesheet" />
+    <link rel="icon" type="image/ico" href="https://www.jumia.com.eg/assets_he/favicon.717283be.ico">
+
+</head>
+<body>
+    <div id="main" class="container-fluid">
+        <div class="row search-item-body">
+            <div class="col-12 ">
+                <h4 class="search-title ng-binding">What do you want to list?</h4>
+                <div class="row" style="text-align: center !important; margin: auto;">
+                    <div class="search">
+                        <fieldset>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            <input type="text" id="searchPhrase" class="form-control" placeholder="Search for EAN or Item Title or UPC" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <a class="search-button btn " type="button">Search Listing</a>
+                            <!-- <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                            <span class="input-group-text">.00</span> -->
+                        </div>
+                        </fieldset>
+                        <p>
+                            <span>
+                                Or start select by <a href="#">Category Tree</a>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 panel-body">
+                <div class="text-center panel-body-p">
+                    <p class="bold ng-binding">Do you have bulk inventory?</p>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 panel-left">
+                        <p class="bold ng-binding">Download inventory template</p>
+
+                        <div class="row panel-left-container">
+                            <div class="dropdown dropdown-select">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Please choose category
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                            <div class="panel-left-download">
+                                <button class="btn btn-sm disabled" type="submit">
+                                    <img src="https://dasbn34bmlyca.cloudfront.net/v0.40.1/img/item-listing/ic_download_w.png">
+                                Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 panel-right">
+                        <p class="bold ng-binding">Upload inventory template</p>
+                        
+                        <div class="row panel-right-container">
+                            <div class="panel-right-left">
+                                <button class="btn" type="submit">
+                                    <img src="https://dasbn34bmlyca.cloudfront.net/v0.40.1/img/item-listing/ic_upload_w.png">
+                                    Upload Inventory Template
+                                </button>
+                            </div>
+
+                            <div class="panel-right-right">
+                                <button class="btn btn-primary" type="submit">
+                                    <span><i class="fa fa-history" style="color: orange; font-size: large;"></i></span>
+                                    <!-- <img src="https://dasbn34bmlyca.cloudfront.net/v0.40.1/img/item-listing/ic_history.png"> -->
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <footer class="footer row">
+        <p class="col-12 col-md-10">
+            <label>
+                2021 © 
+                <span>Jumia Sellers by Jumia.com</span>
+            </label>
+            <a href="#">Help</a>
+            <a href="#">FAQ's</a>
+            <a href="#">Blog</a>
+            <a href="#">Support</a>
+            <a href="#">Terms and conditions</a>
+        </p>
+        <a class="last-a col-12 col-md-2" href="#">
+            <span><i class="fa fa-envelope"></i></span>
+            Seller Support
+        </a>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

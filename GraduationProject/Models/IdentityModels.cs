@@ -52,5 +52,6 @@ namespace GraduationProject.Models
         public virtual DbSet<Brand> Brands { get; set; }
 
 
+
     }
 }

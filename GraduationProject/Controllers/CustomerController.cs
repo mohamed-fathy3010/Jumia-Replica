@@ -48,7 +48,7 @@ namespace GraduationProject.Controllers
             return View("~/Views/Account/Customer/AccountEdit.cshtml", customerViewModel);
         }
         [HttpPost]
-        public ActionResult AccountEdit(CustomerViewModel Customer)
+        public ActionResult Edit(CustomerViewModel Customer)
         {
 
             if (ModelState.IsValid)
@@ -95,17 +95,14 @@ namespace GraduationProject.Controllers
             var user = db.Users.FirstOrDefault(l => l.Id == userId);
 
             //get all orders for current authenticated customer that has delivered order details
-            var order = db.Orders.Include(o => o.OrderDetails)
-                .Where(d => d.OrderDetails.Any(s => s.Status == OrderDetailsStatus.completed) && d.CustomerID == userId)
+            var order = db.Orders.Include("OrderDetails.Product.Inventory.SellerInfo")
+                .Where(d => d.OrderDetails.Any(s => s.Status == OrderDetailsStatus.delivered) && d.CustomerID == userId)
                 .ToList();
-
-            //var order = db.Customers.Where(h => h.ID == ID).Select(c => c.Orders.Any(o => o.OrderDetails.Any(k => k.Status == OrderDetailsStatus.completed))).ToList();
-
-            if (order == null)
+            foreach (var item in order)
             {
-                return View("~/views/customer/orderhistoryempty.cshtml");
+                item.OrderDetails = item.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).ToList();
             }
-            return View(order);
-
+            return View("~/views/Orders/Orders.cshtml",order);
         }
     }
+}

@@ -1,9 +1,11 @@
-﻿
+﻿@model IEnumerable<Order>
 @{
     ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/Customer_Layout.cshtml";
 }
 
 @section styles{
+    <link href="~/Content/css/Customer/Account/Account.css" rel="stylesheet" />
     <link href="~/Content/css/Customer/Orders/Orders.css" rel="stylesheet" />
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -11,57 +13,206 @@
           crossorigin="anonymous" />
 }
 
-<br />
-<br />
-<br />
-<br />
-<br />
+
+
+
+
+
 <div class="container">
     <div id="container-row" class="row">
-        <div class="col-12 offset-3 col-md-8 cards-container">
-            <div class="card border-0" style="height: 100%;">
-                <h5 class="card-header">Orders</h5>
-                <div class="topnav">
-                    <ul class="nav nav-tabs texttab">
-                        <li>
-                            <a id="open" class="contenttab1 nav-item  nav-link border-0 active" href="#open0" data-toggle="tab">Open Order(0)</a>
-                        </li>
-                        <li>
-                            <a class="contenttab1 nav-item  nav-link border-0" href="#closed0" data-toggle="tab">Closed Order(0)</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="tab-content imagecontent d-block">
-                    <div id="open0" class="tab-pane fade show active">
-                        <img class="image " src="https://www.jumia.com.eg/assets_he/images/orders.abbfb10f.svg" height="100" width="100" alt="">
-                        <h2 class="fontimg d-flex">You have placed no orders yet!</h2>
-                        <p class="tab-content parimg">All your orders will be saved here for you to access their state anytime.</p>
-                        <a href="/" class="btn imgbtn">Continue Shopping</a>
-                    </div>
-                    <div id="closed0" class="tab-pane fade">
-                        <img class="image" src="https://www.jumia.com.eg/assets_he/images/orders.abbfb10f.svg" height="100" width="100" alt="">
-                        <h2 class="fontimg d-flex" style="padding:0px 85px;">No Closed Orders to Display</h2>
-                        <p class="parimg">All your Closed Orders will be saved here.</p>
-                        <a href="/" class="btn imgbtn">Start Shopping</a>
-                    </div>
-                </div>
-            </div>
+        <div id="left-column" class="col-12 col-lg-3">
+            <ul class="list-group">
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        <i class="far fa-user"></i> My jumia Account
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        <i class="fa fa-box"></i> Orders
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        <i class="far fa-edit"></i> Pending Reviews
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        <i class="fa fa-money-bill"></i> Jumia Credit
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        <i class="far fa-heart"></i> Saved Items
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        <i class="far fa-clock"></i> Recently Viewed
+                    </li>
+                </a>
+                <hr />
+                <a href="#"><li class="list-group-item list-group-item-action">Details</li></a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        Address Book
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        Change Password
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        Newsletter Preferences
+                    </li>
+                </a>
+                <hr />
+                <li class="list-group-item">
+                    <form action="#" method="POST" class="text-center">
+                        <button class="" type="submit">LOGOUT</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <div class="col-12 col-lg-9" style="background-color:white; overflow-y:auto">
             <div>
-                <pre>
+                <div class="cards-container">
+                    <div class="card border-0" style="height: 100%;">
+                        <h5 class="card-header">Orders</h5>
+                        <div class="topnav">
+                            <ul class="nav nav-tabs texttab">
+                                <li>
+                                    <a id="open" class="contenttab1 nav-item  nav-link border-0 active" href="#open0" data-toggle="tab">Open Order(0)</a>
+                                </li>
+                                <li>
+                                    <a class="contenttab1 nav-item  nav-link border-0" href="#closed0" data-toggle="tab">Closed Order(0)</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content imagecontent d-block">
+                            @if (Model == null)
+                            {
+                                <div id="open0" class="tab-pane fade show active">
 
+                                    <img class="image" src="https://www.jumia.com.eg/assets_he/images/orders.abbfb10f.svg" height="100" width="100" alt="">
+                                    <h2 class="fontimg d-flex">You have placed no orders yet!</h2>
+                                    <p class="tab-content parimg">All your orders will be saved here for you to access their state anytime.</p>
+                                    <a href="/" class="btn imgbtn">Continue Shopping</a>
 
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="row">
+                                    <table class="table w-100">
+                                        <thead>
+                                            <tr>
+                                                <th>Item</th>
+                                                <th>delivery date</th>
+                                                <th>unit price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                foreach (var orderDetail in item.OrderDetails)
+                                                {
+                                                    <tr>
+                                                        <td class="border-right " style="width: 50%;">
+                                                            <div class="image mr-1">
+                                                                <img src="~/images/@orderDetail.Product.Image" width="100"
+                                                                     height="100">
+                                                            </div>
+                                                            <div class="image-body">
+                                                                <h6>Seller:@orderDetail.Product.Inventory.SellerInfo.BusinessName</h6>
+                                                                <h5>@orderDetail.Product.Name</h5>
+                                                                <p>
+                                                                    @orderDetail.Product.Description;
+                                                                </p>
 
-                </pre>
+                                                            </div>
+                                                        </td>
+                                                        <td class="border-right" style="width: 25%;">
+                                                            @orderDetail.DeliveredDate
+                                                        </td>
+                                                        <td style="width: 20%; color: #f68b1e; font-weight: 600;">EGP @orderDetail.UnitPrice</td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                            <div id="closed0" class="tab-pane fade">
+                                <img class="image" src="https://www.jumia.com.eg/assets_he/images/orders.abbfb10f.svg" height="100" width="100" alt="">
+                                <h2 class="fontimg d-flex" style="padding:0px 85px;">No Closed Orders to Display</h2>
+                                <p class="parimg">All your Closed Orders will be saved here.</p>
+                                <a href="/" class="btn imgbtn">Start Shopping</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
         </div>
     </div>
-
 </div>
+
+
+
+
+
+
+
+@*/***********************************/*@
+@*<div class="container">
+        <div id="container-row" class="row">
+            <div class="col-12 offset-3 col-md-8 cards-container">
+                <div class="card border-0" style="height: 100%;">
+                    <h5 class="card-header">Orders</h5>
+                    <div class="topnav">
+                        <ul class="nav nav-tabs texttab">
+                            <li>
+                                <a id="open" class="contenttab1 nav-item  nav-link border-0 active" href="#open0" data-toggle="tab">Open Order(0)</a>
+                            </li>
+                            <li>
+                                <a class="contenttab1 nav-item  nav-link border-0" href="#closed0" data-toggle="tab">Closed Order(0)</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content imagecontent d-block">
+                        <div id="open0" class="tab-pane fade show active">
+                            <img class="image " src="https://www.jumia.com.eg/assets_he/images/orders.abbfb10f.svg" height="100" width="100" alt="">
+                            <h2 class="fontimg d-flex">You have placed no orders yet!</h2>
+                            <p class="tab-content parimg">All your orders will be saved here for you to access their state anytime.</p>
+                            <a href="/" class="btn imgbtn">Continue Shopping</a>
+                        </div>
+                        <div id="closed0" class="tab-pane fade">
+                            <img class="image" src="https://www.jumia.com.eg/assets_he/images/orders.abbfb10f.svg" height="100" width="100" alt="">
+                            <h2 class="fontimg d-flex" style="padding:0px 85px;">No Closed Orders to Display</h2>
+                            <p class="parimg">All your Closed Orders will be saved here.</p>
+                            <a href="/" class="btn imgbtn">Start Shopping</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <pre>
+
+
+
+                    </pre>
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+
+    </div>*@
 @section scripts{
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

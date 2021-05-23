@@ -348,6 +348,7 @@
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\Product\productDetails.css" />
+    <Content Include="Content\css\Product\SearchProduct.css" />
     <Content Include="Content\css\sellerRegister.css" />
     <Content Include="Content\css\Seller\FeeDiscounts\FeeDiscounts.css" />
     <Content Include="Content\css\Seller\Financials\AccountSummary.css" />

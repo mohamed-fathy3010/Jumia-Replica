@@ -134,7 +134,7 @@ namespace GraduationProject.Controllers
 
                 }
             }
-            return View(SearchProduct);
+            return View("~/views/Product/Search.cshtml",SearchProduct);
         }
         [HttpPost]
         [Route("product/{id}/wish")]

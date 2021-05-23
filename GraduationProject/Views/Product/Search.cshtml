@@ -1,43 +1,931 @@
 ﻿@model IEnumerable<Product>
 @{
-    ViewBag.Title = "SearchProduct";
+    Layout = "~/Views/Shared/Customer_Layout.cshtml";
+    ViewBag.Title = "cart";
+}
+@section styles{
+    <link href="~/Content/css/Product/SearchProduct.css" rel="stylesheet" />
 }
 
-@using (Html.BeginForm("Search", "Product", FormMethod.Get))
-{
-    @Html.TextBox("Searching")
-    <input type="submit" value="Search" />
-}
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Cost</th>
-            <th>Image</th>
-            <th>Category</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.Count() == 0)
-        {
-            <tr>
-                <td colspan="5" style="color:red">No match Product</td>
-            </tr>
-        }
-        else
-        {
-            foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.ID</td>
-                    <td>@item.Name</td>
-                    <td>@item.Cost</td>
-                    <td>@item.Image</td>
-                    <td>@item.Category</td>
-                </tr>
-            }
-        }
-    </tbody>
+<div id="container-row" class="row">
+    <div id="left-column" class="col-12 col-md-3">
+        <ul class="list-group">
+            <a href="#">
+                <li class="list-group-item list-group-item-action">
+                    <!-- Section: Price -->
+                    <section class="mb-4">
+                        <div class="row">
+                            <h6 class="font-weight-bold mb-3 col-6 text-uppercase">Price</h6>
+                            <form action="#" method="POST" class="text-center col-6">
+                                <button type="submit">Apply</button>
+                            </form>
+                        </div>
+                        <form>
+                            <div class="d-flex align-items-center mt-4 pb-1">
+                                <div class="md-form md-outline my-0">
+                                    <input id="from" type="number" class="m-input form-control mb-0" name="min" placeholder="Min">
+                                </div>
+                                <p class="px-2 mb-0 text-muted"> - </p>
+                                <div class="md-form md-outline my-0">
+                                    <input id="to" type="number" class="m-input form-control mb-0" name="max" placeholder="Max">
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                    <!-- Section: Price -->
+                </li>
+            </a>
+            <hr />
+            <a href="#">
+                <li class="list-group-item list-group-item-action">
+                    <!-- Section: Rating -->
+                    <section class="mb-4">
+                        <h6 class="font-weight-bold mb-3 text-uppercase">Product Rating (EGP)</h6>
+                        <form class="rating-two">
+                            <div class="form-inline d-flex align-items-center py-2">
+                                <label class="tick">
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="far fa-star">
+                                    </span>
+                                    &amp; above
+                                    <input type="checkbox" name="rating-input">
+                                    <span class="check"></span>
+                                </label>
+                            </div>
+                            <div class="form-inline d-flex align-items-center py-2">
+                                <label class="tick">
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    &amp; above
+                                    <input type="checkbox" name="rating-input">
+                                    <span class="check"></span>
+                                </label>
+                            </div>
+                            <div class="form-inline d-flex align-items-center py-2">
+                                <label class="tick">
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="far fa-star  text-muted"></span>
+                                    <span class="far fa-star  text-muted"></span>
+                                    <span class="far fa-star  text-muted"></span>
+                                    &amp; above
+                                    <input type="checkbox"name="rating-input">
+                                    <span class="check"></span>
+                                </label>
+                            </div>
+                            <div class="form-inline d-flex align-items-center py-2">
+                                <label class="tick">
+                                    <span class="fas fa-star"></span>
+                                    <span class="far fa-star  text-muted"></span>
+                                    <span class="far fa-star  text-muted"></span>
+                                    <span class="far fa-star  text-muted"></span>
+                                    <span class="far fa-star  text-muted"></span>
+                                    &amp; above
+                                    <input type="checkbox" name="rating-input">
+                                    <span class="check"></span>
+                                </label>
+                            </div>
+                        </form>
+                    </section>
+                    <!-- Section: Rating -->
+                </li>
+            </a>
+        </ul>
+    </div>
+    <div class="col-12 col-md-9 cards-container">
+        <div class="card" style="border:none">
+            <div class="card-header">
+                <div class="d-flex flex-row">
+                    <div class="ml-auto">
+                        <div class="sorting">
+                            <span class="sort">Sort by:</span>
+                            <input class="data-input" list="sorts" placeholder="Popularity">
+                            <datalist id="sorts">
+                                <option value="Popularity">
+                                <option value="Newest Arrivals">
+                                <option value="Price: Low to High">
+                                <option value="Price: High to Low">
+                                <option value="Product Rating">
+                            </datalist>
+                        </div>
+                    </div>
+                </div>
 
-</table>
+            </div>
+            <div class="card-header">
+                <div class="links ">
+                    <ul>
+                        <li data-view="list-view" class="li-list active">
+                            <i class="fas fa-th-list"></i>
+                        </li>
+                        <li data-view="grid-view" class="li-grid">
+                            <i class="fas fa-th-large"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body row">
+                <div class="view_main">
+                    <div class="view_wrap list-view">
+                        <a href="#" class="a-pointer">
+                            <div class="view_item">
+                                <div class="product-grid row">
+                                    <div class="vi_left product-image">
+                                        <img class="image" src="images/shoe_1.jpg">
+                                    </div>
+                                    <div class="product-content vi_right">
+                                        <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                        <ul class="rating">
+                                            <li class="fas fa-star"></li>
+                                            <li class="fas fa-star"></li>
+                                            <li class="fas fa-star"></li>
+                                            <li class="far fa-star"></li>
+                                            <li class="far fa-star"></li>
+                                        </ul>
+                                    </div>
+                                    <div class="price-div">
+                                        <div class="price">
+                                            EGP 66.00
+                                            <br />
+                                            <span>EGP 90.00</span>
+                                        </div>
+                                        <div class="btn-price">
+                                            <div class="btn-list">Add to cart</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="a-pointer">
+                            <div class="view_item">
+                                <div class="product-grid row">
+                                    <div class="vi_left product-image">
+                                        <img class="image" src="~/images/shoe_1.jpg">
+                                    </div>
+                                    <div class="product-content vi_right">
+                                        <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                        <ul class="rating">
+                                            <li class="fas fa-star"></li>
+                                            <li class="fas fa-star"></li>
+                                            <li class="fas fa-star"></li>
+                                            <li class="far fa-star"></li>
+                                            <li class="far fa-star"></li>
+                                        </ul>
+                                    </div>
+                                    <div class="price-div">
+                                        <div class="price">
+                                            EGP 66.00
+                                            <br />
+                                            <span>EGP 90.00</span>
+                                        </div>
+                                        <div class="btn-price">
+                                            <div class="btn-list">Add to cart</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="a-pointer">
+                            <div class="view_item">
+                                <div class="product-grid row">
+                                    <div class="vi_left product-image">
+                                        <img class="image" src="images/shoe_1.jpg">
+                                    </div>
+                                    <div class="product-content vi_right">
+                                        <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                        <ul class="rating">
+                                            <li class="fas fa-star"></li>
+                                            <li class="fas fa-star"></li>
+                                            <li class="fas fa-star"></li>
+                                            <li class="far fa-star"></li>
+                                            <li class="far fa-star"></li>
+                                        </ul>
+                                    </div>
+                                    <div class="price-div">
+                                        <div class="price">
+                                            EGP 66.00
+                                            <br />
+                                            <span>EGP 90.00</span>
+                                        </div>
+                                        <div class="btn-price">
+                                            <div class="btn-list">Add to cart</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="a-pointer">
+                            <div class="view_item">
+                                <div class="product-grid row">
+                                    <div class="vi_left product-image">
+                                        <img class="image" src="images/shoe_1.jpg">
+                                    </div>
+                                    <div class="product-content vi_right">
+                                        <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                        <ul class="rating">
+                                            <li class="fas fa-star"></li>
+                                            <li class="fas fa-star"></li>
+                                            <li class="fas fa-star"></li>
+                                            <li class="far fa-star"></li>
+                                            <li class="far fa-star"></li>
+                                        </ul>
+                                    </div>
+                                    <div class="price-div">
+                                        <div class="price">
+                                            EGP 66.00
+                                            <br />
+                                            <span>EGP 90.00</span>
+                                        </div>
+                                        <div class="btn-price">
+                                            <div class="btn-list">Add to cart</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="a-pointer">
+                            <div class="view_item">
+                                <div class="product-grid row">
+                                    <div class="vi_left product-image">
+                                        <img class="image" src="images/shoe_1.jpg">
+                                    </div>
+                                    <div class="product-content vi_right">
+                                        <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                        <ul class="rating">
+                                            <li class="fas fa-star"></li>
+                                            <li class="fas fa-star"></li>
+                                            <li class="fas fa-star"></li>
+                                            <li class="far fa-star"></li>
+                                            <li class="far fa-star"></li>
+                                        </ul>
+                                    </div>
+                                    <div class="price-div">
+                                        <div class="price">
+                                            EGP 66.00
+                                            <br />
+                                            <span>EGP 90.00</span>
+                                        </div>
+                                        <div class="btn-price">
+                                            <div class="btn-list">Add to cart</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="a-pointer">
+                            <div class="view_item">
+                                <div class="product-grid row">
+                                    <div class="vi_left product-image">
+                                        <img class="image" src="images/shoe_1.jpg">
+                                    </div>
+                                    <div class="product-content vi_right">
+                                        <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                        <ul class="rating">
+                                            <li class="fas fa-star"></li>
+                                            <li class="fas fa-star"></li>
+                                            <li class="fas fa-star"></li>
+                                            <li class="far fa-star"></li>
+                                            <li class="far fa-star"></li>
+                                        </ul>
+                                    </div>
+                                    <div class="price-div">
+                                        <div class="price">
+                                            EGP 66.00
+                                            <br />
+                                            <span>EGP 90.00</span>
+                                        </div>
+                                        <div class="btn-price">
+                                            <div class="btn-list">Add to cart</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="view_wrap grid-view row" style="display:none">
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="~/images/portfolio-4.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view_item col-sm-6 col-md-4 col-lg-3">
+                            <div class="product-grid">
+                                <div class="vi_left product-image">
+                                    <img class="image" src="images/shoe_1.jpg">
+                                </div>
+                                <div class="product-content vi_right">
+                                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
+                                    <div class="price"><span>$90.00</span> $66.00</div>
+                                    <ul class="rating">
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="fas fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                        <li class="far fa-star"></li>
+                                    </ul>
+                                    <div>
+                                        <pre style="overflow:hidden">
+
+                                            </pre>
+                                    </div>
+                                    <div class="add-to-cart">Add to cart</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+
+    <script>
+        var li_links = document.querySelectorAll(".links ul li");
+        var view_wraps = document.querySelectorAll(".view_wrap");
+        var list_view = document.querySelector(".list-view");
+        var grid_view = document.querySelector(".grid-view");
+
+        li_links.forEach(function (link) {
+            link.addEventListener("click", function () {
+                li_links.forEach(function (link) {
+                    link.classList.remove("active");
+                })
+
+                link.classList.add("active");
+
+                var li_view = link.getAttribute("data-view");
+
+                view_wraps.forEach(function (view) {
+                    view.style.display = "none";
+                })
+
+                if (li_view == "list-view") {
+                    list_view.style.display = "block";
+                }
+                else {
+                    grid_view.style.display = "flex";
+                }
+            })
+        })
+    </script>
+}

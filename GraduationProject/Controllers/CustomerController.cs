@@ -16,6 +16,8 @@ namespace GraduationProject.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: Customer
 
+        //ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Account()
         {
             string UserId = User.Identity.GetUserId();
@@ -103,6 +105,6 @@ namespace GraduationProject.Controllers
                 return View("~/views/customer/orderhistoryempty.cshtml");
             }
             return View(order);
+
         }
     }
-}

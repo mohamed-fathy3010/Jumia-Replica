@@ -15,7 +15,6 @@ namespace GraduationProject.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: Customer
-        ApplicationDbContext db = new ApplicationDbContext();
 
         public ActionResult Account()
         {

@@ -86,6 +86,7 @@ namespace GraduationProject.Controllers
                 item.OrderDetails = item.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).ToList();
             }
             return View();
+        }
         public ActionResult OrderHistory()
         {
             string userId = User.Identity.GetUserId();

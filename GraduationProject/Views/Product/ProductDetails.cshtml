@@ -188,50 +188,38 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-9">
-                        <h2 class="-fs14 -m -upp -ptm">Product Reviews (158)</h2>
-                        <div class="Review">
-                            <div>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                            </div>
-                            <h3>perfect</h3>
-                            <p>perfect product</p>
-                            <div class="Reviewfooter">
-                                <div class="Reviewfooterright">
-                                    <span class="-prs">13-05-2021</span>
-                                    <span>by Hagar Fawzy</span>
+                        <h2 class="-fs14 -m -upp -ptm">Product Reviews (@Model.FeedBacks.Count)</h2>
+
+                        @*start loop*@
+                        @foreach (var item in Model.FeedBacks)
+                        {
+                            <div class="Review">
+                                <div>
+                                    @for (var i = 1; i <= item.Rate; i++)
+                                    {
+                                        <span class="fa fa-star checked"></span>
+                                    }
+                                    @for (var i = (item.Rate + 1); i < 6; i++)
+                                    {
+                                        <span class="fa fa-star"></span>
+                                    }
                                 </div>
-                                <div class="Reviewfooterleft">
-                                    <i class="fa fa-check-circle"></i>
-                                    Verified Purchase
+
+                                <h3>@item.PositiveComment</h3>
+                                @*<p>perfect product</p>*@
+                                <div class="Reviewfooter">
+                                    <div class="Reviewfooterright">
+                                        <span class="-prs">13-05-2021</span>
+                                        <span>by Hagar Fawzy</span>
+                                    </div>
+                                    <div class="Reviewfooterleft">
+                                        <i class="fa fa-check-circle"></i>
+                                        Verified Purchase
+                                    </div>
                                 </div>
                             </div>
+                        }
                         </div>
-                        <div class="Review">
-                            <div>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                            <h3>nice</h3>
-                            <p>nice product</p>
-                            <div class="Reviewfooter">
-                                <div class="Reviewfooterright">
-                                    <span class="-prs">13-05-2021</span>
-                                    <span>by Hagar Fawzy</span>
-                                </div>
-                                <div class="Reviewfooterleft">
-                                    <i class="fa fa-check-circle"></i>
-                                    Verified Purchase
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>

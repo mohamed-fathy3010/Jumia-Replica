@@ -86,21 +86,22 @@ namespace GraduationProject.Controllers
                 item.OrderDetails = item.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).ToList();
             }
             return View();
-        public ActionResult OrderHistory()
-        {
-            string userId = User.Identity.GetUserId();
-
-            var user = db.Users.FirstOrDefault(l => l.Id == userId);
-
-            //get all orders for current authenticated customer that has delivered order details
-            var order = db.Orders.Include("OrderDetails.Product.Inventory.SellerInfo")
-                .Where(d => d.OrderDetails.Any(s => s.Status == OrderDetailsStatus.delivered) && d.CustomerID == userId)
-                .ToList();
-            foreach (var item in order)
+        }
+            public ActionResult OrderHistory()
             {
-                item.OrderDetails = item.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).ToList();
+                string userId = User.Identity.GetUserId();
+
+                var user = db.Users.FirstOrDefault(l => l.Id == userId);
+
+                //get all orders for current authenticated customer that has delivered order details
+                var order = db.Orders.Include("OrderDetails.Product.Inventory.SellerInfo")
+                    .Where(d => d.OrderDetails.Any(s => s.Status == OrderDetailsStatus.delivered) && d.CustomerID == userId)
+                    .ToList();
+                foreach (var item in order)
+                {
+                    item.OrderDetails = item.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).ToList();
+                }
+                return View("~/views/Orders/Orders.cshtml", order);
             }
-            return View("~/views/Orders/Orders.cshtml",order);
         }
     }
-}

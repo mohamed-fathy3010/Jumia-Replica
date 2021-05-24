@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace GraduationProject.Controllers
 {
@@ -21,7 +22,12 @@ namespace GraduationProject.Controllers
         {
             return View("~/Views/Seller/Financials/AccountSummary.cshtml");
         }
-
+        public ActionResult InventoryManagement()
+        {
+            string userId = User.Identity.GetUserId();
+            var sellerProducts = db.SellerInfo.Include(k => k.Inventory.Products).FirstOrDefault(p => p.ID == userId);
+            return View("~/Views/Seller/Inventory/InventoryManagement.cshtml", sellerProducts);
+        }
         public ActionResult OrderManagement(string tab)
         {
             var allOrderDetails = db.OrderDetails.OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).ToList();

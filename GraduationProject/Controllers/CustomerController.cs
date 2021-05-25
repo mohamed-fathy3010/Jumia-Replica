@@ -87,7 +87,18 @@ namespace GraduationProject.Controllers
             }
             return View();
         }
-            public ActionResult OrderHistory()
+
+        public ActionResult OrderHistory()
+        {
+            string userId = User.Identity.GetUserId();
+
+            var user = db.Users.FirstOrDefault(l => l.Id == userId);
+
+            //get all orders for current authenticated customer that has delivered order details
+            var order = db.Orders.Include("OrderDetails.Product.Inventory.SellerInfo")
+                .Where(d => d.OrderDetails.Any(s => s.Status == OrderDetailsStatus.delivered) && d.CustomerID == userId)
+                .ToList();
+            foreach (var item in order)
             {
                 string userId = User.Identity.GetUserId();
 

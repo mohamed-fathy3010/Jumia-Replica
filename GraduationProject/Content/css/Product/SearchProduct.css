@@ -14,7 +14,7 @@ body {
     min-width: 220px;
 }
 
-ul {
+#container-row ul {
     background-color: transparent;
     border-radius: 4px;
 }
@@ -38,7 +38,7 @@ hr {
     height: 1px;
 }
 
-a:hover {
+#container-row a:hover {
     text-decoration: none;
     background-color: #fff;
 }
@@ -117,7 +117,7 @@ a:hover {
     cursor: auto;
 }
 
-form button {
+#apply button {
     border: none;
     padding: 0;
     font-weight: 500;
@@ -132,7 +132,7 @@ form button {
     border-radius: 5px;
 }
 
-    form button:hover {
+    #apply button:hover {
         cursor: pointer;
         padding: 8px;
         background-color: rgba(246,139,30,0.15);
@@ -207,15 +207,7 @@ label {
 }
 
 .rating-two .tick input:hover ~ .check {
-    left: 3px;
-    top: 12px;
-    transform: translate3d(-11px, -50%, 0);
-    height: 40px;
-    width: 40px;
-    position: absolute;
-    border-radius: 50%;
-    border: none;
-    background-color: rgba(246,139,30,0.15);
+    box-shadow: 0 0 3pt 2pt #f68b1e;
 }
 
 .m-input {
@@ -233,7 +225,7 @@ label {
     display: flex;
 }
 
-.links {
+#container-row .links {
     float: right;
     height: 5px;
     margin-bottom: 25px;
@@ -241,12 +233,12 @@ label {
     font-size: 0;
 }
 
-    .links ul {
+    #container-row .links ul {
         display: flex;
         justify-content: center;
     }
 
-        .links ul li {
+        #container-row .links ul li {
             margin: 0 2px;
             font-weight: 600;
             text-transform: uppercase;
@@ -258,8 +250,8 @@ label {
             padding: 8px;
         }
 
-            .links ul li:hover,
-            .links ul li.active {
+            #container-row .links ul li:hover,
+            #container-row .links ul li.active {
                 color: #f68b1e;
             }
 
@@ -272,7 +264,6 @@ label {
 
 input:hover {
     color: #f68b1e;
-    border: 0;
 }
 
 .sorting {
@@ -309,7 +300,7 @@ input::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
-form button:hover {
+#apply button:hover {
     cursor: pointer;
     padding: 8px;
     background-color: rgba(246,139,30,0.15);

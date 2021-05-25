@@ -8,121 +8,122 @@
 
 @section styles{
     @*<link href="~/Content/css/customerRegister.css" rel="stylesheet" />*@
-    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/css/register.css" rel="stylesheet" />
 }
+<script>
+    (function ($) {
+        "use strict";
+        $(".toggle-password").click(function () {
+
+            $(this).toggleClass("bi-eye-slash-fill bi-eye-fill");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+
+    })(jQuery);
+</script>
 <div class="body">
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary("", new { @class = "text-danger" })
+    @*@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "text-danger" })*@
 
-        <div class="container">
-            <div class="col-12 align-self-center mx-auto">
-                <div class="row">
-                    <div class="col-12 col-md-12">
+    <div class="container">
+        <form class="registerForm">
+            <h1>Create Account</h1>
 
-                        <h4 class="p-0">Create Account</h4>
-                        <br />
-                        <div class="row">
-                            <div class="col-4 form-group form-input">
-
-                                @Html.LabelFor(m => m.Fname)
-
-                                @Html.TextBoxFor(m => m.Fname, new { @class = "form-label" })
-
-
-
-                            </div>
-                            <div class="col-4 form-group form-input">
-
-
-                                <input type="text" name="Lname" value="" required />
-                                <label for="Lname" class="form-label">Last Name</label>
-
-                            </div>
-                            <div class="row ">
-                                <div class="col-4 form-group form-input">
-                                    <input type="text" name="Email" id="name" value="" required />
-                                    <label for="Email" class="form-label">E-mail</label>
-                                </div>
-                                <div class="col-4 form-group form-input">
-
-                                    <input type="password" name="Password" id="password-field" value="" required />
-
-                                    <label for="Password" class="form-label">Password</label>
-
-                                </div>
-                                <div class=" col-12 row align-items-baseline">
-                                    <div class="col col-xxl-1 form-group form-input">
-                                        <p class="h6" style="color: rgb(189, 189, 189);"><br />Prefix</p>
-                                        <h5>+20</h5>
-                                    </div>
-                                    <div class="col col-xxl-3 form-group form-input  px-0" style="margin-top: auto;">
-                                        <input type="text" name="PhoneNo" id="name" value="" required />
-                                        <label for="PhoneNo" class=" form-label">Phone Number(Optional)</label>
-
-                                    </div>
-                                </div>
-                                <br /><br /><br /><br />
-
-                                <div class="col-9 my-1">
-                                    <div class="w-90">
-                                        <label class="checkbox-wrap checkbox-primary" style="font-weight: 350;">
-                                            accept the <a href="#" style="color: #f68b1e;text-decoration: none;">Terms & Conditions</a>
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-
-                                    <br />
-                                    <div class="w-90">
-                                        <label class="checkbox-wrap checkbox-primary" style="font-weight: 350;">
-                                            I want to recive Jumia NewsLetters With The best deals and offers
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-9">
-                                    <input type="submit" class="btn col-12 text-center jbt reg" style="color: white; background-color: #f68b1e;" value="CREATE ACCOUNT">
-                                    <br />
-                                    <div class="row col-12 ">
-                                        <hr color="grey" class="col-5 mt-3">
-                                        <p style="color: grey;" class="col-1 mx-auto">OR</p>
-                                        <hr color="grey" class="col-5 mt-3">
-
-                                    </div>
-
-                                    <input type="button" class="btn col-12  jbt fb" style="color: white; background-color: #40588a;" value="REGISTER WITH FACEBOOK">
-
-                                    <br /> <br /> <br />
-                                    <pre style="text-align: center;">Already have an account?
-                                    <a href="#" class="h5 anchlogin">  LOGIN</a>
-                                    @*<input type="submit" class="anchlogin h5" value="LOGIN" />*@
-                                     </pre>
-
-
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
+            <div class="form-row">
+                <div class="form-group form-input col-md-6">
+                    <input type="text" class="form-control" name="Fname" required>
+                    <label for="Fname" class="form-label">First Name</label>
+                </div>
+                <div class="form-group form-input col-md-6">
+                    <input type="text" class="form-control" name="Lname" required>
+                    <label for="Lname" class="form-label">Last Name</label>
                 </div>
             </div>
 
-        </div>
+            <div class="form-row">
+                <div class="form-group form-input col-md-6">
+                    <input type="email" class="form-control" name="Email" required>
+                    <label for="Email" class="form-label">E-mail</label>
+                </div>
+                <div class="form-group form-input col-md-6">
+                    <input type="password" class="form-control" name="Password" id="password-field" required>
+                    <label for="Password" class="form-label">Password</label>
+                    <span><i class="bi bi-eye-slash-fill toggle-password" toggle="#password-field" style="position: absolute; top: 1rem; right: 3rem; color: #75757a; font-size: x-large;"></i></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="row col-md-6">
+                    <div class="col-3">
+                        <p class="h6"><br />Prefix</p>
+                        <h6>+20</h6>
+                    </div>
+                    <div class="form-group form-input col-9" style="padding-right: 0;">
+                        <input type="text" class="form-control" name="PhoneNo" required>
+                        <label for="PhoneNo" class=" form-label">Phone Number(Optional)</label>
+                    </div>
+                </div>
+                <div class="form-group form-input col-md-6"></div>
+            </div>
+
+            <div class="form-row">
+                <label class="checkbox-wrap checkbox-primary">
+                    I accept the
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="#">Terms & Conditions</a>
+            </div>
+
+            <div class="form-row">
+                <label class="checkbox-wrap checkbox-primary">
+                    I want to receive Jumia Newsletters with the best deals and offers
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <div class="form-row">
+                <button class="btn btnCreateAccount" style="width: 100%;">CREATE ACCOUNT</button>
+            </div>
+
+            <div class="form-row" style="padding-top: .1rem; padding-bottom: .1rem;">
+                <hr class="col-5">
+                <p class="col-1" style="text-align: center;">OR</p>
+                <hr class="col-5">
+            </div>
+
+            <div class="form-row">
+                <a href="https://m.facebook.com/" style="text-decoration: none; width: 100%;">
+                    <lable class="btn btn-block loginwithface" type="button">
+                        <span><i class="fa fa-facebook-square"></i></span>
+                        <span style="margin: auto;">Register WITH FACEBOOK</span>
+                    </lable>
+                </a>
+            </div>
+
+            <div style="text-align: center;">
+                <p>Already have an account?  </p>
+                <a href="#" style="text-decoration: none; font-weight: bold;">LOGIN</a>
+            </div>
+
+        </form>
+    </div>
+    @section scripts{
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        @*<script src="~/Scripts/jquery-3.4.1.js"></script>*@
+        <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+        <script src="~/Scripts/main.js"></script>
     }
-</div>
-@section scripts{
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="~/Scripts/jquery-3.4.1.js"></script>
-    <script src="~/Scripts/main.js"></script>
-}
 
 
 

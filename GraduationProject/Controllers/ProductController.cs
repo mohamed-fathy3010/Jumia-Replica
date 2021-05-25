@@ -40,18 +40,7 @@ namespace GraduationProject.Controllers
             {
                 string userId = User.Identity.GetUserId();
                 isWished = db.ProductWishlists.Any(p => p.ProductId == product.ID && p.wishListId == userId );
-                if (Session["order"] != null)
-                {
-                    CartViewModel cart = Session["order"] as CartViewModel;
-                    foreach (var item in cart.ProductsWithQuantity)
-                    {
-                        if (item.Product.ID == product.ID)
-                        {
-                            isAddedToCart = true;
-                            break;
-                        }
-                    }
-                }
+                isAddedToCart = IsAddedToCart(product.ID);
             }
             productViewModel.Product = product;
             productViewModel.Albums = product.Albums;
@@ -100,10 +89,11 @@ namespace GraduationProject.Controllers
 
 
 
-        public ViewResult Search(string Searching, string filtering)
+        public ViewResult Search(string Searching)
         {
-            string price = Request.QueryString["price"];
-            string rate = Request.QueryString["rate"];
+            string min = Request.QueryString["min"];
+            string max = Request.QueryString["max"];
+            string rate = Request.QueryString["rating-input"];
             var SearchProduct = db.Products.Where(p => p.Name.Contains(Searching)).ToList();
             foreach (var product in SearchProduct)
             {
@@ -111,30 +101,26 @@ namespace GraduationProject.Controllers
             }
            
            
-            if(price != null)
+            if(min != null && max != null )
             {
-                if(price == "asc")
-                {
-                    SearchProduct = SearchProduct.OrderBy(p => p.Cost).ToList();
-                }
-                else
-                {
-                    SearchProduct = SearchProduct.OrderByDescending(p => p.Cost).ToList();
-                }
+               float fMin = float.TryParse(min,out fMin)?fMin:0;
+               float fMax = float.TryParse(max, out fMax) ? fMax : float.MaxValue;
+               SearchProduct = SearchProduct.Where(p => p.Cost >=fMin && p.Cost <= fMax).ToList();
             }
            if( rate != null)
             {
-                if( rate == "asc")
-                {
-                    SearchProduct = SearchProduct.OrderBy(p => p.Rate).ToList();
-                }
-                else
-                {
-                    SearchProduct = SearchProduct.OrderByDescending(p => p.Rate).ToList();
-
-                }
+                int iRate = int.TryParse(rate, out iRate)? iRate : 0 ;
+                SearchProduct = SearchProduct.Where(p => p.Rate >=iRate).ToList();
             }
-            return View("~/views/Product/Search.cshtml",SearchProduct);
+            List<SearchViewModel> products = new List<SearchViewModel>();
+            foreach(var item in SearchProduct)
+            {
+                bool isAddedtoCart = IsAddedToCart(item.ID);
+                products.Add(new SearchViewModel() { Product = item, IsAddedToCart = isAddedtoCart });
+            }
+           
+            ViewBag.searching = Searching;
+            return View("~/views/Product/Search.cshtml",products);
         }
         [HttpPost]
         [Route("product/{id}/wish")]
@@ -163,15 +149,32 @@ namespace GraduationProject.Controllers
             var orderDetails = db.OrderDetails.Where(o => o.ProductID == id);
             var averageRating = orderDetails.Include(o => o.FeedBack).Where(o => o.FeedBack != null).ToList();
             Decimal average = 0;
-            foreach (var details in averageRating)
+            if (averageRating.Count > 0)
             {
-                average += details.FeedBack.Rate;
+                foreach (var details in averageRating)
+                {
+                    average += details.FeedBack.Rate;
+                }
+                average /= averageRating.Count;
+                average = Math.Round(average, 2);
             }
-            average /= averageRating.Count;
-            average = Math.Round(average, 2);
             return average;
         }
-
+        private bool IsAddedToCart(int productId)
+        {
+            if (Session["order"] != null)
+            {
+                CartViewModel cart = Session["order"] as CartViewModel;
+                foreach (var item in cart.ProductsWithQuantity)
+                {
+                    if (item.Product.ID == productId)
+                    {
+                       return true;
+                    }
+                }
+            }
+            return false;
+        }
 
         // get create
         public ActionResult Create()

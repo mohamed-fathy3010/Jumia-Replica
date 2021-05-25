@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -153,14 +153,14 @@
             <img src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" width="130px"
                  height="30px">
         </a>
-        <form class="mx-2 my-auto d-inline w-100 ">
+        <form method="get" action="@Url.Action("search","product")" class="mx-2 my-auto d-inline w-100 ">
             <div class="input-group ">
                 <span class="input-group-append">
                     <div class="input-group-text "><i class="fa fa-search"></i></div>
                 </span>
                 <input type="text" class="form-control border border-right-1 w-70"
-                       placeholder="Search products, brands and categories">
-                <button class="btn btn-search ml-2" type="button">
+                       placeholder="Search products, brands and categories" name="searching">
+                <button class="btn btn-search ml-2" type="submit">
                     search
                 </button>
             </div>

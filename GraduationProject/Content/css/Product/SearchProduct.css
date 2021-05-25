@@ -14,7 +14,7 @@ body {
     min-width: 220px;
 }
 
-ul {
+#container-row ul {
     background-color: transparent;
     border-radius: 4px;
 }
@@ -38,7 +38,7 @@ hr {
     height: 1px;
 }
 
-a:hover {
+#container-row a:hover {
     text-decoration: none;
     background-color: #fff;
 }
@@ -64,7 +64,19 @@ a:hover {
     .price-div .btn-price {
         text-align: right;
         padding-top: 60px;
+        padding-top: 60px;
     }
+        .price-div .btn-price p {
+            color: #28a745;
+            padding: 12px 16px;
+            border: 1px solid #28a745;
+            border-radius: 16px;
+            user-select: none;
+            text-align: center;
+        }
+        .price-div .btn-price p i {
+            color: #28a745;
+        }
 
 .list-view .view_item .vi_right {
     padding-left: 16px;
@@ -117,7 +129,7 @@ a:hover {
     cursor: auto;
 }
 
-form button {
+#apply button {
     border: none;
     padding: 0;
     font-weight: 500;
@@ -132,7 +144,7 @@ form button {
     border-radius: 5px;
 }
 
-    form button:hover {
+    #apply button:hover {
         cursor: pointer;
         padding: 8px;
         background-color: rgba(246,139,30,0.15);
@@ -207,15 +219,7 @@ label {
 }
 
 .rating-two .tick input:hover ~ .check {
-    left: 3px;
-    top: 12px;
-    transform: translate3d(-11px, -50%, 0);
-    height: 40px;
-    width: 40px;
-    position: absolute;
-    border-radius: 50%;
-    border: none;
-    background-color: rgba(246,139,30,0.15);
+    box-shadow: 0 0 3pt 2pt #f68b1e;
 }
 
 .m-input {
@@ -233,7 +237,7 @@ label {
     display: flex;
 }
 
-.links {
+#container-row .links {
     float: right;
     height: 5px;
     margin-bottom: 25px;
@@ -241,12 +245,12 @@ label {
     font-size: 0;
 }
 
-    .links ul {
+    #container-row .links ul {
         display: flex;
         justify-content: center;
     }
 
-        .links ul li {
+        #container-row .links ul li {
             margin: 0 2px;
             font-weight: 600;
             text-transform: uppercase;
@@ -258,8 +262,8 @@ label {
             padding: 8px;
         }
 
-            .links ul li:hover,
-            .links ul li.active {
+            #container-row .links ul li:hover,
+            #container-row .links ul li.active {
                 color: #f68b1e;
             }
 
@@ -272,7 +276,6 @@ label {
 
 input:hover {
     color: #f68b1e;
-    border: 0;
 }
 
 .sorting {
@@ -309,7 +312,7 @@ input::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
-form button:hover {
+#apply button:hover {
     cursor: pointer;
     padding: 8px;
     background-color: rgba(246,139,30,0.15);
@@ -538,4 +541,33 @@ form button:hover {
     .view_item .product-grid:hover .add-to-cart {
         opacity: 1;
         bottom: 8px;
+    }
+.template p {
+    color: #28a745;
+    border: 1px solid #28a745;
+    border-radius: 16px;
+    user-select: none;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: 40px;
+    width: 140px;
+    height: 40px;
+    border-radius: 5px;
+    opacity: 0;
+    cursor: pointer;
+    transform: translateX(-50%);
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transition: all .4s ease-out;
+}
+.view_item .product-grid:hover .template p {
+    opacity: 1;
+    bottom: 8px;
+    margin-bottom:0;
+}
+    .template p i {
+        color: #28a745;
     }

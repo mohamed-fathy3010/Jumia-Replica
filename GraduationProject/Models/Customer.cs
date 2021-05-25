@@ -24,8 +24,16 @@ namespace GraduationProject.Models {
         
         [StringLength(20)]
         public string City { get; set; }
-       
-        [StringLength(20)]
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/YYYY}", ApplyFormatInEditMode = true)]
+
+        public DateTime? Date { get; set; }
+
+        //[Column(TypeName = "datetime2")]
+        //public DateTime? ShippedDate { get; set; }
+
+        
         public virtual ApplicationUser ApplicationUser { get; set; }
         public List<Order> Orders { get; set; } = new List<Order>();
         public virtual Wishlist Wishlist { get; set; }

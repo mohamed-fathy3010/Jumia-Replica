@@ -1,0 +1,230 @@
+﻿body {
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.registerForm h1 {
+    margin-top: 20px;
+    color: #f68b1e;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+}
+
+.registerForm {
+    width: 70%;
+    max-width: 70%;
+    min-width: 70%;
+    margin: auto;
+}
+
+    .registerForm .form-row {
+        padding-bottom: 1rem;
+    }
+
+    .registerForm .form-group {
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    .registerForm .form-input {
+        padding-top: 21px;
+    }
+
+    .registerForm .form-label {
+        position: absolute;
+        transition: 0.25s ease;
+        -moz-transition: 0.25s ease;
+        -webkit-transition: 0.25s ease;
+        -o-transition: 0.25s ease;
+        -ms-transition: 0.25s ease;
+        color: #75757a;
+        top: 23px;
+    }
+
+    .registerForm input {
+        transition: 0.3s ease;
+        -moz-transition: 0.3s ease;
+        -webkit-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        -ms-transition: 0.3s ease;
+        padding-top: 10px;
+        width: 40%;
+        -webkit-appearance: none;
+    }
+
+        .registerForm input:focus + .form-label,
+        .registerForm input:valid + .form-label {
+            top: 1px;
+            font-size: 11px;
+            color: #f68b1e;
+        }
+
+    .registerForm input,
+    .registerForm select {
+        box-sizing: border-box;
+        width: 90%;
+        display: block;
+        border: none;
+        color: rgb(0, 0, 0);
+        background: transparent;
+        border-bottom: 1px solid #999 !important;
+        padding: 4px 0;
+    }
+
+        .registerForm input:focus,
+        .registerForm select:focus {
+            border-bottom: 1px solid#f68b1e;
+            box-shadow: none;
+            border: none !important;
+        }
+
+        .registerForm input:-webkit-autofill {
+            box-shadow: 0 0 0 30px transparent inset;
+        }
+
+        .registerForm input::-webkit-input-placeholder {
+            color: #bebebe;
+        }
+
+        .registerForm input::-moz-placeholder {
+            color: #bebebe;
+        }
+
+        .registerForm input:-ms-input-placeholder {
+            color: #bebebe;
+        }
+
+        .registerForm input:-moz-placeholder {
+            color: #bebebe;
+        }
+
+    .registerForm .form-control {
+        border: none;
+        border-radius: 0;
+    }
+
+        .registerForm .form-control:focus {
+            box-shadow: none;
+            border-bottom: 2px solid #f68b1e !important;
+        }
+
+    .registerForm .h6 {
+        color: #75757a;
+        font-size: 0.8rem;
+        font-weight: 400;
+    }
+
+    .lbl,
+    .registerForm input[type="checkbox"] {
+        cursor: pointer;
+    }
+
+        .registerForm input[type="checkbox"]:checked {
+            background-color: #f68b1e;
+        }
+
+    .registerForm .checkbox-wrap {
+        display: block;
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 0.875rem;
+        padding-right: 5px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .registerForm a {
+        color: #f68b1e;
+        font-size: 0.875rem;
+    }
+    /* Hide the browser's default checkbox */
+    .registerForm .checkbox-wrap input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    /* Create a custom checkbox */
+    .registerForm .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .registerForm .checkmark:after {
+            content: "\f0c8";
+            font-family: "FontAwesome";
+            position: absolute;
+            color: rgba(0, 0, 0, 0.1);
+            font-size: 20px;
+            margin-top: -4px;
+        }
+
+    /* Show the checkmark when checked */
+    .registerForm .checkbox-wrap input:checked ~ .checkmark:after {
+        display: block;
+        content: "\f14a";
+        font-family: "FontAwesome";
+        color: rgba(0, 0, 0, 0.2);
+    }
+
+    .registerForm .checkbox-primary input:checked ~ .checkmark:after {
+        color: #f68b1e;
+    }
+
+    .registerForm .btnCreateAccount {
+        transform: translate3d(0, 0, 0);
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+        position: relative;
+        color: #fff;
+        background-color: #f68b1e;
+        font-size: 0.875rem;
+        line-height: 1rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        padding: 16px;
+        outline: 0;
+        border: 0;
+    }
+
+    .registerForm .btn:hover {
+        background-color: #e4811c;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .registerForm hr {
+        height: 2px;
+        background-color: #ededed;
+    }
+
+    .registerForm .loginwithface {
+        width: 100%;
+        display: flex;
+        background-color: #40588a;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 500;
+        border: none;
+        font-size: 0.875rem;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-top: 8px;
+        margin-bottom: 25px;
+    }
+
+        .registerForm .loginwithface:hover {
+            background-color: #344f88;
+        }
+
+    .registerForm .fa-facebook-square {
+        position: absolute;
+        /* left: 35px; */
+        font-size: x-large;
+    }

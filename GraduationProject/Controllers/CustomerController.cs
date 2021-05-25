@@ -5,7 +5,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 
 namespace GraduationProject.Controllers
@@ -44,6 +43,7 @@ namespace GraduationProject.Controllers
             customerViewModel.Lname = customer.ApplicationUser.LastName;
             customerViewModel.Email = customer.ApplicationUser.Email;
             customerViewModel.PhoneNumber = customer.ApplicationUser.PhoneNumber;
+            customerViewModel.Date = customer.Date;
             return View("~/Views/Account/Customer/AccountEdit.cshtml", customerViewModel);
         }
         [HttpPost]
@@ -61,7 +61,8 @@ namespace GraduationProject.Controllers
                 customer.ApplicationUser.FirstName = Customer.Fname;
                 customer.ApplicationUser.LastName = Customer.Lname;
                 customer.ApplicationUser.PhoneNumber = Customer.PhoneNumber;
-
+                customer.Date = Customer.Date;
+                customer.Gender = Customer.Customer.Gender;
                 //db.Entry(customerViewModel).State = EntityState.Modified;
 
                 db.SaveChanges();
@@ -97,11 +98,12 @@ namespace GraduationProject.Controllers
             var order = db.Orders.Include("OrderDetails.Product.Inventory.SellerInfo")
                 .Where(d => d.OrderDetails.Any(s => s.Status == OrderDetailsStatus.delivered) && d.CustomerID == userId)
                 .ToList();
-            foreach (var item in order)
-            {
-                item.OrderDetails = item.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).ToList();
-            }
-            return View("~/views/Orders/Orders.cshtml",order);
+
+                foreach (var item in order)
+                {
+                    item.OrderDetails = item.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).ToList();
+                }
+            return View("~/views/Orders/Orders.cshtml", order);
         }
     }
 }

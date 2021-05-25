@@ -40,18 +40,7 @@ namespace GraduationProject.Controllers
             {
                 string userId = User.Identity.GetUserId();
                 isWished = db.ProductWishlists.Any(p => p.ProductId == product.ID && p.wishListId == userId );
-                if (Session["order"] != null)
-                {
-                    CartViewModel cart = Session["order"] as CartViewModel;
-                    foreach (var item in cart.ProductsWithQuantity)
-                    {
-                        if (item.Product.ID == product.ID)
-                        {
-                            isAddedToCart = true;
-                            break;
-                        }
-                    }
-                }
+                isAddedToCart = IsAddedToCart(product.ID);
             }
             productViewModel.Product = product;
             productViewModel.Albums = product.Albums;
@@ -123,8 +112,15 @@ namespace GraduationProject.Controllers
                 int iRate = int.TryParse(rate, out iRate)? iRate : 0 ;
                 SearchProduct = SearchProduct.Where(p => p.Rate >=iRate).ToList();
             }
+            List<SearchViewModel> products = new List<SearchViewModel>();
+            foreach(var item in SearchProduct)
+            {
+                bool isAddedtoCart = IsAddedToCart(item.ID);
+                products.Add(new SearchViewModel() { Product = item, IsAddedToCart = isAddedtoCart });
+            }
+           
             ViewBag.searching = Searching;
-            return View("~/views/Product/Search.cshtml",SearchProduct);
+            return View("~/views/Product/Search.cshtml",products);
         }
         [HttpPost]
         [Route("product/{id}/wish")]
@@ -164,7 +160,21 @@ namespace GraduationProject.Controllers
             }
             return average;
         }
-
+        private bool IsAddedToCart(int productId)
+        {
+            if (Session["order"] != null)
+            {
+                CartViewModel cart = Session["order"] as CartViewModel;
+                foreach (var item in cart.ProductsWithQuantity)
+                {
+                    if (item.Product.ID == productId)
+                    {
+                       return true;
+                    }
+                }
+            }
+            return false;
+        }
 
         // get create
         public ActionResult Create()

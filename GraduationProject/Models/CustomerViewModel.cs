@@ -20,6 +20,9 @@ namespace GraduationProject.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/YYYY}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        public DateTime? Date { get; set; }
 
     }
 }

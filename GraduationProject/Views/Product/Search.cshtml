@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Product>
+﻿@model IEnumerable<SearchViewModel>
 @{
     Layout = "~/Views/Shared/Customer_Layout.cshtml";
     ViewBag.Title = "cart";
@@ -136,18 +136,18 @@
                     <div class="view_wrap list-view">
                         @foreach (var item in Model)
                         {
-                        <a href="@Url.Action("index","product",new {id = item.ID })" class="a-pointer">
+                        <a href="@Url.Action("index","product",new {id = item.Product.ID})" class="a-pointer">
                             <div class="view_item">
                                 <div class="product-grid row">
                                     <div class="vi_left product-image">
-                                        <img class="image" src="~/images/@item.Image">
+                                        <img class="image" src="~/images/@item.Product.Image">
                                     </div>
                                     <div class="product-content vi_right">
-                                        <h3 class="title"><a href="@Url.Action("index","product",new {id = item.ID })">@item.Name</a></h3>
+                                        <h3 class="title"><a href="@Url.Action("index","product",new {id = item.Product.ID })">@item.Product.Name</a></h3>
                                         <ul class="rating">
                                             @{
                                                 int totalStars = 5;
-                                                int filledStars = (int)Math.Round(item.Rate);
+                                                int filledStars = (int)Math.Round(item.Product.Rate);
                                             }
                                             @for (int i = 0; i < filledStars; i++)
                                             {
@@ -161,20 +161,31 @@
                                     </div>
                                     <div class="price-div">
                                         <div class="price">
-                                            @if (item.Promotion != null)
+                                            @if (item.Product.Promotion != null)
                                             {
                                                 @:EGP 66.00
                                                 <br />
-                                                <span>EGP @item.Cost</span>
+                                                <span>EGP @item.Product.Cost</span>
                                             }
                                             else
                                             {
-                                                @:EGP @item.Cost
+                                                @:EGP @item.Product.Cost
                                             }
 
                                         </div>
                                         <div class="btn-price">
-                                            <div class="btn-list">Add to cart</div>
+
+                                            @if (item.IsAddedToCart)
+                                            {
+                                                <p>
+                                                    <i class="far fa-check-circle"></i>
+                                                    added to cart.
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                <div id="@item.Product.ID" onclick="add(this)" class="btn-list">Add to cart</div>
+                                            }
                                         </div>
 
                                     </div>
@@ -190,27 +201,27 @@
                         <div class="view_item col-sm-6 col-md-4 col-lg-3">
                             <div class="product-grid">
                                 <div class="vi_left product-image">
-                                    <img class="image" src="~/images/@item.Image">
+                                    <img class="image" src="~/images/@item.Product.Image">
                                 </div>
                                 <div class="product-content vi_right">
-                                    <h3 class="title"><a href="#">@item.Name</a></h3>
+                                    <h3 class="title"><a href="#">@item.Product.Name</a></h3>
 
                                     <div class="price">
-                                        @if (item.Promotion != null)
+                                        @if (item.Product.Promotion != null)
                                         {
                                             @:EGP 66.00
                                             <br />
-                                            <span>EGP @item.Cost</span>
+                                            <span>EGP @item.Product.Cost</span>
                                         }
                                         else
                                         {
-                                            @:EGP @item.Cost
+                                            @:EGP @item.Product.Cost
                                         }
                                     </div>
                                     <ul class="rating">
                                         @{
                                             int totalStars = 5;
-                                            int filledStars = (int)Math.Round(item.Rate);
+                                            int filledStars = (int)Math.Round(item.Product.Rate);
                                         }
                                         @for (int i = 0; i < filledStars; i++)
                                         {
@@ -226,7 +237,22 @@
 
                                             </pre>
                                     </div>
-                                    <div class="add-to-cart">Add to cart</div>
+                                    <div class="template">
+                                        @if (item.IsAddedToCart)
+                                        {
+
+                                            <p>
+                                                <i class="far fa-check-circle"></i>
+                                                In cart.
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <div id="@item.Product.ID" class="add-to-cart" onclick="addGrid(this)">Add to cart</div>
+                                        }
+
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -267,5 +293,47 @@
                 }
             })
         })
+        function add(element) {
+            $.ajax({
+                method: "POST",
+                url: "/products/" + element.id ,
+                success: function (data) {
+                    if (data == "") {
+                        const $content = $(element).closest(".btn-price");
+                        $content.fadeOut(500, function () {
+                            $content.html(`
+                            <p>
+                                <i class="far fa-check-circle"></i>
+                                added to cart.
+                            </p>`).fadeIn(500);
+                        })
+                    }
+                    else {
+                        window.location.href = data;
+                    }
+                },
+            })
+        }
+        function addGrid(element) {
+            $.ajax({
+                method: "POST",
+                url: "/products/" + element.id,
+                success: function (data) {
+                    if (data == "") {
+                        const $content = $(element).closest(".template");
+                        $content.fadeOut(500, function () {
+                            $content.html(`
+                            <p>
+                                <i class="far fa-check-circle"></i>
+                                In cart.
+                            </p>`).fadeIn(500);
+                        })
+                    }
+                    else {
+                        window.location.href = data;
+                    }
+                },
+            })
+        }
     </script>
 }

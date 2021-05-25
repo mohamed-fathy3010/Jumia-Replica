@@ -5,7 +5,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 
 namespace GraduationProject.Controllers
@@ -44,6 +43,7 @@ namespace GraduationProject.Controllers
             customerViewModel.Lname = customer.ApplicationUser.LastName;
             customerViewModel.Email = customer.ApplicationUser.Email;
             customerViewModel.PhoneNumber = customer.ApplicationUser.PhoneNumber;
+            customerViewModel.Date = customer.Date;
             return View("~/Views/Account/Customer/AccountEdit.cshtml", customerViewModel);
         }
         [HttpPost]
@@ -61,7 +61,8 @@ namespace GraduationProject.Controllers
                 customer.ApplicationUser.FirstName = Customer.Fname;
                 customer.ApplicationUser.LastName = Customer.Lname;
                 customer.ApplicationUser.PhoneNumber = Customer.PhoneNumber;
-
+                customer.Date = Customer.Date;
+                customer.Gender = Customer.Customer.Gender;
                 //db.Entry(customerViewModel).State = EntityState.Modified;
 
                 db.SaveChanges();

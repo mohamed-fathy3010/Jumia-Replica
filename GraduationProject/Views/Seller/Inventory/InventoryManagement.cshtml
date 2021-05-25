@@ -1,4 +1,6 @@
 ﻿@{
+    Layout = "~/Views/Shared/Seller_layout.cshtml";
+
     ViewBag.Title = "InventoryManagement";
 }
 @section styles{
@@ -8,6 +10,7 @@
           integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
           crossorigin="anonymous" />
 }
+
 <div id="main">
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="col pagetitle">
@@ -197,8 +200,8 @@
                     You don't have any listings on Souq. Start selling on Souq now!
                 </h5>
                 <br />
-                <a class="btn tiny" href="#">
-                    <i class="btnbox"><img src="boxbtn.png" /></i>      Start Listing Items
+                <a class="btn tiny" href="StartListing">
+                    <i class="btnbox"><img src="~/images/boxbtn.png" /></i>      Start Listing Items
                 </a>
             </div>
             <div id="live-on-site0" class="tab-pane fade ">
@@ -206,8 +209,8 @@
                     You don't have any live listings on Souq, start listing now
                 </h5>
                 <br />
-                <a class="btn tiny" href="#">
-                    <i class="btnbox"><img src="boxbtn.png" /> </i>     Start Listing Items
+                <a class="btn tiny" href="Seller/StartListing">
+                    <i class="btnbox"><img src="~/images/boxbtn.png" /> </i>     Start Listing Items
                 </a>
             </div>
             <div id="pending-review0" class="tab-pane fade">

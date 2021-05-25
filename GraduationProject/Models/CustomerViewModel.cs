@@ -14,7 +14,8 @@ namespace GraduationProject.Models
         [Required]
         public string Lname { get; set; }
 
-        [Required]
+
+
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

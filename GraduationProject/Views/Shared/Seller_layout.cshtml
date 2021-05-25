@@ -6,6 +6,7 @@
 <html lang="en">
 
 <head>
+    @RenderSection("styles",false) 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,8 +39,8 @@
                     </a>
                     <div class="dropdown-menu">
                         <!-- Dropdown menu links -->
-                        <a href="">Inventory Management</a>
-                        <a href="">Item Listing</a>
+                        <a href="InventoryManagement">Inventory Management</a>
+                        <a href="StartListing">Item Listing</a>
                     </div>
                 </div>
                 <div class="orders">
@@ -51,9 +52,9 @@
                     </a>
                     <div class="dropdown-menu">
                         <!-- Dropdown menu links -->
-                        <a href="">link</a>
-                        <a href="">link</a>
-                        <a href="">link</a>
+                        <a href="OrderManagement">OrderManagement</a>
+                        <a href="ReturnManagement">ReturnManagement</a>
+                        <a href="CanceledOrders">CanceledOrders</a>
                     </div>
                 </div>
                 <div class="orders">
@@ -65,33 +66,23 @@
                     </a>
                     <div class="dropdown-menu">
                         <!-- Dropdown menu links -->
-                        <a href="">link</a>
-                        <a href="">link</a>
-                        <a href="">link</a>
+                        <a href="ComplaintsManagement">ComplaintsManagement</a>
+                        <a href="FeedBack">FeedBack</a>
+                        
                     </div>
                 </div>
                 <div class="orders">
                     <a href="#">Orders</a>
                 </div>
                 <div class=" dropdown-content">
-                    <a type="button" class=" " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a href="FeeDiscounts" >
                         Fee Discount
                     </a>
                 </div>
-                <div class="orders">
+                @*<div class="orders">
                     <a href="#">Orders</a>
-                </div>
-                <div class="btn-group dropright w-100 dropdown-content">
-                    <a type="button" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Post Deleivery
-                    </a>
-                    <div class="dropdown-menu">
-                        <!-- Dropdown menu links -->
-                        <a href="">link</a>
-                        <a href="">link</a>
-                        <a href="">link</a>
-                    </div>
-                </div>
+                </div>*@
+               
 
             </div>
         </div>
@@ -112,9 +103,9 @@
 
                     <div class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenuLink">
 
-                        <a class="dropdown-item item" href="#"><i class="far fa-user mr-3"></i>Account</a>
-                        <a class="dropdown-item item" href="#"><i class="fas fa-box mr-3"></i>Orders</a>
-                        <a class="dropdown-item item" href="#"><i class="far fa-heart mr-3"></i>Saved Items</a>
+                        <a class="dropdown-item item" href="../account/SellerEdit"><i class="far fa-user mr-3"></i>Edit Account</a>
+                        @*<a class="dropdown-item item" href="seller/OrderManagement"><i class="fas fa-box mr-3"></i>Orders</a>*@
+                       @* <a class="dropdown-item item" href="#"><i class="far fa-heart mr-3"></i>Saved Items</a>*@
                     </div>
                 </div>
             </li>
@@ -122,6 +113,7 @@
 
         </ul>
     </nav>
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -184,6 +176,8 @@
             }
         })
     </script>
+    @RenderBody()
+    @RenderSection("scripts",false)
 
 </body>
 

@@ -24,14 +24,45 @@ namespace GraduationProject.Controllers
         }
         public ActionResult InventoryManagement()
         {
+
             string userId = User.Identity.GetUserId();
             var sellerProducts = db.SellerInfo.Include(k => k.Inventory.Products).FirstOrDefault(p => p.ID == userId);
             return View("~/Views/Seller/Inventory/InventoryManagement.cshtml", sellerProducts);
         }
+        public ActionResult StartListing()
+        {
+            return View("~/views/seller/inventory/Inventory.cshtml");
+        }
+        public ActionResult ProductPage()
+        {
+            return View("~/views/Product/ProductPage.cshtml");
+
+        }
+       
+        public ActionResult ReturnManagement()
+        {
+            return View("~/views/seller/orders/ReturnManagement.cshtml");
+
+        }
+        public ActionResult CanceledOrders()
+        {
+            return View("~/views/seller/orders/CanceledOrders.cshtml");
+
+        }
+
+
         public ActionResult OrderManagement(string tab)
         {
             var allOrderDetails = db.OrderDetails.OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).ToList();
             return View("~/Views/Seller/Orders/OrderManagement.cshtml",allOrderDetails);
+        }
+        public ActionResult FeedBack()
+        {
+            return View("~/Views/seller/Feedback.cshtml");
+        }
+        public ActionResult ComplaintsManagement()
+        {
+            return View("~/Views/seller/PostDelivery/ComplaintsManagement.cshtml");
         }
         public ActionResult Awaiting()
         {
@@ -106,11 +137,12 @@ namespace GraduationProject.Controllers
             db.SaveChanges();
             return RedirectToAction("OrderManagement");
         }
-    }   
-        //[Route("FeeDiscounts/FeeDiscounts")]
-        //public ActionResult FeeDiscounts()
-        //{
-        //    return View("~/Views/Seller/FeeDiscounts/FeeDiscounts.cshtml");
-        //}
+        
+        public ActionResult FeeDiscounts()
+        {
+            return View("~/Views/Seller/FeeDiscounts/FeeDiscounts.cshtml");
+        }
+    }
+   
 }
 

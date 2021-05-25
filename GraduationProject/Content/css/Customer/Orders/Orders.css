@@ -62,12 +62,7 @@ hr {
 }
 
 .imagecontent {
-    margin: 0 auto;
-    flex-basis: 50%;
-    max-width: 50%;
-    min-width: 50%;
-    width: 50%;
-    text-align: center;
+    width: 100%;
 }
 
 .image {
@@ -115,7 +110,7 @@ p {
     background-color: #f68b1e;
 }
 
-.btn {
+#container-row .btn {
     cursor: pointer;
     font-size: .875rem;
     line-height: 1rem;
@@ -129,16 +124,16 @@ p {
     border-radius: 4px;
 }
 
-.nav-tabs .nav-link.active {
-    color: #f68b1e;
-    background-color: #fff;
-    border-bottom: 3px solid #f68b1e;
-    border-right: none;
-    border-left: none;
-    border-top: none;
+#container-row .nav-tabs .nav-link.active {
+    color: #f68b1e !important;
+    background-color: #fff !important;
+    border-bottom: 3px solid #f68b1e !important;
+    border-right: none !important;
+    border-left: none !important;
+    border-top: none !important;
 }
 
-a:hover {
-    color: #fff;
+#container-row a:hover {
+    color: #fff !important;
     background-color: #e4811c;
 }

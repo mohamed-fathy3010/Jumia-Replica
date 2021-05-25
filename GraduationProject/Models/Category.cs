@@ -17,13 +17,15 @@ namespace GraduationProject.Models
         [Required]
         [MaxLe­ngt­h(50)]
         public string Name { get; set; }
+        public virtual List<BrandCategories> BrandCategories { set; get; }
+        public List<Product> Products { get; set; } = new List<Product>();
+
         //foreign key
         //[ForeignKey("SuperCategory")]
-        public int? SuperCatgeoryID { get; set; }
+        //public int? SuperCatgeoryID { get; set; }
         //Navigation
-        public List<Product> Products { get; set; } = new List<Product>();
-        public virtual Category SuperCategory { get; set; }
-        public virtual List<BrandCategories> BrandCategories { set; get; }
+        //   public virtual Category SuperCategory { get; set; }
+
 
         //public List<Category> ChildCategories { get; set; } = new List<Category>();
     }

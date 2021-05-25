@@ -16,8 +16,6 @@ namespace GraduationProject.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: Customer
 
-        //ApplicationDbContext db = new ApplicationDbContext();
-
         public ActionResult Account()
         {
             string UserId = User.Identity.GetUserId();
@@ -41,6 +39,7 @@ namespace GraduationProject.Controllers
 
             // Construct the viewmodel
             CustomerViewModel customerViewModel = new CustomerViewModel();
+            customerViewModel.Customer = customer;
             customerViewModel.Fname = customer.ApplicationUser.FirstName;
             customerViewModel.Lname = customer.ApplicationUser.LastName;
             customerViewModel.Email = customer.ApplicationUser.Email;
@@ -48,20 +47,20 @@ namespace GraduationProject.Controllers
             return View("~/Views/Account/Customer/AccountEdit.cshtml", customerViewModel);
         }
         [HttpPost]
-        public ActionResult AccountEdit(CustomerViewModel Customer)
+
+
+        public ActionResult Edit(CustomerViewModel Customer)
+
         {
 
             if (ModelState.IsValid)
             {
                 string UserId = User.Identity.GetUserId();
                 Customer customer = db.Customers.FirstOrDefault(c => c.ID == UserId);
-
                 // Update fields
-                CustomerViewModel customerViewModel = new CustomerViewModel();
-                customer.ApplicationUser.FirstName = customerViewModel.Fname;
-                customer.ApplicationUser.LastName = customerViewModel.Lname;
-                customer.ApplicationUser.Email = customerViewModel.Email;
-                customer.ApplicationUser.PhoneNumber = customerViewModel.PhoneNumber;
+                customer.ApplicationUser.FirstName = Customer.Fname;
+                customer.ApplicationUser.LastName = Customer.Lname;
+                customer.ApplicationUser.PhoneNumber = Customer.PhoneNumber;
 
                 //db.Entry(customerViewModel).State = EntityState.Modified;
 
@@ -70,8 +69,10 @@ namespace GraduationProject.Controllers
                 return RedirectToAction("Account");
             }
 
-            return View(Customer);
+            return RedirectToAction("AccountEdit");
+
         }
+
         public ActionResult history()
         {
             string userId = User.Identity.GetUserId();
@@ -86,7 +87,6 @@ namespace GraduationProject.Controllers
             }
             return View();
         }
-        [AllowAnonymous]
         public ActionResult OrderHistory()
         {
             string userId = User.Identity.GetUserId();
@@ -94,17 +94,14 @@ namespace GraduationProject.Controllers
             var user = db.Users.FirstOrDefault(l => l.Id == userId);
 
             //get all orders for current authenticated customer that has delivered order details
-            var order = db.Orders.Include(o => o.OrderDetails)
-                .Where(d => d.OrderDetails.Any(s => s.Status == OrderDetailsStatus.completed) && d.CustomerID == userId)
+            var order = db.Orders.Include("OrderDetails.Product.Inventory.SellerInfo")
+                .Where(d => d.OrderDetails.Any(s => s.Status == OrderDetailsStatus.delivered) && d.CustomerID == userId)
                 .ToList();
-
-            //var order = db.Customers.Where(h => h.ID == ID).Select(c => c.Orders.Any(o => o.OrderDetails.Any(k => k.Status == OrderDetailsStatus.completed))).ToList();
-
-            if (order == null)
+            foreach (var item in order)
             {
-                return View("~/views/customer/orderhistoryempty.cshtml");
+                item.OrderDetails = item.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).ToList();
             }
-            return View(order);
-
+            return View("~/views/Orders/Orders.cshtml",order);
         }
     }
+}

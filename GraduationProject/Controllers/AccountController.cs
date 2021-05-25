@@ -524,6 +524,7 @@ namespace GraduationProject.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session.Clear();
             return RedirectToAction("Index", "Home");
         }
 

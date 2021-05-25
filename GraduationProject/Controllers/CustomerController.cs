@@ -99,12 +99,13 @@ namespace GraduationProject.Controllers
             var order = db.Orders.Include("OrderDetails.Product.Inventory.SellerInfo")
                 .Where(d => d.OrderDetails.Any(s => s.Status == OrderDetailsStatus.delivered) && d.CustomerID == userId)
                 .ToList();
-
-                foreach (var item in order)
-                {
-                    item.OrderDetails = item.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).ToList();
-                }
+            foreach (var item in order)
+            {
+                item.OrderDetails = item.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).ToList();
+            }
             return View("~/views/Orders/Orders.cshtml", order);
+
+
         }
     }
 }

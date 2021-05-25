@@ -304,6 +304,10 @@
     <Compile Include="Migrations\202105220802597_createNewCategory.designer.cs">
       <DependentUpon>202105220802597_createNewCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105251220134_birth-date.cs" />
+    <Compile Include="Migrations\202105251220134_birth-date.designer.cs">
+      <DependentUpon>202105251220134_birth-date.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -332,6 +336,7 @@
     <Compile Include="Models\ProductWishlist.cs" />
     <Compile Include="Models\ProductWithQuantityViewModel.cs" />
     <Compile Include="Models\Promotion.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\SellerInfo.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Wishlist.cs" />
@@ -769,6 +774,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105220802597_createNewCategory.resx">
       <DependentUpon>202105220802597_createNewCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105251220134_birth-date.resx">
+      <DependentUpon>202105251220134_birth-date.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

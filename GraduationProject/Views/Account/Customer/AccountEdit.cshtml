@@ -1,9 +1,7 @@
-
 ﻿@model CustomerViewModel
 ﻿@{ 
     Layout = "~/Views/Shared/Customer_Layout.cshtml";
     ViewBag.Title = "edit";
-
 }
 @section styles{
     <link rel="stylesheet"
@@ -105,7 +103,7 @@
                         <div class="row fix-margin">
                             <div class="form-group col-12 col-lg-6">
                                 <Label>Gender</Label>
-                                <select class="custom-select inp-border" name="Customer.Gender" id="">
+                                <select class="custom-select inp-border" name="Customer.Customer.Gender" id="">
                                     <option value="None">Please Select</option>
                                     <option value="Male"@(Model.Customer.Gender == GenderType.Male ? "selected" : "")>Male</option>
                                     <option value="female"@(Model.Customer.Gender == GenderType.female ? "selected" : "")>Female</option>
@@ -113,7 +111,7 @@
                             </div>
                             <div class="form-group col-12 col-lg-6">
                                 <Label>Birthday</Label>
-                                <input class="form-control inp-border" type="date">
+                                <input class="form-control inp-border" type="date" name="Customer.Date" value="@((Model.Date)?.ToString("yyyy-MM-dd"))">
                             </div>
                         </div>
                         <div class="col-12">

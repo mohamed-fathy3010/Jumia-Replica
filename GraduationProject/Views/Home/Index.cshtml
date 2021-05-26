@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HomeViewModel
+@{
     Layout = "~/Views/Shared/Customer_Layout.cshtml";
     ViewBag.Title = "Home Page";
 }
@@ -7,7 +8,6 @@
           integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
           crossorigin="anonymous" />
     <link href="~/Content/css/index.css" rel="stylesheet" />
-    @* this is just a test for master branch rule *@
     <style>
         body {
             background-color: #f5f5f5;
@@ -169,109 +169,75 @@
         </h3>
         <div class="row col-12 remove-m card-row-container pt-3 pb-3 round-bot">
             <div class="card-row round-bot">
+                @foreach( var item in Model.HotSale)
+                {
                 <div class="card col-6 col-md-4 col-lg-2 ">
                     <div class="card-container">
                         <div class="card-body text-center ">
                             <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                <a href="@Url.Action("Index","Product",new { id = item.ID})">
+                                    <img src="~/images/@item.Image"
+                                         class="card-img img-fluid" width="96" height="350" alt="">
+                                </a>
                             </div>
                         </div>
                         <h6 class="font-weight-semibold mb-2">
                             <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
+                                @item.Name
                             </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
+                            @if (item.Promotion != null)
+                            {
+                                <h5 class=" mr-1">EGP 12.99</h5>
+                                <h6 class="text-grey"><s>EGP @item.Cost</s></h6>
+                            }
+                            else
+                            {
+                                <h5 class=" mr-1">EGP @item.Cost</h5>
+                            }
+                            </h6>
                     </div>
                 </div>
+                }
+                
+            </div>
+        </div>
+    </div>
 
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
+    <div class=" mt-5">
+        <h3 class="card-row-title col-12 round-top">
+            Laptops 💻
+        </h3>
+        <div class="row col-12 remove-m card-row-container pt-3 pb-3 round-bot">
+            <div class="card-row round-bot">
+                @foreach (var item in Model.Laptops)
+                {
+                    <div class="card col-6 col-md-4 col-lg-2 ">
+                        <div class="card-container">
+                            <div class="card-body text-center ">
+                                <div class="card-img-actions">
+                                    <a href="@Url.Action("Index","Product",new { id = item.ID})">
+                                        <img src="~/images/@item.Image"
+                                             class="card-img img-fluid" width="96" height="350" alt="">
+                                    </a>
+                                </div>
                             </div>
+                            <h6 class="font-weight-semibold mb-2">
+                                <h6 class="text-default mb-2" data-abc="true">
+                                    @item.Name
+                                </h6>
+                                @if (item.Promotion != null)
+                                {
+                                    <h5 class=" mr-1">EGP 12.99</h5>
+                                    <h6 class="text-grey"><s>EGP @item.Cost</s></h6>
+                                }
+                                else
+                                {
+                                    <h5 class=" mr-1">EGP @item.Cost</h5>
+                                }
+                                </h6>
                         </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
                     </div>
-                </div>
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
@@ -280,325 +246,37 @@
         <h3 class="card-row-title col-12 round-top">
             Mobiles and Smartphones 📱
         </h3>
-        <div class="row col-12 remove-m card-row-container pt-3 pb-3 round-bot">
-            <div class="card-row round-bot">
-                <div class="card col-6 col-md-4 col-lg-2 ">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-                <div class="card col-6 col-md-4 col-lg-2">
-                    <div class="card-container">
-                        <div class="card-body text-center ">
-                            <div class="card-img-actions">
-                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                     class="card-img img-fluid" width="96" height="350" alt="">
-                            </div>
-                        </div>
-                        <h6 class="font-weight-semibold mb-2">
-                            <h6 class="text-default mb-2" data-abc="true">
-                                Toshiba Notebook with 500GB HDD &
-                                8GB RAM
-                            </h6>
-                            <h5 class=" mr-1">$12.99</h5>
-                            <h6 class="text-grey"><s>$36.99</s></h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class=" mt-5">
-        <h3 class="card-row-title col-12 round-top">
-            Laptops 💻</h1>
             <div class="row col-12 remove-m card-row-container pt-3 pb-3 round-bot">
                 <div class="card-row">
-                    <div class="card col-6 col-md-4 col-lg-2 ">
-                        <div class="card-container">
-                            <div class="card-body text-center ">
-                                <div class="card-img-actions">
-                                    <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                         class="card-img img-fluid" width="96" height="350" alt="">
+                    @foreach (var item in Model.SmartPhones)
+                    {
+                        <div class="card col-6 col-md-4 col-lg-2 ">
+                            <div class="card-container">
+                                <div class="card-body text-center ">
+                                    <div class="card-img-actions">
+                                        <a href="@Url.Action("Index","Product",new { id = item.ID})">
+                                            <img src="~/images/@item.Image"
+                                                 class="card-img img-fluid" width="96" height="350" alt="">
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <h6 class="font-weight-semibold mb-2">
-                                <h6 class="text-default mb-2" data-abc="true">
-                                    Toshiba Notebook with 500GB HDD &
-                                    8GB RAM
+                                <h6 class="font-weight-semibold mb-2">
+                                    <h6 class="text-default mb-2" data-abc="true">
+                                        @item.Name
+                                    </h6>
+                                    @if (item.Promotion != null)
+                                    {
+                                        <h5 class=" mr-1">EGP 12.99</h5>
+                                        <h6 class="text-grey"><s>EGP @item.Cost</s></h6>
+                                    }
+                                    else
+                                    {
+                                        <h5 class=" mr-1">EGP @item.Cost</h5>
+                                    }
                                 </h6>
-                                <h5 class=" mr-1">$12.99</h5>
-                                <h6 class="text-grey"><s>$36.99</s></h6>
-                        </div>
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-2">
-                        <div class="card-container">
-                            <div class="card-body text-center ">
-                                <div class="card-img-actions">
-                                    <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                         class="card-img img-fluid" width="96" height="350" alt="">
-                                </div>
                             </div>
-                            <h6 class="font-weight-semibold mb-2">
-                                <h6 class="text-default mb-2" data-abc="true">
-                                    Toshiba Notebook with 500GB HDD &
-                                    8GB RAM
-                                </h6>
-                                <h5 class=" mr-1">$12.99</h5>
-                                <h6 class="text-grey"><s>$36.99</s></h6>
                         </div>
-                    </div>
-                    <div class="card col-6 col-md-4 col-lg-2">
-                        <div class="card-container">
-                            <div class="card-body text-center ">
-                                <div class="card-img-actions">
-                                    <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                         class="card-img img-fluid" width="96" height="350" alt="">
-                                </div>
-                            </div>
-                            <h6 class="font-weight-semibold mb-2">
-                                <h6 class="text-default mb-2" data-abc="true">
-                                    Toshiba Notebook with 500GB HDD &
-                                    8GB RAM
-                                </h6>
-                                <h5 class=" mr-1">$12.99</h5>
-                                <h6 class="text-grey"><s>$36.99</s></h6>
-                        </div>
-                    </div>
-                    <div class="card col-6 col-md-4 col-lg-2">
-                        <div class="card-container">
-                            <div class="card-body text-center ">
-                                <div class="card-img-actions">
-                                    <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                         class="card-img img-fluid" width="96" height="350" alt="">
-                                </div>
-                            </div>
-                            <h6 class="font-weight-semibold mb-2">
-                                <h6 class="text-default mb-2" data-abc="true">
-                                    Toshiba Notebook with 500GB HDD &
-                                    8GB RAM
-                                </h6>
-                                <h5 class=" mr-1">$12.99</h5>
-                                <h6 class="text-grey"><s>$36.99</s></h6>
-                        </div>
-                    </div>
-                    <div class="card col-6 col-md-4 col-lg-2">
-                        <div class="card-container">
-                            <div class="card-body text-center ">
-                                <div class="card-img-actions">
-                                    <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                         class="card-img img-fluid" width="96" height="350" alt="">
-                                </div>
-                            </div>
-                            <h6 class="font-weight-semibold mb-2">
-                                <h6 class="text-default mb-2" data-abc="true">
-                                    Toshiba Notebook with 500GB HDD &
-                                    8GB RAM
-                                </h6>
-                                <h5 class=" mr-1">$12.99</h5>
-                                <h6 class="text-grey"><s>$36.99</s></h6>
-                        </div>
-                    </div>
-                    <div class="card col-6 col-md-4 col-lg-2">
-                        <div class="card-container">
-                            <div class="card-body text-center ">
-                                <div class="card-img-actions">
-                                    <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png"
-                                         class="card-img img-fluid" width="96" height="350" alt="">
-                                </div>
-                            </div>
-                            <h6 class="font-weight-semibold mb-2">
-                                <h6 class="text-default mb-2" data-abc="true">
-                                    Toshiba Notebook with 500GB HDD &
-                                    8GB RAM
-                                </h6>
-                                <h5 class=" mr-1">$12.99</h5>
-                                <h6 class="text-grey"><s>$36.99</s></h6>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
     </div>

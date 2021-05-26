@@ -50,6 +50,7 @@ namespace GraduationProject.Controllers
             List<FeedBack> feedBacks = new List<FeedBack>();
             foreach (var item in product.OrderDetails)
             {
+                if(item.FeedBack != null)
                 feedBacks.Add(item.FeedBack);
             }
             productViewModel.FeedBacks = feedBacks;

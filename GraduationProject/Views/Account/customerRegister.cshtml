@@ -2,9 +2,9 @@
 @{
     Layout = "~/Views/Shared/Customer_Layout.cshtml";
     ViewBag.Title = "Register";
+
 }
 @model GraduationProject.Models.RegisterViewModel
-<!DOCTYPE html>
 
 @section styles{
     @*<link href="~/Content/css/customerRegister.css" rel="stylesheet" />*@
@@ -20,7 +20,7 @@
             @Html.ValidationSummary("", new { @class = "text-danger" })*@
 
     <div class="container">
-        <form class="registerForm" action="@Url.Action("Register","Account")" method="post">
+        <form class="registerForm" method="post" action="@Url.Action("Register","Account")">
             @Html.AntiForgeryToken()
             @Html.ValidationSummary("", new { @class = "text-danger" })
             <h1>Create Account</h1>

@@ -323,6 +323,7 @@
     <Compile Include="Models\FeedBack.cs" />
     <Compile Include="Models\FinancialAccount.cs" />
     <Compile Include="Models\GenderType.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\InventoryProducts.cs" />

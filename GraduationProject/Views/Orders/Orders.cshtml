@@ -22,12 +22,12 @@
     <div id="container-row" class="row">
         <div id="left-column" class="col-12 col-lg-3">
             <ul class="list-group">
-                <a href="#">
+                <a href="@Url.Action("Account","customer")">
                     <li class="list-group-item list-group-item-action">
                         <i class="far fa-user"></i> My jumia Account
                     </li>
                 </a>
-                <a href="#">
+                <a href="@Url.Action("OrderHistory","customer")">
                     <li class="list-group-item list-group-item-action">
                         <i class="fa fa-box"></i> Orders
                     </li>
@@ -71,7 +71,8 @@
                 </a>
                 <hr />
                 <li class="list-group-item">
-                    <form action="#" method="POST" class="text-center">
+                    <form action="@Url.Action("LogOff", "Account")" method="POST" class="text-center">
+                        @Html.AntiForgeryToken()
                         <button class="" type="submit">LOGOUT</button>
                     </form>
                 </li>

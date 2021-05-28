@@ -60,21 +60,15 @@
                                     @order[i].Product.Description
                                 </p>
                                 <div class="acts d-flex">
-                                    @Html.ActionLink("move to saved item", "test", null, new { @class = "btn one" })
-                                    @Html.ActionLink("remove", "test", null, new { @class = "btn two" })
-
-
+                                        <button id="wish-@order[i].Product.ID" class="btn one" onclick="wish(event,this.id)">move to saved items</button>
+                                        <button id="remove-@order[i].Product.ID" class="btn two" onclick="remove(event,this.id)">remove</button>
+                                    @*@Html.ActionLink("move to saved item", "test", null, new { @class = "btn one" })
+        @Html.ActionLink("remove", "test", null, new { @class = "btn two" })*@
                                 </div>
                             </div>
                         </td>
                         <td class="border-right" style="width: 10%;">
                             <div class="form-group">
-
-                                @*@Html.DropDownList("StudentGender",
-                                    new SelectList(Enum.GetValues(typeof(test))),
-                                    "Select Gender",
-                                    new { @class = "form-control" })*@
-
                                 <select class="form-control" style="cursor: pointer;" name="quantity-@i" id="@i">
                                     @for(int option=1;option<= 5; option++)
                                     {
@@ -122,7 +116,7 @@
         $(function () {
             $("#apply").on("click", function () {
                 let $form = $("#cart-form")
-                $form.prop("action", "/cart/apply");
+                $form.prop("action","cart/apply");
             });
             $("select").on("change", function () {
                 $(this).prop("name", "changedQuantity");
@@ -131,9 +125,23 @@
                     .prop('value', $(this).prop("id"))
                     .appendTo('#cart-form');
                 let $form = $("#cart-form")
-                $form.prop("action", "/cart/ChangeQuantity");
+                $form.prop("action", "cart/ChangeQuantity");
                 $form.submit();
             });
         })
+        function wish(e, id) {
+            e.preventDefault();
+            id = id.split("-")[1];
+            console.log(id,"product/wish/"+id);
+            $("#cart-form").prop("action",`/product/${id}/wish/`)
+                .submit();
+        }
+        function remove(e, id) {
+            e.preventDefault();
+            id = id.split("-")[1];
+             console.log(id,"cart/RemoveFromCart/"+id);
+            $("#cart-form").prop("action","/cart/RemoveFromCart/"+id)
+                .submit();
+        }
     </script>
     }

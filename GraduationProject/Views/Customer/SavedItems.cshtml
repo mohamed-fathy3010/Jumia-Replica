@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Product>
+﻿@{
+    ViewBag.Title = "saved items";
+    Layout = "~/Views/Shared/Customer_Layout.cshtml";
+}
+@section styles{
+    <link href="~/Content/css/Customer/Account/Account.css" rel="stylesheet" />
+    <link href="~/Content/css/Customer/Saved Items/SavedItems.css" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+}
+<div class="container">
+    <div id="container-row" class="row">
+        <div id="left-column" class="col-12 col-lg-3">
+            <ul class="list-group">
+                <a href="@Url.Action("Account","customer")">
+                    <li class="list-group-item list-group-item-action">
+                        <i class="far fa-user"></i> My jumia Account
+                    </li>
+                </a>
+                <a href="@Url.Action("OrderHistory","customer")">
+                    <li class="list-group-item list-group-item-action">
+                        <i class="fa fa-box"></i> Orders
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        <i class="far fa-edit"></i> Pending Reviews
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        <i class="fa fa-money-bill"></i> Jumia Credit
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        <i class="far fa-heart"></i> Saved Items
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        <i class="far fa-clock"></i> Recently Viewed
+                    </li>
+                </a>
+                <hr />
+                <a href="#"><li class="list-group-item list-group-item-action">Details</li></a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        Address Book
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        Change Password
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="list-group-item list-group-item-action">
+                        Newsletter Preferences
+                    </li>
+                </a>
+                <hr />
+                <li class="list-group-item">
+                    <form action="@Url.Action("LogOff", "Account")" method="POST" class="text-center">
+                        @Html.AntiForgeryToken()
+                        <button class="" type="submit">LOGOUT</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <div class="col-12 col-lg-9 cards-container">
+            <div class="card">
+                <h5 class="card-header">Saved Items</h5>
+                <div class="card-body">
+                    @foreach (var item in Model)
+                    {
+                        <div class="wishlistCard row">
+                            <div class="col-12 col-md-2 mb-sm-3">
+                                <a href="@Url.Action("Index","Product",new {id = item.ID})">
+                                    <img src="~/images/@item.Image" style="width: 100%;height:100%">
+                                </a>
+                            </div>
+
+                            <div class="col-12 col-md-10 rightwishlistCard row">
+                                <div class="col-7 col-md-8 col-lg-9">
+                                    <a class="a" href="@Url.Action("Index","Product",new {id = item.ID})">
+                                        @item.Name
+                                    </a>
+                                    <div>
+                                        <p>EGP @item.Cost</p>
+                                    </div>
+                                </div>
+                                <div class="col-5 col-md-4 col-lg-3">
+                                    <form method="post" action="@Url.Action("AddToCart","Product",new { id = item.ID})">
+                                        <button id="btnBuyNow" type="submit" class="btn">BUY NOW</button>
+                                        </form>
+                                    <div>
+                                        <form method="post" action="@Url.Action("unwish","Product",new { id = item.ID})">
+                                            <button class="btn Removebtn" type="submit">
+                                                <i class="fa fa-trash"></i>
+                                                Remove
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -356,7 +356,10 @@
     <Content Include="Content\css\addProduct.css" />
     <Content Include="Content\css\Customer\Account\Account.css" />
     <Content Include="Content\css\Customer\Account\AccountEdit.css" />
+    <Content Include="Content\css\Customer\Orders\FeedBack.css" />
+    <Content Include="Content\css\Customer\Orders\OrderCard.css" />
     <Content Include="Content\css\Customer\Orders\Orders.css" />
+    <Content Include="Content\css\Customer\Saved Items\SavedItems.css" />
     <Content Include="Content\css\Feedback.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\Inventory.css" />
@@ -621,6 +624,7 @@
     <Content Include="Views\Account\SellerEdit.cshtml" />
     <Content Include="Views\Customer\orderhistoryempty.cshtml" />
     <Content Include="Views\Account\SellerLogin.cshtml" />
+    <Content Include="Views\Customer\SavedItems.cshtml" />
     <None Include="Views\Partial\ProductDetails.cshtml" />
     <None Include="Views\Partial\Products For Annonuymous.cshtml" />
     <None Include="Views\Home\home.cshtml" />

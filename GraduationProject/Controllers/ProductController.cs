@@ -61,8 +61,13 @@ namespace GraduationProject.Controllers
         [HttpPost,Route("products/{id}")]
         public ActionResult AddToCart(int id)
         {
-            if (!User.Identity.IsAuthenticated || !User.IsInRole("customer"))
-                return Content(Url.Action("Login","Account"));
+            if ((!User.Identity.IsAuthenticated || !User.IsInRole("customer")))
+            {
+                if (Request.IsAjaxRequest())
+                    return Content(Url.Action("Login", "Account"));
+                else
+                    return RedirectToAction("Login", "Account");
+            }
             CartViewModel order;
             Product product = db.Products.FirstOrDefault(p => p.ID == id);
             product.OrderDetailsCost = product.Cost;
@@ -85,10 +90,14 @@ namespace GraduationProject.Controllers
             }
             order.TotalPrice = (float)Math.Round(order.TotalPrice, 2);
             Session["order"] = order;
-            return Content("");
+            if(Request.IsAjaxRequest())
+            {
+                return Content("");
+            }
+            return RedirectToAction("Index","Cart");
         }
 
-
+       
 
         public ViewResult Search(string Searching)
         {
@@ -127,23 +136,40 @@ namespace GraduationProject.Controllers
         [Route("product/{id}/wish")]
         public ActionResult wish(int id)
         {
-            if (!User.Identity.IsAuthenticated || !User.IsInRole("customer"))
-                return Content(Url.Action("Login", "Account"));
+            if ((!User.Identity.IsAuthenticated || !User.IsInRole("customer")))
+            {
+                if (Request.IsAjaxRequest())
+                    return Content(Url.Action("Login", "Account"));
+                else
+                    return RedirectToAction("Login", "Account");
+            }
             string userId = User.Identity.GetUserId();
             db.ProductWishlists.Add(new ProductWishlist() { wishListId = userId, ProductId = id });
             db.SaveChanges();
-            return Content(""); 
+            if (Request.IsAjaxRequest())
+                return Content("");
+            else
+                return RedirectToAction("SavedItems", "customer");
         }
-        [Authorize(Roles = "customer")]
         [HttpPost]
         [Route("product/{id}/unwish")]
         public ActionResult Unwish(int id)
         {
+            if ((!User.Identity.IsAuthenticated || !User.IsInRole("customer")))
+            {
+                if (Request.IsAjaxRequest())
+                    return Content(Url.Action("Login", "Account"));
+                else
+                    return RedirectToAction("Login", "Account");
+            }
             string userId = User.Identity.GetUserId();
             ProductWishlist wish = db.ProductWishlists.FirstOrDefault(w => w.ProductId == id && w.wishListId == userId);
             db.ProductWishlists.Remove(wish);
             db.SaveChanges();
-            return new HttpStatusCodeResult(HttpStatusCode.OK); 
+            if (Request.IsAjaxRequest())
+                return Content("");
+            else
+                return RedirectToAction("SavedItems","customer");
         }
         private decimal calculateRate(int id)
         {

@@ -92,7 +92,7 @@ namespace GraduationProject.Controllers
             Session["order"] = order;
             if(Request.IsAjaxRequest())
             {
-                return Content("");
+                return PartialView("~/Views/Cart/CartPartialView.cshtml",order);
             }
             return RedirectToAction("Index","Cart");
         }

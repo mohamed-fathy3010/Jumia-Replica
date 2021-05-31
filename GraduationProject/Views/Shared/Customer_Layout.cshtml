@@ -16,6 +16,9 @@
     @RenderSection("styles", required: false)
 
 </head>
+@{ 
+    var cart = Session["order"] as CartViewModel;
+}
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <!-- Dropdown when user is authenticated -->
@@ -187,7 +190,7 @@
                             }
                             <a class="dropdown-item item" href="@Url.Action("Account", "Customer")"><i class="far fa-user mr-3"></i>Account</a>
                             <a class="dropdown-item item" href="@Url.Action("OrderHistory", "Customer")"><i class="fas fa-box mr-3"></i>Orders</a>
-                            <a class="dropdown-item item" href="@Url.Action("Account", "Customer")"><i class="far fa-heart mr-3"></i>Saved Items</a>
+                            <a class="dropdown-item item" href="@Url.Action("SavedItems", "Customer")"><i class="far fa-heart mr-3"></i>Saved Items</a>
                             @if (User.Identity.IsAuthenticated && User.IsInRole("customer"))
                             {
                                 <form class="logout-form" action="@Url.Action("LogOff", "Account")" method="post">
@@ -221,8 +224,13 @@
                     </div>
                 </li>
                 <li class="nav-item align-items-center d-flex">
-                    <a class=" btn d-flex justify-content-center align-items-center help" href="@Url.Action("Index","Cart")" >
-                        <i class="fas fa-shopping-cart"></i>
+                    <a id="cart-link" class=" btn d-flex justify-content-center align-items-center help" href="@Url.Action("Index","Cart")" >
+                        <i class="fas fa-shopping-cart cart cart-icon">
+                            @if (cart != null)
+                            {
+                                <i class="notification"> @cart.totalQuantity</i>
+                            }
+                        </i>
                         <span class="d-none d-md-block"> Cart </span>
                     </a>
                 </li>

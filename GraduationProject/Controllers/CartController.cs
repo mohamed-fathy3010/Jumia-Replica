@@ -108,6 +108,7 @@ namespace GraduationProject.Controllers
             CartViewModel cart = Session["order"] as CartViewModel;
             ProductWithQuantityViewModel product = cart.ProductsWithQuantity.Where(p => p.Product.ID == id).FirstOrDefault();
             cart.totalQuantity -= product.Quantity;
+            cart.TotalPrice = cart.TotalPrice - (product.Quantity * product.Product.OrderDetailsCost);
             cart.ProductsWithQuantity.Remove(product);
             Session["order"] = cart;
             return RedirectToAction("Index");

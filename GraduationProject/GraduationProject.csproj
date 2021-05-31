@@ -625,6 +625,7 @@
     <Content Include="Views\Customer\orderhistoryempty.cshtml" />
     <Content Include="Views\Account\SellerLogin.cshtml" />
     <Content Include="Views\Customer\SavedItems.cshtml" />
+    <Content Include="Views\Cart\CartPartialView.cshtml" />
     <None Include="Views\Partial\ProductDetails.cshtml" />
     <None Include="Views\Partial\Products For Annonuymous.cshtml" />
     <None Include="Views\Home\home.cshtml" />

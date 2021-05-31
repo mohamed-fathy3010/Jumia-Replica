@@ -116,7 +116,7 @@
         $(function () {
             $("#apply").on("click", function () {
                 let $form = $("#cart-form")
-                $form.prop("action","cart/apply");
+                $form.prop("action","/cart/apply");
             });
             $("select").on("change", function () {
                 $(this).prop("name", "changedQuantity");
@@ -125,7 +125,7 @@
                     .prop('value', $(this).prop("id"))
                     .appendTo('#cart-form');
                 let $form = $("#cart-form")
-                $form.prop("action", "cart/ChangeQuantity");
+                $form.prop("action", "/cart/ChangeQuantity");
                 $form.submit();
             });
         })

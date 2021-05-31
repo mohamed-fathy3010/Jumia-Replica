@@ -101,5 +101,18 @@ namespace GraduationProject.Controllers
             Session["order"] = order;
             return View("~/Views/Cart/cart.cshtml");
         }
+        [Authorize(Roles = "customer")]
+        [HttpPost]
+        public ActionResult RemoveFromCart(int id)
+        {
+            CartViewModel cart = Session["order"] as CartViewModel;
+            ProductWithQuantityViewModel product = cart.ProductsWithQuantity.Where(p => p.Product.ID == id).FirstOrDefault();
+            cart.totalQuantity -= product.Quantity;
+            cart.TotalPrice = cart.TotalPrice - (product.Quantity * product.Product.OrderDetailsCost);
+            cart.ProductsWithQuantity.Remove(product);
+            Session["order"] = cart;
+            return RedirectToAction("Index");
+
+        }
     }
 }

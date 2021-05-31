@@ -89,11 +89,18 @@
                                     <a href="#" style="color: #264996">Similar products from @Model.BrandName</a>
                                 </span>
                                 <div class="product-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
+                                    @{ 
+                                        int totalStars = 5;
+                                        int filledStars = (int)Math.Round(Model.Product.Rate);
+                                    }
+                                    @for (var i = 0; i < filledStars; i++)
+                                    {
+                                        <span class="fa fa-star checked"></span>
+                                    }
+                                    @for (var i = filledStars; i < totalStars; i++)
+                                    {
+                                        <span class="fa fa-star"></span>
+                                    }
                                     <span>@Model.Product.Rate (@Model.FeedBacks.Count)</span>
                                 </div>
                                 <br />
@@ -178,11 +185,14 @@
                                 /5
                             </div>
                             <div>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
+                                @for (var i = 0; i < filledStars; i++)
+                                {
+                                    <span class="fa fa-star checked"></span>
+                                }
+                                @for (var i = filledStars; i < totalStars; i++)
+                                {
+                                    <span class="fa fa-star"></span>
+                                }
                             </div>
                             <p>(@Model.FeedBacks.Count) ratings</p>
                         </div>
@@ -195,11 +205,14 @@
                         {
                             <div class="Review">
                                 <div>
-                                    @for (var i = 1; i <= item.Rate; i++)
+                                    @{
+                                        filledStars = (int)Math.Round(item.Rate);
+                                    }
+                                    @for (var i = 0; i < filledStars; i++)
                                     {
                                         <span class="fa fa-star checked"></span>
                                     }
-                                    @for (var i = (item.Rate + 1); i < 6; i++)
+                                    @for (var i = filledStars; i < totalStars; i++)
                                     {
                                         <span class="fa fa-star"></span>
                                     }
@@ -282,145 +295,7 @@
                                         </div>
                                     </div>
                                 }
-                                @*<div class="carousel-item active">
-                                        <div class="row">
-                                            <div class="card card-transform col-6 col-md-4 col-lg-2">
-                                                <div class="card-body text-center">
-                                                    <div class="card-img-actions">
-                                                        <img class="img-fluid" src="~/images/shoe_2.jpg" />
-                                                    </div>
-                                                </div>
-                                                <h6 class="font-weight-semibold mb-2">
-                                                    <h6 class="text-default mb-2" data-abc="true">
-                                                        Toshiba Notebook with 500GB HDD & 8GB RAM
-                                                    </h6>
-                                                    <h5 class="mr-1">$12.99</h5>
-                                                    <h6 class="text-grey"><s>$36.99</s></h6>
-                                                </h6>
-                                            </div>
-                                            <div class="card card-transform col-6 col-md-4 col-lg-2">
-                                                <div class="card-body text-center">
-                                                    <div class="card-img-actions">
-                                                        <img class="img-fluid" src="~/images/shoe_2.jpg" />
-                                                    </div>
-                                                </div>
-                                                <h6 class="font-weight-semibold mb-2">
-                                                    <h6 class="text-default mb-2" data-abc="true">
-                                                        Toshiba Notebook with 500GB HDD & 8GB RAM
-                                                    </h6>
-                                                    <h5 class="mr-1">$12.99</h5>
-                                                    <h6 class="text-grey"><s>$36.99</s></h6>
-                                                </h6>
-                                            </div>
-                                            <div class="card card-transform col-6 col-md-4 col-lg-2">
-                                                <div class="card-body text-center">
-                                                    <div class="card-img-actions">
-                                                        <img class="img-fluid" src="~/images/shoe_2.jpg" />
-                                                    </div>
-                                                </div>
-                                                <h6 class="font-weight-semibold mb-2">
-                                                    <h6 class="text-default mb-2" data-abc="true">
-                                                        Toshiba Notebook with 500GB HDD & 8GB RAM
-                                                    </h6>
-                                                    <h5 class="mr-1">$12.99</h5>
-                                                    <h6 class="text-grey"><s>$36.99</s></h6>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>*@
-                                @*<div class="carousel-item">
-                                        <div class="row">
-                                            <div class="card card-transform col-6 col-md-4 col-lg-2">
-                                                <div class="card-body text-center">
-                                                    <div class="card-img-actions">
-                                                        <img class="img-fluid" src="~/images/shoe_1.jpg" />
-                                                    </div>
-                                                </div>
-                                                <h6 class="font-weight-semibold mb-2">
-                                                    <h6 class="text-default mb-2" data-abc="true">
-                                                        Toshiba Notebook with 500GB HDD & 8GB RAM
-                                                    </h6>
-                                                    <h5 class="mr-1">$12.99</h5>
-                                                    <h6 class="text-grey"><s>$36.99</s></h6>
-                                                </h6>
-                                            </div>
-                                            <div class="card card-transform col-6 col-md-4 col-lg-2">
-                                                <div class="card-body text-center">
-                                                    <div class="card-img-actions">
-                                                        <img class="img-fluid" src="~/images/shoe_1.jpg" />
-                                                    </div>
-                                                </div>
-                                                <h6 class="font-weight-semibold mb-2">
-                                                    <h6 class="text-default mb-2" data-abc="true">
-                                                        Toshiba Notebook with 500GB HDD & 8GB RAM
-                                                    </h6>
-                                                    <h5 class="mr-1">$12.99</h5>
-                                                    <h6 class="text-grey"><s>$36.99</s></h6>
-                                                </h6>
-                                            </div>
-                                            <div class="card card-transform col-6 col-md-4 col-lg-2">
-                                                <div class="card-body text-center">
-                                                    <div class="card-img-actions">
-                                                        <img class="img-fluid" src="~/images/shoe_1.jpg" />
-                                                    </div>
-                                                </div>
-                                                <h6 class="font-weight-semibold mb-2">
-                                                    <h6 class="text-default mb-2" data-abc="true">
-                                                        Toshiba Notebook with 500GB HDD & 8GB RAM
-                                                    </h6>
-                                                    <h5 class="mr-1">$12.99</h5>
-                                                    <h6 class="text-grey"><s>$36.99</s></h6>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="row">
-                                            <div class="card card-transform col-6 col-md-4 col-lg-2">
-                                                <div class="card-body text-center">
-                                                    <div class="card-img-actions">
-                                                        <img class="img-fluid" src="~/images/shoe_3.jpg" />
-                                                    </div>
-                                                </div>
-                                                <h6 class="font-weight-semibold mb-2">
-                                                    <h6 class="text-default mb-2" data-abc="true">
-                                                        Toshiba Notebook with 500GB HDD & 8GB RAM
-                                                    </h6>
-                                                    <h5 class="mr-1">$12.99</h5>
-                                                    <h6 class="text-grey"><s>$36.99</s></h6>
-                                                </h6>
-                                            </div>
-                                            <div class="card card-transform col-6 col-md-4 col-lg-2">
-                                                <div class="card-body text-center">
-                                                    <div class="card-img-actions">
-                                                        <img class="img-fluid" src="~/images/shoe_3.jpg" />
-                                                    </div>
-                                                </div>
-                                                <h6 class="font-weight-semibold mb-2">
-                                                    <h6 class="text-default mb-2" data-abc="true">
-                                                        Toshiba Notebook with 500GB HDD & 8GB RAM
-                                                    </h6>
-                                                    <h5 class="mr-1">$12.99</h5>
-                                                    <h6 class="text-grey"><s>$36.99</s></h6>
-                                                </h6>
-                                            </div>
-                                            <div class="card card-transform col-6 col-md-4 col-lg-2">
-                                                <div class="card-body text-center">
-                                                    <div class="card-img-actions">
-                                                        <img class="img-fluid" src="~/images/shoe_3.jpg" />
-                                                    </div>
-                                                </div>
-                                                <h6 class="font-weight-semibold mb-2">
-                                                    <h6 class="text-default mb-2" data-abc="true">
-                                                        Toshiba Notebook with 500GB HDD & 8GB RAM
-                                                    </h6>
-                                                    <h5 class="mr-1">$12.99</h5>
-                                                    <h6 class="text-grey"><s>$36.99</s></h6>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>*@
-
+                               
                                 <a class="carousel-control-prev w-auto"
                                    href="#recipeCarousel"
                                    role="button"
@@ -492,7 +367,7 @@
                 method: "POST",
                 url: "/products/@Model.Product.ID",
                 success: function (data) {
-                    if (data == "") {
+                    if (data != "@Url.Action("Login","Account")") {
                         $("#template").fadeOut(500, function () {
                             $(this).html(`
                             <p>
@@ -500,6 +375,7 @@
                                 added to cart.
                             </p>`).fadeIn(500);
                         })
+                        $("#cart-link").html(data);
                     }
                     else {
                         window.location.href = data;

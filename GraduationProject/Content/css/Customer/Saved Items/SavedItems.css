@@ -1,0 +1,61 @@
+﻿.wishlistCard {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1.5rem !important;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+    .wishlistCard:last-child {
+        border-bottom: none;
+    }
+
+    .wishlistCard .a {
+        font-size: 1rem;
+        text-overflow: ellipsis;
+        text-decoration: none;
+        color: black;
+    }
+
+    .wishlistCard p {
+        font-weight: 500;
+        margin-top: 3rem;
+    }
+
+    .wishlistCard .rightwishlistCard {
+        display: flex;
+        justify-content: space-between;
+    }
+
+.rightwishlistCard #btnBuyNow {
+    padding-bottom: 12px;
+    transform: translate3d(0, 0, 0);
+    padding-top: 12px;
+    padding-left: 16px;
+    position: relative;
+    color: #fff;
+    background-color: #f68b1e;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1rem;
+    padding-right: 16px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+}
+
+.wishlistCard .rightwishlistCard .Removebtn {
+    position: relative;
+    color: #f68b1e;
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+    font-weight: 500;
+    /* font-size: 0.875rem; */
+}
+
+    .wishlistCard .rightwishlistCard .Removebtn:hover {
+        background-color: rgba(246, 139, 30, 0.15);
+    }
+
+    .wishlistCard .rightwishlistCard .Removebtn:focus {
+        box-shadow: none;
+    }

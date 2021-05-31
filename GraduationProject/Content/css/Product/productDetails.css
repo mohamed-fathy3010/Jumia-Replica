@@ -203,13 +203,13 @@ button > span {
     background-color: white;
 }
 
-.product-rating {
+.product-rating span.fa.checked {
     color: #ffc107;
 }
 
-    .product-rating span {
+    .product-rating span.fa {
         font-weight: 600;
-        color: #252525;
+        color: #e0dbdb;
     }
 
 .product-price {
@@ -329,10 +329,10 @@ button > span {
         background-color: #e4811c;
     }
 
-.cart {
+/*.cart {
     margin: 0 auto;
     padding-right: 24px;
-}
+}*/
 
 .product-price p {
     margin-bottom: 0;
@@ -345,6 +345,10 @@ button > span {
 
 .card-img-actions {
     position: relative;
+    min-width:108px;
+}
+.carousel-item .row{
+    flex-grow: 1 ;
 }
 
 .card-body {
@@ -524,7 +528,6 @@ mainheader {
                 display: block;
                 cursor: pointer;
             }
-
     .carousel-inner .carousel-item > div {
         display: none;
     }

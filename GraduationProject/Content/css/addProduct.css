@@ -39,7 +39,8 @@ body {
 }
 .product input {
   width: 65%;
-  height: 2.5rem;
+  border-left:#000 !important;
+  /*height: 2.5rem;*/
 }
 .DescriptionDiv {
   justify-content: space-between;

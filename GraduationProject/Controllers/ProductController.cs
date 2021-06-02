@@ -10,7 +10,7 @@ using System.Net;
 
 namespace GraduationProject.Controllers
 {
-
+    [Authorize]
     public class ProductController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
@@ -177,6 +177,7 @@ namespace GraduationProject.Controllers
         }
 
         // get create
+        [Authorize(Roles = "seller")]
         public ActionResult Create()
         {
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "Name");
@@ -188,7 +189,8 @@ namespace GraduationProject.Controllers
         // post create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Product product, HttpPostedFileBase pImage)
+        
+        public ActionResult Create(Product product, HttpPostedFileBase Image)
         {
             var user = User.Identity.GetUserId();
             if (ModelState.IsValid)
@@ -199,8 +201,8 @@ namespace GraduationProject.Controllers
                 product.Description = des2;
                 db.Products.Add(product);
                 db.SaveChanges();
-                string imgname = product.ID.ToString() + product.Name + "." + pImage.FileName.Split('.')[1];
-                pImage.SaveAs(Server.MapPath("~/images/ProductImageUploaded/") + imgname);
+                string imgname = product.ID.ToString() + product.Name + "." + Image.FileName.Split('.')[1];
+                Image.SaveAs(Server.MapPath("~/images/ProductImageUploaded/") + imgname);
                 product.Image = imgname;
 
                 product.InventoryId = user;
@@ -209,12 +211,102 @@ namespace GraduationProject.Controllers
                 db.SaveChanges();
                 
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("InventoryManagement", "seller",user);
             }
 
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "Name", product.CategoryID);
             ViewBag.PromotionsID = new SelectList(db.Promotions, "ID", "ReasonforDiscounts", product.PromotionsID);
+            ViewBag.BrandId = new SelectList(db.Brands, "ID", "Name");
+
             return View(product);
+        }
+        [HandleError]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product product = db.Products.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "Name", product.CategoryID);
+            ViewBag.PromotionsID = new SelectList(db.Promotions, "ID", "ReasonforDiscounts", product.PromotionsID);
+            ViewBag.BrandId = new SelectList(db.Brands, "ID", "Name");
+            ViewBag.productImage = product.Image;
+            return View(product);
+        }
+
+        // POST: Products/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit( Product product, HttpPostedFileBase Image)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(product).State = EntityState.Modified;
+                db.SaveChanges();
+                if (Image==null)
+                {
+                    product.Image = product.Image;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    string imgname = product.ID.ToString() + product.Name + "." + Image.FileName.Split('.')[1];
+                    Image.SaveAs(Server.MapPath("~/images/ProductImageUploaded/") + imgname);
+                    product.Image = imgname;
+                }
+                db.SaveChanges();
+                return RedirectToAction("InventoryManagement","seller");
+            }
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "Name", product.CategoryID);
+            ViewBag.PromotionsID = new SelectList(db.Promotions, "ID", "ReasonforDiscounts", product.PromotionsID);
+            ViewBag.BrandId = new SelectList(db.Brands, "ID", "Name");
+
+            return View(product);
+        }
+
+        // GET: Products/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            
+            else
+            {
+                Product product = db.Products.Find(id);
+                db.Products.Remove(product);
+                db.SaveChanges();
+
+                return RedirectToAction("InventoryManagement","seller");
+                
+            }
+        }
+
+        // POST: Products/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Product product = db.Products.Find(id);
+        //    db.Products.Remove(product);
+        //    db.SaveChanges();
+        //    return RedirectToAction("InventoryManagement");
+        //}
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

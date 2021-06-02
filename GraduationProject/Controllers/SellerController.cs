@@ -25,13 +25,13 @@ namespace GraduationProject.Controllers
         public ActionResult InventoryManagement()
         {
 
-            string userId = User.Identity.GetUserId();
-            var sellerProducts = db.SellerInfo.Include(k => k.Inventory.Products).FirstOrDefault(p => p.ID == userId);
-            return View("~/Views/Seller/Inventory/InventoryManagement.cshtml", sellerProducts);
+           string userId = User.Identity.GetUserId();
+            var sellerProducts = db.SellerInfo.FirstOrDefault(s => s.ID == userId).Inventory.Products;
+            return View("~/Views/Seller/Inventory/InventoryManagement.cshtml", sellerProducts.ToList());
         }
         public ActionResult StartListing()
         {
-            return View("~/views/seller/inventory/Inventory.cshtml");
+            return RedirectToAction("create", "product");
         }
         public ActionResult ProductPage()
         {

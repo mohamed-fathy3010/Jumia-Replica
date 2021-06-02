@@ -17,6 +17,7 @@ namespace GraduationProject.Controllers
         {
             return View();
         }
+
         [Route("financials/account-summary")]
         public ActionResult AccountSummary()
         {
@@ -37,7 +38,7 @@ namespace GraduationProject.Controllers
             return View("~/views/Product/ProductPage.cshtml");
 
         }
-       
+
         public ActionResult ReturnManagement()
         {
             return View("~/views/seller/orders/ReturnManagement.cshtml");
@@ -53,7 +54,7 @@ namespace GraduationProject.Controllers
         public ActionResult OrderManagement(string tab)
         {
             var allOrderDetails = db.OrderDetails.OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).ToList();
-            return View("~/Views/Seller/Orders/OrderManagement.cshtml",allOrderDetails);
+            return View("~/Views/Seller/Orders/OrderManagement.cshtml", allOrderDetails);
         }
         public ActionResult FeedBack()
         {
@@ -83,11 +84,11 @@ namespace GraduationProject.Controllers
             var allOrderDetails = db.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).ToList();
             return PartialView("~/Views/Seller/Orders/DeliveredTabPartialView.cshtml", allOrderDetails);
         }
-        public ActionResult ConfirmSelected(Dictionary<string,bool> orderDetails,string confirm,string cancel)
+        public ActionResult ConfirmSelected(Dictionary<string, bool> orderDetails, string confirm, string cancel)
         {
-            foreach (KeyValuePair<string,bool> item in orderDetails)
+            foreach (KeyValuePair<string, bool> item in orderDetails)
             {
-                if(item.Value == true)
+                if (item.Value == true)
                 {
                     int id = int.Parse(item.Key);
                     OrderDetails currentOrderDetails = db.OrderDetails.FirstOrDefault(o => o.ID == id);
@@ -104,11 +105,11 @@ namespace GraduationProject.Controllers
                 }
             }
             db.SaveChanges();
-                return RedirectToAction("OrderManagement");
+            return RedirectToAction("OrderManagement");
         }
-        public ActionResult ShipSelected(Dictionary<string,bool> orderDetails)
+        public ActionResult ShipSelected(Dictionary<string, bool> orderDetails)
         {
-            foreach (KeyValuePair<string,bool> item in orderDetails)
+            foreach (KeyValuePair<string, bool> item in orderDetails)
             {
                 if (item.Value == true)
                 {
@@ -136,10 +137,15 @@ namespace GraduationProject.Controllers
             db.SaveChanges();
             return RedirectToAction("OrderManagement");
         }
-        
+
         public ActionResult FeeDiscounts()
         {
             return View("~/Views/Seller/FeeDiscounts/FeeDiscounts.cshtml");
+        }
+
+        public ActionResult Dashbored()
+        {
+            return View("~/Views/Seller/Dashbored/Dashbored.cshtml");
         }
     }
    

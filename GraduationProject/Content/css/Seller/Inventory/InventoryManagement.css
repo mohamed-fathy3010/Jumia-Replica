@@ -328,9 +328,9 @@ content {
 }
 
 img {
-    width: 25px;
-    height: 25px;
-    top: .28571rem;
+    /*width: 25px;
+    height: 25px;*/
+    /*top: .28571rem*/
 }
 
 .import .button-group {

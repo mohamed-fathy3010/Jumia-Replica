@@ -5,7 +5,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -183,7 +182,7 @@ namespace GraduationProject.Controllers
         [AllowAnonymous]
         public ActionResult SellerRegister()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+           // AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             Session.Clear();
             return View("SellerRegister");
         }
@@ -201,8 +200,6 @@ namespace GraduationProject.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    
-
                     
                     var newseller=new SellerInfo() { ID = user.Id,NationalID=model.NationalID,BusinessName=model.BusinessName, };
                     db.SellerInfo.Add(newseller);

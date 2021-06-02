@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 
 namespace GraduationProject.Controllers
 {
+    [Authorize(Roles ="seller")]
     public class SellerController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
@@ -26,7 +27,7 @@ namespace GraduationProject.Controllers
         public ActionResult InventoryManagement()
         {
             string userId = User.Identity.GetUserId();
-            var sellerProducts = db.SellerInfo.Include(k => k.Inventory.Products).FirstOrDefault(p => p.ID == userId);
+            var sellerProducts = db.Products.Where(a => a.InventoryId == userId).ToList();
             return View("~/Views/Seller/Inventory/InventoryManagement.cshtml", sellerProducts);
         }
         public ActionResult StartListing()
@@ -59,6 +60,10 @@ namespace GraduationProject.Controllers
         public ActionResult FeedBack()
         {
             return View("~/Views/seller/Feedback.cshtml");
+        }
+        public ActionResult DashBored()
+        {
+            return View("~/Views/seller/Dashbored/Dashbored.cshtml");
         }
         public ActionResult ComplaintsManagement()
         {
@@ -143,10 +148,7 @@ namespace GraduationProject.Controllers
             return View("~/Views/Seller/FeeDiscounts/FeeDiscounts.cshtml");
         }
 
-        public ActionResult Dashbored()
-        {
-            return View("~/Views/Seller/Dashbored/Dashbored.cshtml");
-        }
+       
     }
    
 }

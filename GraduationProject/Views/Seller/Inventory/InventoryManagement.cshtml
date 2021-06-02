@@ -2,23 +2,23 @@
 
 @{
     Layout = "~/Views/Shared/Seller_layout.cshtml";
-    
+
 
     ViewBag.Title = "InventoryManagement";
 }
 @model IEnumerable<Product>
 @section styles{
     <link href="~/Content/css/Seller/Inventory/InventoryManagement.css" rel="stylesheet" />
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-          crossorigin="anonymous" />
+    @*<link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+              integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+              crossorigin="anonymous" />
 
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous" />
-   
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous" />*@
+
 }
 
 
@@ -165,10 +165,10 @@
                 </div>
             </form>
         </div>
-    
+
     </nav>
     <div class="content">
-        <div class="tab-wrapper d-none d-lg-block">
+        <div class="tab-wrapper d-none d-lg-block" style="z-index:0">
             <ul class="nav nav-tabs border-bottom-0 tab-list">
                 <li class="nav-item active">
                     <a data-toggle="tab" class="contenttab nav-link active" href="#all0">
@@ -261,7 +261,7 @@
                 }
                 <br />
                 <a class="btn tiny" href="../product/create">
-                    <i class="btnbox"><img src="~/images/boxbtn.png" /></i> Start Listing Items
+                    <i class="btnbox"><img style=" width: 25px; height: 25px; top: .28571rem;" src="~/images/boxbtn.png" /></i> Start Listing Items
                 </a>
             </div>
             <div id="live-on-site0" class="tab-pane fade ">
@@ -304,6 +304,7 @@
 </div>
 
 @section scripts{
+    <script src="account summary.js"></script>
     <script>
         $(document).ready(function () {
             function contains(txtone, txttwo) {
@@ -343,5 +344,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                 crossorigin="anonymous"></script>
-        <script src="account summary.js"></script>*@
+
+    *@
+
 }

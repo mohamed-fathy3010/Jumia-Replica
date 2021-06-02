@@ -30,7 +30,7 @@
 <body>
     <form method="post" enctype="multipart/form-data">
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         <div class="container">
             <div class="row mycontainerdiv">
                 <div class="col-12 product">
@@ -41,12 +41,13 @@
                     <div class="form-group ">
                         <label for="name">Name</label>
                         @*@Html.DisplayNameFor(a=>a.Name)*@
-                        <input type="text" id="name" name="Name" >  
+                        <input type="text"  name="Name" >  
+                        @*@Html.EditorFor(a=>a.Name)*@
                         @Html.ValidationMessageFor(a => a.Name, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label for="Cost">Price</label>
-                        <input type="text" id="price" name="Cost">
+                        <input type="text"  name="Cost">
                         @Html.ValidationMessageFor(a => a.Cost, null, new { @class = "text-danger" })
                     </div>
 
@@ -66,24 +67,23 @@
 
                         @Html.DropDownListFor(a => a.PromotionsID, null, htmlAttributes: new { id = "browsers", @class = "col-8" })
                     </div>
-                    <br /><br />
-
-                    <div class="row Upload" style="padding: .4rem;">
+                    
+                    <div class="row Upload form-group" @*style="padding: .4rem;"*@>
                         <div class="col-4">
-                            <input class="form-control" type="file" name="Image" multiple>
+                            <input class="form-control" type="file" name="Image" >
 
                         </div>
-                        <div class="col-8">
+                        @*<div class="col-8">
                             <div class="preview-images-zone">
 
 
                             </div>
-                        </div>
-                    </div><br>
+                        </div>*@
+                    </div>
 
                     <div class="row DescriptionDiv form-group">
                         <div>
-                            <label for="Description">Description</label>
+                            <label for="Description" class="col-4">Description</label>
                         </div>
                         @Html.TextAreaFor(m => m.Description, new { id = "summernote" })
                     </div>

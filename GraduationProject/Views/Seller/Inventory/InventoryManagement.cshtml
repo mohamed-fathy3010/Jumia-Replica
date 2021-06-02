@@ -1,15 +1,27 @@
-﻿@{
+﻿@using GraduationProject.Models
+
+@{
     Layout = "~/Views/Shared/Seller_layout.cshtml";
+    
 
     ViewBag.Title = "InventoryManagement";
 }
+@model IEnumerable<Product>
 @section styles{
     <link href="~/Content/css/Seller/Inventory/InventoryManagement.css" rel="stylesheet" />
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
           integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
           crossorigin="anonymous" />
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous" />
+   
 }
+
+
 
 <div id="main">
     <nav class="navbar navbar-expand-md navbar-light">
@@ -153,6 +165,7 @@
                 </div>
             </form>
         </div>
+    
     </nav>
     <div class="content">
         <div class="tab-wrapper d-none d-lg-block">
@@ -196,16 +209,64 @@
         </div>
         <div class="transactions tab-content d-block">
             <div id="all0" class="tab-pane fade show active ">
-                <h5 class="text-center block-mrgb ng-binding">
-                    You don't have any listings on Souq. Start selling on Souq now!
-                </h5>
+                @if (Model.Count() == 0)
+                {
+                    <h5 class="text-center block-mrgb ng-binding">
+                        You don't have any listings on Souq. Start selling on Souq now!
+                    </h5>
+                }
+                else
+                {
+
+                    <table class="table table-hover  table-responsive-md ">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Description</th>
+
+                                <th>EDIT</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+
+                            @foreach (var item in Model)
+                            {
+                                <tr class="DataTable">
+                                    <td>@item.ID</td>
+                                    <td><img src="~/images/ProductImageUploaded/@item.Image" width="96" height="350" alt="@item.Name"></td>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                    <td>@item.Cost</td>
+
+                                    <td>@item.Description</td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "edit", "product", new { id = item.ID }, new { @class = "btn btn-warning" })
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Delete", "Delete", "product", new { id = item.ID }, new { @class = "btn btn-danger", onclick = "return confirm('are you sure to delete')" })
+
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                }
                 <br />
-                <a class="btn tiny" href="StartListing">
-                    <i class="btnbox"><img src="~/images/boxbtn.png" /></i>      Start Listing Items
+                <a class="btn tiny" href="../product/create">
+                    <i class="btnbox"><img src="~/images/boxbtn.png" /></i> Start Listing Items
                 </a>
             </div>
             <div id="live-on-site0" class="tab-pane fade ">
                 <h5 class="text-center block-mrgb ng-binding">
+
                     You don't have any live listings on Souq, start listing now
                 </h5>
                 <br />
@@ -244,6 +305,24 @@
 
 @section scripts{
     <script>
+        $(document).ready(function () {
+            function contains(txtone, txttwo) {
+                if (txtone.indexOf(txttwo) != -1)
+                    return true;
+            }
+            $("#search-input").keyup(function () {
+                var searchtxt = $("#search-input").val().toLocaleLowerCase();
+                $(".DataTable").each(function () {
+                    if (!contains($(this).text().toLocaleLowerCase(), searchtxt)) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                });
+            });
+        });
+
         $('[data-toggle="buttons"] .checkselect').on('click', function () {
             // toggle style
             $(this).toggleClass('btn-secondary active');
@@ -255,4 +334,14 @@
             return false;
         });
     </script>
+    @*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+        <script src="account summary.js"></script>*@
 }

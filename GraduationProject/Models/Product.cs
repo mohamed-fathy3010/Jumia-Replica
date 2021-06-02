@@ -6,12 +6,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace GraduationProject.Models
 {
     public class Product
     {
-        
+        [Key]
         public int ID { get; set; }
 
         [Required]
@@ -29,6 +30,7 @@ namespace GraduationProject.Models
         public string Image { get; set; }
 
         [Required]
+        [AllowHtml]
         public string Description { get; set; }
 
         //forigen key

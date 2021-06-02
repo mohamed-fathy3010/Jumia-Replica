@@ -166,7 +166,8 @@ namespace GraduationProject.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    //return RedirectToLocal(returnUrl);
+                    return RedirectToAction("InventoryManagement","seller");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -182,6 +183,8 @@ namespace GraduationProject.Controllers
         [AllowAnonymous]
         public ActionResult SellerRegister()
         {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session.Clear();
             return View("SellerRegister");
         }
 
@@ -218,8 +221,12 @@ namespace GraduationProject.Controllers
                         newseller.BackImage = new2img;
                     
                     db.SaveChanges();
-                    
-    
+                    var newInventory = new Inventory() { ID = newseller.ID, BuildingNum = model.BuildingNum, Street = model.Street, City = model.City, LandLineNum = model.LandLineNum };
+                    db.Inventories.Add(newInventory);
+                    db.SaveChanges();
+
+
+
 
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
@@ -229,7 +236,7 @@ namespace GraduationProject.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("InventoryManagement", "Seller");
                 }
                 AddErrors(result);
             }
@@ -238,24 +245,79 @@ namespace GraduationProject.Controllers
             return View("sellerRegister", model);
         }
 
-        [AllowAnonymous]
-        public async Task<ActionResult> SellerEdit(int? id)
+        [Authorize(Roles = "seller")]
+        public  ActionResult SellerEdit()
         {
-            SellerInfo seller = db.SellerInfo.Find(id);
+            string userID = User.Identity.GetUserId();
+            var seller = db.SellerInfo.FirstOrDefault(a=>a.ID==userID);
 
-            return View("SellerEdit");
+            SellerEditViewModel selleredit = new SellerEditViewModel();
+            selleredit.SellerInfo = seller;
+            selleredit.Fname = seller.ApplicationUser.FirstName;
+            selleredit.Lname = seller.ApplicationUser.LastName;
+            selleredit.Email = seller.ApplicationUser.Email;
+            selleredit.NationalID = seller.NationalID;
+            selleredit.ExpiredDate = seller.ExpiredDate;
+            selleredit.FrontImage = seller.FrontImage;
+            selleredit.BackImage = seller.BackImage;
+            selleredit.PhoneNo = seller.ApplicationUser.PhoneNumber;
+            selleredit.BusinessName = seller.BusinessName;
+            selleredit.City = seller.Inventory.City;
+            selleredit.BuildingNum = seller.Inventory.BuildingNum;
+            selleredit.LandLineNum = seller.Inventory.LandLineNum;
+            selleredit.Street = seller.Inventory.Street;
+            
+            
+
+            
+
+            return View("SellerEdit",selleredit);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SellerEdit([Bind(Include = "ID,CompanyRegistration,FrontImage,BackImage,BusinessName")] SellerInfo sellerInfo)
+        public ActionResult SellerEdit(SellerEditViewModel SellerInfo, HttpPostedFileBase FrontImage, HttpPostedFileBase BackImage)
         {
+            
             if (ModelState.IsValid)
             {
-                db.Entry(sellerInfo).State = EntityState.Modified;
+                string userid = User.Identity.GetUserId();
+                SellerInfo oldseller = db.SellerInfo.FirstOrDefault(a => a.ID == userid);
+                oldseller.ApplicationUser.FirstName = SellerInfo.Fname;
+                oldseller.ApplicationUser.LastName = SellerInfo.Lname;
+                oldseller.ApplicationUser.Email = SellerInfo.Email;
+                oldseller.ApplicationUser.UserName = SellerInfo.Email;
+                
+                oldseller.ApplicationUser.PhoneNumber = SellerInfo.PhoneNo;
+                oldseller.BusinessName = SellerInfo.BusinessName;
+                oldseller.NationalID = SellerInfo.NationalID;
+                oldseller.Inventory.City = SellerInfo.City;
+                oldseller.Inventory.Street = SellerInfo.Street;
+                oldseller.Inventory.LandLineNum = SellerInfo.LandLineNum;
+                oldseller.Inventory.BuildingNum = SellerInfo.BuildingNum;
+                oldseller.ExpiredDate = SellerInfo.ExpiredDate;
+
+
+
+
+
+                // db.Entry(SellerInfo).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                string newimg = userid + "." + FrontImage.FileName.Split('.')[1];
+
+                FrontImage.SaveAs(Server.MapPath("~/SellerInfoImgs/") + newimg);
+                SellerInfo.FrontImage = newimg;
+
+                string new2img = userid + "." + BackImage.FileName.Split('.')[1];
+
+                BackImage.SaveAs(Server.MapPath("~/SellerInfoImgs/") + new2img);
+                SellerInfo.BackImage = new2img;
+                db.SaveChanges();
+
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                Session.Clear();
+                return RedirectToAction("sellerlogin");
             }
-            return View(sellerInfo);
+            return View(SellerInfo);
         }
 
 
@@ -527,7 +589,7 @@ namespace GraduationProject.Controllers
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             Session.Clear();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("sellerlogin");
         }
 
         //

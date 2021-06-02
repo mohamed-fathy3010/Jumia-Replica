@@ -31,7 +31,7 @@ namespace GraduationProject.Controllers
         }
         public ActionResult StartListing()
         {
-            return View("~/views/seller/inventory/Inventory.cshtml");
+            return RedirectToAction("create", "product");
         }
         public ActionResult ProductPage()
         {

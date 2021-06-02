@@ -37,10 +37,10 @@
         margin-top: 25px;
     }
 
-        .form-group i {
+        .form-group #eyeicon {
             position: absolute;
             top: 200px;
-            left: 70%;
+            right: 3% !important;
             font-size: x-large;
             cursor: pointer;
         }
@@ -138,7 +138,8 @@
     }
 
         .loginbtn:hover {
-            background-color: #e4811c
+            background-color: #e4811c;
+            color: white;
         }
 
     .loginwithface {
@@ -148,6 +149,7 @@
 
         .loginwithface:hover {
             background-color: #344f88;
+            color: white;
         }
 
     input[type=button], .loginbtn, .loginwithface {
@@ -165,7 +167,7 @@
 
         .right .fa-envelope {
             position: absolute;
-            left: 30%;
+            left: 35px;
             font-size: large;
             cursor: pointer;
         }
@@ -186,7 +188,7 @@
 
     .right .fa-facebook-square {
         position: absolute;
-        left: 30%;
+        left: 35px;
         font-size: x-large;
         cursor: pointer;
     }
@@ -203,17 +205,19 @@
     }
 
     .Pcountainer {
-        max-height: 230px;
-        height: 230px;
+        max-height: 235px;
+        height: 235px;
     }
 
-    p {
-        font-size: 1rem;
-        line-height: 1.5;
-        padding-top: 16px;
-        flex-grow: 1;
-        margin: 0;
-        color: #282828;
-        box-sizing: border-box;
-    }
+p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    padding-top: 16px;
+    flex-grow: 1;
+    font-weight: 500;
+    margin: 10px 40px auto;
+    color: #525252;
+    box-sizing: border-box;
+}
+    
 

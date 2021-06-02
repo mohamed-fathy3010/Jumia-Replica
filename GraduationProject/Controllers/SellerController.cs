@@ -26,7 +26,7 @@ namespace GraduationProject.Controllers
         public ActionResult InventoryManagement()
         {
             string userId = User.Identity.GetUserId();
-            var sellerProducts = db.SellerInfo.Include(k => k.Inventory.Products).FirstOrDefault(p => p.ID == userId);
+            var sellerProducts = db.Products.Where(k => k.InventoryId == userId).ToList();
             return View("~/Views/Seller/Inventory/InventoryManagement.cshtml", sellerProducts);
         }
         public ActionResult StartListing()

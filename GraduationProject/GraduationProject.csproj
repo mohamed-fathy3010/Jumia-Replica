@@ -377,6 +377,7 @@
     <Content Include="Content\css\Product\SearchProduct.css" />
     <Content Include="Content\css\register.css" />
     <Content Include="Content\css\sellerRegister.css" />
+    <Content Include="Content\css\Seller\Dashbored.css" />
     <Content Include="Content\css\Seller\FeeDiscounts\FeeDiscounts.css" />
     <Content Include="Content\css\Seller\Financials\AccountSummary.css" />
     <Content Include="Content\css\Seller\Inventory\InventoryManagement.css" />
@@ -494,6 +495,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Dashbored\Dashbored.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -700,6 +702,7 @@
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Seller\Inventory\Inventory.cshtml" />
     <Content Include="Views\Seller\Feedback.cshtml" />
+    <Content Include="Views\Seller\Dashbored\Dashbored.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

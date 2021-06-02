@@ -1,0 +1,160 @@
+﻿.invCardContainer {
+    background-color: rgb(228, 228, 228);
+    position: relative;
+}
+
+.inventoryCard {
+    border-radius: 3px;
+    margin: 0.5rem auto;
+    background-color: white;
+    border-top: 2px solid rgb(157 191 255);
+}
+
+    .inventoryCard h6,
+    .FinancialCard h6 {
+        color: #969393;
+        margin-top: 1rem;
+        text-transform: uppercase;
+    }
+
+.invCardContainer .inventoryCard .circle,
+.PerformanceScore .circle {
+    border-radius: 50%;
+    color: white;
+    width: 70px;
+    margin: auto;
+    text-align: center;
+    height: 70px;
+}
+
+.circle h6 {
+    color: white;
+    padding-top: 1.5rem;
+}
+
+.inventoryCard p {
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 500;
+    color: #b3b3b3;
+    line-height: 1;
+    font-size: 0.9rem;
+}
+
+.OrderCard h5,
+.OrderCard p {
+    color: white;
+}
+
+.OrderCard {
+    border-radius: 2px;
+    margin: 0.75rem auto;
+}
+
+.invCardContainer #card1 {
+    background-color: #237bff;
+}
+
+.invCardContainer #card2 {
+    background-color: #7a8085;
+}
+
+.invCardContainer #card3 {
+    background-color: #fcca37;
+}
+
+.invCardContainer #card4 {
+    background-color: #f14253;
+}
+
+.invCardContainer .fa {
+    position: absolute;
+    right: 8px;
+    color: rgb(204, 204, 191);
+    opacity: 0.2;
+    font-size: 5rem;
+}
+
+.invCardContainer .CurvCard {
+    border-radius: 3px;
+    background-color: rgb(255, 255, 255);
+    border-top: 2px solid #a7ee00;
+    margin: 0.5rem auto;
+}
+
+.invCardContainer .FinancialCard {
+    border-radius: 3px;
+    background-color: white;
+    margin: 0.5rem auto;
+    border-top: 2px solid #fcca37;
+}
+
+.FinancialCard p {
+    color: gray;
+    font-size: 0.85rem;
+}
+
+.FinancialCard hr {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.Performance,
+.PerformanceRate,
+.PerformanceScore {
+    border-top: 2px solid #fc3737;
+    border-radius: 3px;
+    background-color: white;
+    margin: 0.5rem auto;
+    height: 10rem;
+}
+
+    .Performance h6,
+    .PerformanceRate h6,
+    .PerformanceScore h6 {
+        text-transform: uppercase;
+        color: #969393;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .Performance h5 {
+        color: #fcca37;
+        margin-top: 2rem;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .Performance a {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 3rem;
+    }
+
+    .PerformanceScore .circle h6 {
+        color: white;
+        font-weight: bold;
+    }
+
+.dashCont {
+    display: flex;
+    justify-content: space-between;
+}
+/* progress bar  */
+#container1,
+#container2,
+#container3,
+#container4 {
+    margin: 10px;
+    width: 100px;
+}
+
+.dashCont p {
+    color: #969393;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.dashCont {
+    overflow-x: hidden;
+}

@@ -252,7 +252,7 @@ input, button {
         box-shadow: 0 1px 2px rgb(0 0 0 / 10%) inset;
     }
 
-a:hover {
+#main a:hover {
     color: #fff;
     background-color: #e4811c;
 }
@@ -297,7 +297,7 @@ content {
     border-width: 0;
 }
 
-    .btn:hover {
+    #main .btn:hover {
         background-color: #e4811c;
     }
 
@@ -314,7 +314,7 @@ content {
     text-align: center;
 }
 
-img {
+#main img {
     width: 25px;
     height: 25px;
     top: .28571rem;

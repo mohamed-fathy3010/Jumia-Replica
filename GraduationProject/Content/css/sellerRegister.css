@@ -153,7 +153,7 @@ display-flex {
     .active input + label {
       margin-right: 59px; }
   
-  form {
+  form.reg-form {
     padding: 72px 70px 70px 70px; }
   
   .form-group {

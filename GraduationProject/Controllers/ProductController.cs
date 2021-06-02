@@ -229,7 +229,7 @@ namespace GraduationProject.Controllers
                 db.Products.Add(product);
                 db.SaveChanges();
                 string imgname = product.ID.ToString() + product.Name + "." + Image.FileName.Split('.')[1];
-                Image.SaveAs(Server.MapPath("~/images/ProductImageUploaded/") + imgname);
+                Image.SaveAs(Server.MapPath("~/images/") + imgname);
                 product.Image = imgname;
 
                 product.InventoryId = user;
@@ -285,7 +285,7 @@ namespace GraduationProject.Controllers
                 else
                 {
                     string imgname = product.ID.ToString() + product.Name + "." + Image.FileName.Split('.')[1];
-                    Image.SaveAs(Server.MapPath("~/images/ProductImageUploaded/") + imgname);
+                    Image.SaveAs(Server.MapPath("~/images/") + imgname);
                     product.Image = imgname;
                 }
                 db.SaveChanges();

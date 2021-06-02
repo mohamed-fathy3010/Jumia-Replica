@@ -26,7 +26,7 @@ namespace GraduationProject.Controllers
         public ActionResult InventoryManagement()
         {
             string userId = User.Identity.GetUserId();
-            var sellerProducts = db.SellerInfo.Include(k => k.Inventory.Products).FirstOrDefault(p => p.ID == userId);
+            var sellerProducts = db.Products.Where(x => x.InventoryId == userId).ToList();
             return View("~/Views/Seller/Inventory/InventoryManagement.cshtml", sellerProducts);
         }
         public ActionResult StartListing()
@@ -53,7 +53,8 @@ namespace GraduationProject.Controllers
 
         public ActionResult OrderManagement(string tab)
         {
-            var allOrderDetails = db.OrderDetails.OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).ToList();
+            string user_id = User.Identity.GetUserId();
+            var allOrderDetails = db.OrderDetails.OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).Where(d =>d.Product.InventoryId == user_id).ToList();
             return View("~/Views/Seller/Orders/OrderManagement.cshtml", allOrderDetails);
         }
         public ActionResult FeedBack()
@@ -66,22 +67,26 @@ namespace GraduationProject.Controllers
         }
         public ActionResult Awaiting()
         {
-            var allOrderDetails = db.OrderDetails.Where(o => o.Status == OrderDetailsStatus.awaiting).OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).ToList();
+            string user_id = User.Identity.GetUserId();
+            var allOrderDetails = db.OrderDetails.Where(o => o.Status == OrderDetailsStatus.awaiting).OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).Where(d => d.Product.InventoryId == user_id).ToList();
             return PartialView("~/Views/Seller/Orders/AwaitingTabPartialView.cshtml", allOrderDetails);
         }
         public ActionResult Confirmed()
         {
-            var allOrderDetails = db.OrderDetails.Where(o => o.Status == OrderDetailsStatus.confirmed).OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).ToList();
+            string user_id = User.Identity.GetUserId();
+            var allOrderDetails = db.OrderDetails.Where(o => o.Status == OrderDetailsStatus.confirmed).OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).Where(d => d.Product.InventoryId == user_id).ToList();
             return PartialView("~/Views/Seller/Orders/ConfirmedTabPartialView.cshtml", allOrderDetails);
         }
         public ActionResult Shipped()
         {
-            var allOrderDetails = db.OrderDetails.Where(o => o.Status == OrderDetailsStatus.shipped).OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).ToList();
+            string user_id = User.Identity.GetUserId();
+            var allOrderDetails = db.OrderDetails.Where(o => o.Status == OrderDetailsStatus.shipped).OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).Where(d => d.Product.InventoryId == user_id).ToList();
             return PartialView("~/Views/Seller/Orders/ShippedTabPartialView.cshtml", allOrderDetails);
         }
         public ActionResult Delivered()
         {
-            var allOrderDetails = db.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).ToList();
+            string user_id = User.Identity.GetUserId();
+            var allOrderDetails = db.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).OrderByDescending(o => o.OrderDate).Include(s => s.Product.Category).Where(d => d.Product.InventoryId == user_id).ToList();
             return PartialView("~/Views/Seller/Orders/DeliveredTabPartialView.cshtml", allOrderDetails);
         }
         public ActionResult ConfirmSelected(Dictionary<string, bool> orderDetails, string confirm, string cancel)

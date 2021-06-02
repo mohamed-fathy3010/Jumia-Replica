@@ -309,3 +309,23 @@ ul {
         left: 900%;
     }
 }
+.cart-icon{
+position:relative;
+}
+.notification {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    background-color: #f68b1e;
+    color: white;
+    top: -12px;
+    right: -10px;
+}

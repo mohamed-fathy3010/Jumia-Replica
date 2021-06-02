@@ -298,7 +298,7 @@
                 method: "POST",
                 url: "/products/" + element.id ,
                 success: function (data) {
-                    if (data == "") {
+                    if (data != "@Url.Action("Login","Account")") {
                         const $content = $(element).closest(".btn-price");
                         $content.fadeOut(500, function () {
                             $content.html(`
@@ -307,6 +307,7 @@
                                 added to cart.
                             </p>`).fadeIn(500);
                         })
+                        $("#cart-link").html(data);
                     }
                     else {
                         window.location.href = data;
@@ -319,7 +320,7 @@
                 method: "POST",
                 url: "/products/" + element.id,
                 success: function (data) {
-                    if (data == "") {
+                    if (data != "@Url.Action("Login","Account")") {
                         const $content = $(element).closest(".template");
                         $content.fadeOut(500, function () {
                             $content.html(`
@@ -328,6 +329,7 @@
                                 In cart.
                             </p>`).fadeIn(500);
                         })
+                        $("#cart-link").html(data);
                     }
                     else {
                         window.location.href = data;

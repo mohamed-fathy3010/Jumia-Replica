@@ -1,0 +1,8 @@
+﻿@model CartViewModel
+<i class="fas fa-shopping-cart cart cart-icon">
+    @if (Model != null)
+    {
+        <i class="notification"> @Model.totalQuantity</i>
+    }
+</i>
+<span class="d-none d-md-block"> Cart </span>

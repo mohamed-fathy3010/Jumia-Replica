@@ -95,15 +95,46 @@ namespace GraduationProject.Controllers
             var user = db.Users.FirstOrDefault(l => l.Id == userId);
 
             //get all orders for current authenticated customer that has delivered order details
+            //var orderDetails = db.OrderDetails
+            //    .Include(o => o.Order)
+            //    .Include(o => o.Product.Inventory.SellerInfo)
+            //    .Where(o => o.Status == OrderDetailsStatus.delivered && o.Order.CustomerID == userId)
+            //    .GroupBy(o => o.ProductID).ToList();
             var order = db.Orders.Include("OrderDetails.Product.Inventory.SellerInfo")
+                .Include("OrderDetails.FeedBack")
                 .Where(d => d.OrderDetails.Any(s => s.Status == OrderDetailsStatus.delivered) && d.CustomerID == userId)
                 .ToList();
-
                 foreach (var item in order)
                 {
                     item.OrderDetails = item.OrderDetails.Where(o => o.Status == OrderDetailsStatus.delivered).ToList();
                 }
             return View("~/views/Orders/Orders.cshtml", order);
+        }
+        [Authorize(Roles ="customer")]
+        public ActionResult SavedItems()
+        {
+            string userId = User.Identity.GetUserId();
+            List<Product> products;
+            var productsWished = db.ProductWishlists.Include(p => p.Product).Where(p => p.wishListId == userId).ToList();
+            products = productsWished.Select(p => p.Product).ToList();
+
+                return View("~/views/Customer/SavedItems.cshtml",products);
+        }
+        [Authorize]
+        [HttpPost]
+        public ActionResult Rate()
+        {
+            int id = int.Parse(Request["id"]);
+            var feedBack = db.FeedBacks.FirstOrDefault(a => a.ID == id);
+            int rate = int.Parse(Request["rate"]);
+            string positive = Request["positive"];
+            string negative = Request["negative"];
+            if(feedBack == null)
+            {
+                db.FeedBacks.Add(new FeedBack() {ID = id, Rate = rate, PositiveComment = positive, NegativeComment = negative});
+            }
+            db.SaveChanges();
+            return RedirectToAction("OrderHistory");
         }
     }
 }

@@ -24,10 +24,9 @@ namespace GraduationProject.Controllers
         }
         public ActionResult InventoryManagement()
         {
-
-           string userId = User.Identity.GetUserId();
-            var sellerProducts = db.SellerInfo.FirstOrDefault(s => s.ID == userId).Inventory.Products;
-            return View("~/Views/Seller/Inventory/InventoryManagement.cshtml", sellerProducts.ToList());
+            string userId = User.Identity.GetUserId();
+            var sellerProducts = db.SellerInfo.Include(k => k.Inventory.Products).FirstOrDefault(p => p.ID == userId);
+            return View("~/Views/Seller/Inventory/InventoryManagement.cshtml", sellerProducts);
         }
         public ActionResult StartListing()
         {

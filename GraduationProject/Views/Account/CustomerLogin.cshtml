@@ -42,7 +42,7 @@
                             <label for="Password">Password</label>
                             <div>
                                 <input type="password" class="form-control inp" name="Password" id="Password" required>
-                                <span><i class="bi bi-eye-slash-fill toggle-password" toggle="#password-field"></i></span>
+                                <span><i id="eyeicon" class="bi bi-eye-slash-fill toggle-password" toggle="#password-field"></i></span>
                             </div>
                         </div>
 
@@ -59,19 +59,19 @@
                             </div>
                         </div>
 
-                        <div class="form-label" >
+                            <a href=@Url.Action("home","")>
                             <label class="btn btn-block loginbtn" type="button">
                                 <span><i class="fa fa-envelope"></i></span>
-                                <input type="submit" value="LOGIN" class="btn" style="background-color: #f68b1e; color: white;border:none"/>
+                                <span>LOGIN</span>
                             </label>
-                        </div>
+                            </a>
 
-                        <a href="https://m.facebook.com/">
-                            <lable class="btn btn-block loginwithface" type="button">
-                                <span><i class="fa fa-facebook-square"></i></span>
-                                <span>login with facebook</span>
-                            </lable>
-                        </a>
+                            <a href="https://m.facebook.com/">
+                                <lable class="btn btn-block loginwithface" type="button">
+                                    <span><i class="fa fa-facebook-square"></i></span>
+                                    <span>login with facebook</span>
+                                </lable>
+                            </a>
                     </form>
                 </div>
 
@@ -81,7 +81,8 @@
                         <div class="Pcountainer">
                             <p>Create your Jumia customer account in just a few clicks! You can register either using your e-mail address or through your Facebook account. </p>
                         </div>
-                        <a href="/Account/Register">
+                        
+                        <a href=@Url.Action("Register", "Account")>
                             <label class="btn btn-block loginbtn" type="button">
                                 <span><i class="fa fa-envelope"></i></span>
                                 <span>CREATE AN ACCOUNT VIA E-MAIL</span>

@@ -589,7 +589,7 @@ namespace GraduationProject.Controllers
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             Session.Clear();
-            return RedirectToAction("sellerlogin");
+            return RedirectToAction("Index","Home");
         }
 
         //

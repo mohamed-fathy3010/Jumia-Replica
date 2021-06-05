@@ -14,6 +14,6 @@
 	});
 
 })(jQuery);
-function submit(){
-	document.forms[0].submit();
+function submit() {
+	document.getElementById("myForm").submit();
 }

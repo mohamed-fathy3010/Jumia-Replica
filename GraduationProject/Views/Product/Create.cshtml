@@ -31,7 +31,7 @@
 <body>
     <form method="post" enctype="multipart/form-data">
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true,"invalid data", new { @class = "text-danger" })
         <div class="container">
             <div class="row mycontainerdiv">
                 <div class="col-12 product">
@@ -40,13 +40,13 @@
                     </div>
                     <br />
                     <div class="form-group ">
-                        <label for="name">Name</label>
+                        <label for="name" class="col-4">Name</label>
                         @*@Html.DisplayNameFor(a=>a.Name)*@
-                        <input type="text" id="name" name="Name" >  
+                        <input type="text" id="name" name="Name" class="col-8">
                     </div>
                     <div class="form-group">
-                        <label for="Cost">Price</label>
-                        <input type="text" id="price" name="Cost">
+                        <label for="Cost" class="col-4">Price</label>
+                        <input type="text" id="price" name="Cost" class="col-8">
                     </div>
 
                     <div class="form-group ">
@@ -65,20 +65,7 @@
 
                         @Html.DropDownListFor(a => a.PromotionsID, null, htmlAttributes: new { id = "browsers", @class = "col-8" })
                     </div>
-                    <br /><br />
 
-                    <div class="row Upload" style="padding: .4rem;">
-                        <div class="col-4">
-                            <input class="form-control" type="file" name="Image" multiple>
-
-                        </div>
-                        <div class="col-8">
-                            <div class="preview-images-zone">
-
-
-                            </div>
-                        </div>
-                    </div><br>
 
                     <div class="row DescriptionDiv form-group">
                         <div>
@@ -87,6 +74,12 @@
                         @Html.TextAreaFor(m => m.Description, new { id = "summernote" })
                     </div>
 
+                    <div class="row Upload" style="padding: .4rem;">
+                        <div class="col-4">
+                            <input class="" type="file" name="Image" multiple>
+
+                        </div>
+                    </div>
                     <br />
                     <input id="addproductinput" type="submit" value="Add"><br /><br />
 

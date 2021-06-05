@@ -39,11 +39,11 @@ body {
 }
 .product input {
   width: 65%;
-  border-left:#000 !important;
+  
   /*height: 2.5rem;*/
 }
 .DescriptionDiv {
-  justify-content: space-between;
+  justify-content: space-around;
   margin-right: 0;
   margin-left: 0;
 }

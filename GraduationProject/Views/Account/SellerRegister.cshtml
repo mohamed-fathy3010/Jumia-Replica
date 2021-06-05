@@ -30,7 +30,7 @@
 <body>
     <form class="reg-form" method="post" enctype="multipart/form-data">
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "invalid data", new { @class = "text-danger" })
 
         <div class="container">
             <div class="col-12 align-self-center">
